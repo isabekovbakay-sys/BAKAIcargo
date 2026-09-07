@@ -6,17 +6,18 @@
 <meta name="theme-color" content="#f3f4f0" />
 <meta name="description" id="metaDesc" content="Международные грузоперевозки из Китая, Казахстана, ОАЭ и России в Бишкек и Ош." />
 <meta property="og:type" content="website" />
-<meta property="og:title" content="CARGOX GROUP — международные грузоперевозки" />
+<meta property="og:title" content="JOL CARGO — международные грузоперевозки" />
 <meta property="og:locale" id="metaOgLocale" content="ru_RU" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link rel="preconnect" href="https://d8j0ntlcm91z4.cloudfront.net" crossorigin />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700;800;900&family=Literata:opsz,wght@7..72,400;7..72,500;7..72,600&display=swap" />
-<title>CARGOX GROUP — грузоперевозки в Бишкек</title>
+<title>JOL CARGO — грузоперевозки в Бишкек</title>
 
 <style>
+
 /* ============================================================
-   CARGOX GROUP — design system
+   JOL CARGO — design system
    «Перевал» — cold daylight at altitude. Paper is the ground;
    dark is an event. One accent, used only for commitment.
    ============================================================ */
@@ -369,8 +370,9 @@ textarea.input { min-height: 110px; resize: vertical; line-height: 1.5; }
 </style>
 
 <style>
+
 /* ============================================================
-   CARGOX GROUP — sections
+   JOL CARGO — sections
    ============================================================ */
 
 /* ------------------------------------------------- TOP BAR ---- */
@@ -586,60 +588,15 @@ body.menu-open { overflow: hidden; }
 }
 .hero__meter i { display: block; height: 100%; width: 0; background: var(--seal-lift); }
 
-/* the assistant: a collapsed bar, available but not co-starring */
-.ask {
-  position: absolute;
-  z-index: 4;
-  right: var(--pad);
-  bottom: calc(clamp(26px, 4vh, 48px) + env(safe-area-inset-bottom, 0px));
-  width: min(380px, calc(100vw - var(--pad) * 2));
-  border-radius: var(--r-surf);
-  background: rgba(14, 21, 24, .74);
-  backdrop-filter: blur(14px) saturate(130%);
-  -webkit-backdrop-filter: blur(14px) saturate(130%);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .12), 0 18px 44px rgba(0, 0, 0, .4);
-  overflow: hidden;
-}
-.ask__bar {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  width: 100%;
-  padding: 15px 18px;
-  text-align: left;
-  font-size: 15px;
-  color: var(--chalk);
-}
-.ask__bar b { font-weight: 600; }
-.ask__bar span { color: var(--chalk-2); font-size: 14px; margin-left: auto; }
-.ask__body { display: none; padding: 0 18px 18px; }
-.ask.is-open .ask__body { display: grid; gap: 10px; }
-.ask__form { display: grid; grid-template-columns: 1fr auto; gap: 8px; }
-.ask__note { font-size: 13px; color: var(--chalk-2); line-height: 1.45; }
-
 @media (max-width: 1040px) {
-  .ask { left: var(--pad); right: var(--pad); width: auto; }
   .hero__figures { gap: 22px; bottom: clamp(96px, 15vh, 130px); }
   .hero__caption { bottom: clamp(150px, 24vh, 210px); }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  /* No scrub track: the hero collapses to one legible frame and the
-     three stages resolve to the first one. */
-  .hero { height: auto; }
-  .hero__stage { position: static; height: 92vh; min-height: 560px; }
-  .hero__video { transform: none; }
-  .hero__copy { position: absolute; opacity: 1 !important; transform: none !important; }
-  .hero__caption, .hero__figures, .hero__meter { display: none; }
 }
 
 /* ----------------------------------------------- CORRIDORS ---- */
 .corr { display: grid; }
 .corr__row {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto minmax(0, .55fr);
-  align-items: center;
-  gap: clamp(18px, 4vw, 64px);
   padding: clamp(24px, 3vw, 40px) 0;
   border-top: 1px solid var(--rule);
 }
@@ -772,7 +729,7 @@ body.menu-open { overflow: hidden; }
   will-change: transform;
 }
 /* Fallback field: reads as a deliberate tonal band until the
-   production photograph is dropped into CARGOX.images. */
+   production photograph is dropped into JOL.images. */
 .photo__img[data-fallback="pass"] {
   background-image:
     linear-gradient(178deg, rgba(14, 21, 24, .1) 0%, rgba(14, 21, 24, .82) 100%),
@@ -828,19 +785,15 @@ body.menu-open { overflow: hidden; }
 .svc { display: grid; border-top: 1px solid var(--rule); }
 .svc__row {
   display: grid;
-  grid-template-columns: minmax(0, 300px) minmax(0, 1fr);
-  gap: clamp(16px, 4vw, 64px);
-  align-items: baseline;
   width: 100%;
-  padding: clamp(22px, 2.6vw, 34px) 0 clamp(22px, 2.6vw, 34px) 0;
-  text-align: left;
+  padding: clamp(22px, 2.6vw, 34px) 0;
   border-bottom: 1px solid var(--rule);
   transition: padding-left .32s var(--expo), background .25s var(--out);
 }
 .svc__row:hover { background: rgba(20, 25, 27, .035); padding-left: 18px; }
 .svc__name { font-family: var(--edit); font-size: clamp(22px, 2.3vw, 32px); font-weight: 600; letter-spacing: -.015em; }
 .svc__text { font-size: 16px; color: var(--ink-2); max-width: 58ch; }
-@media (max-width: 760px) { .svc__row { grid-template-columns: 1fr; row-gap: 8px; } }
+
 
 /* ------------------------------------------------ GET A PRICE ---- */
 .quote { display: grid; grid-template-columns: minmax(0, .82fr) minmax(0, 1.18fr); gap: clamp(20px, 3vw, 48px); align-items: start; }
@@ -1041,8 +994,6 @@ input[type="range"]:active::-webkit-slider-thumb { transform: scale(1.15); }
   .hero__caption b { font-size: 19px; }
   .hero__figures { bottom: 66px; gap: 20px; }
   .hero__figures b { font-size: 24px; }
-  .ask { width: min(320px, 42vw); left: auto; }
-  .ask__body { max-height: 42vh; overflow-y: auto; }
 
   .route { height: 300vh; }
   .rt-stage { padding-top: 66px; padding-bottom: 22px; gap: 10px; }
@@ -1077,25 +1028,626 @@ input[type="range"]:active::-webkit-slider-thumb { transform: scale(1.15); }
   .hero__figures { gap: 18px 28px; }
   .hero__figures b { font-size: 27px; }
   .hero__meter { width: 96px; }
-  .ask__bar span { display: none; }
 }
+</style>
+
+<style>
+/* ============================================================
+   JOL CARGO product layer — calculator, tracking, interactive
+   directions and services. Same tokens as the rest of the site:
+   paper grounds, steel for data, seal only for the committed state.
+   ============================================================ */
+
+.kicker {
+  display: inline-block;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--seal);
+  margin-bottom: 10px;
+}
+
+/* ------------------------------------------------ CALCULATOR ---- */
+.cx {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(14px, 2vw, 24px);
+  align-items: start;
+}
+.cx__out { grid-column: 1 / -1; }
+@media (max-width: 1040px) { .cx { grid-template-columns: 1fr; } }
+
+.cx__panel, .cx__talk { padding: clamp(20px, 2.2vw, 30px); }
+.cx__panel { display: grid; gap: 14px; align-content: start; }
+
+.cx__step {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin-top: 6px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--rule);
+}
+.cx__step:first-child { margin-top: 0; }
+.cx__step i { font-style: normal; font-size: 13px; font-weight: 600; color: var(--ink-2); font-variant-numeric: tabular-nums; }
+.cx__step b { font-size: 15px; font-weight: 600; }
+
+.cx__pair { display: grid; grid-template-columns: 1fr auto 1fr; gap: 10px; align-items: end; }
+.cx__dir { padding-bottom: 14px; color: var(--ink-2); font-size: 18px; }
+.cx__trio { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+@media (max-width: 620px) {
+  .cx__pair { grid-template-columns: 1fr; }
+  .cx__dir { display: none; }
+  .cx__trio { grid-template-columns: 1fr 1fr; }
+  .cx__trio .field:first-child { grid-column: 1 / -1; }
+}
+
+.cx__acts { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 6px; }
+.cx__acts .btn { flex: 1 1 auto; }
+.cx__note { font-size: 13px; line-height: 1.5; color: var(--ink-2); margin-top: 12px; }
+
+/* ---------------------------------------------- CONVERSATION ---- */
+.cx__talk { display: grid; grid-template-rows: auto minmax(0, 1fr) auto auto; gap: 12px; min-height: 100%; }
+.cx__talkhead { display: flex; align-items: center; gap: 12px; padding-bottom: 10px; border-bottom: 1px solid var(--rule); }
+.cx__talkhead b { font-size: 15px; font-weight: 600; }
+
+.cx__dot { margin-left: auto; display: inline-flex; align-items: center; gap: 7px; font-size: 13px; color: var(--ink-2); }
+.cx__dot::before {
+  content: ''; width: 7px; height: 7px; border-radius: 50%;
+  background: var(--clear);
+  transition: background .25s var(--out);
+}
+.cx__dot.is-busy::before { background: var(--hold); }
+
+.cx__log {
+  display: grid;
+  gap: 9px;
+  align-content: start;
+  min-height: 220px;
+  max-height: 340px;
+  overflow-y: auto;
+  padding-right: 4px;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+}
+.cx-msg {
+  max-width: 88%;
+  padding: 11px 14px;
+  border-radius: 4px;
+  font-size: 15px;
+  line-height: 1.5;
+  animation: cx-in .32s var(--expo) both;
+}
+.cx-msg--bot { background: var(--haze); justify-self: start; }
+.cx-msg--user { background: var(--ink); color: var(--paper); justify-self: end; }
+@keyframes cx-in { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { .cx-msg { animation: none; } }
+
+.cx__chips, .trk__ids { display: flex; flex-wrap: wrap; gap: 7px; }
+.cx-chip {
+  min-height: 38px;
+  padding: 0 14px;
+  border: 1px solid var(--rule);
+  border-radius: var(--r-ctl);
+  font-size: 14px;
+  color: var(--ink-2);
+  transition: border-color .18s var(--out), color .18s var(--out);
+}
+.cx-chip:hover { border-color: var(--ink); color: var(--ink); }
+
+.cx__form { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 8px; }
+@media (max-width: 480px) { .cx__form { grid-template-columns: 1fr; } }
+
+/* --------------------------------------------- RESULT CARD ---- */
+.cx-empty {
+  padding: clamp(20px, 3vw, 34px);
+  border: 1px dashed var(--rule);
+  border-radius: var(--r-surf);
+  font-size: 16px;
+  color: var(--ink-2);
+  text-align: center;
+}
+
+.cx-card {
+  padding: clamp(20px, 2.6vw, 36px);
+  background: var(--raise);
+  border-radius: var(--r-surf);
+  border-top: 2px solid var(--seal);
+  box-shadow: 0 2px 4px rgba(20, 25, 27, .07), 0 20px 48px rgba(20, 25, 27, .1);
+  display: grid;
+  gap: clamp(16px, 2vw, 26px);
+}
+.cx-card__head .kicker { margin-bottom: 6px; }
+
+.cx-card__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 150px), 1fr));
+  gap: 16px 24px;
+  padding: clamp(14px, 2vw, 22px) 0;
+  border-block: 1px solid var(--rule);
+}
+.cx-card__grid div { display: grid; gap: 3px; }
+.cx-card__grid b { font-size: 17px; font-weight: 600; }
+
+.cx-card__price {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr));
+  gap: 20px 40px;
+  align-items: end;
+}
+.cx-card__price div { display: grid; gap: 4px; }
+
+.cx-card__why { display: grid; gap: 10px; }
+.cx-card__why p { font-size: 16px; line-height: 1.55; max-width: 62ch; }
+.cx-card__pros { display: flex; flex-wrap: wrap; gap: 6px 22px; list-style: none; }
+.cx-card__pros li { font-size: 14px; color: var(--ink-2); }
+.cx-card__pros li::before { content: '— '; color: var(--steel); }
+
+.cx-card__acts { display: flex; flex-wrap: wrap; gap: 10px; }
+
+.cx-opts { display: grid; gap: 8px; }
+.cx-opt {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 4px 20px;
+  width: 100%;
+  padding: 16px 18px;
+  text-align: left;
+  border: 1px solid var(--rule);
+  border-radius: var(--r-surf);
+  transition: border-color .18s var(--out), background .18s var(--out);
+}
+.cx-opt:hover { border-color: var(--ink-2); }
+.cx-opt.is-on { border-color: var(--seal); background: rgba(176, 51, 42, .05); }
+.cx-opt__mode { font-size: 17px; font-weight: 600; }
+.cx-opt__tag { font-size: 13px; color: var(--ink-2); }
+.cx-opt.is-on .cx-opt__tag { color: var(--seal); font-weight: 600; }
+.cx-opt__price { grid-row: 1 / 3; grid-column: 2; align-self: center; text-align: right; }
+.cx-opt__price b { display: block; font-size: 22px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.cx-opt__price span { font-size: 13px; color: var(--ink-2); }
+
+/* -------------------------------------------------- TRACKING ---- */
+.trk { display: grid; grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); gap: clamp(14px, 2vw, 24px); align-items: start; }
+@media (max-width: 940px) { .trk { grid-template-columns: 1fr; } }
+
+.trk__search, .trk__out { padding: clamp(20px, 2.2vw, 30px); }
+.trk__search { display: grid; gap: 20px; align-content: start; }
+.trk__row { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 8px; }
+@media (max-width: 420px) { .trk__row { grid-template-columns: 1fr; } }
+.trk__demo { display: grid; gap: 8px; }
+
+.trk__head { display: flex; flex-wrap: wrap; gap: 12px; align-items: flex-start; justify-content: space-between; }
+.trk__head .code { display: block; font-family: var(--mono); font-size: 13px; color: var(--ink-2); margin-bottom: 5px; }
+.trk__status {
+  padding: 6px 13px;
+  border-radius: var(--r-ctl);
+  background: rgba(138, 83, 16, .1);
+  color: var(--hold);
+  font-size: 13px;
+  font-weight: 600;
+}
+.trk__status.is-done { background: rgba(37, 107, 76, .1); color: var(--clear); }
+
+.trk__bar { height: 4px; margin-top: 20px; background: var(--rule); border-radius: var(--r-ctl); overflow: hidden; }
+.trk__bar span { display: block; height: 100%; background: var(--seal); transition: width .6s var(--expo); }
+.trk__meta { display: flex; justify-content: space-between; margin-top: 7px; font-size: 13px; color: var(--ink-2); }
+.trk__meta b { color: var(--ink); font-variant-numeric: tabular-nums; }
+
+.trk__steps { list-style: none; margin-top: 22px; display: grid; }
+.trk__step {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: 14px;
+  align-items: start;
+  padding: 13px 0;
+  position: relative;
+}
+.trk__step + .trk__step::before {
+  content: '';
+  position: absolute;
+  left: 5px; top: -8px; bottom: 50%;
+  width: 1px;
+  background: var(--rule);
+}
+.trk__step.is-done + .trk__step::before, .trk__step.is-now + .trk__step::before { background: var(--steel); }
+.trk__dot {
+  width: 11px; height: 11px; margin-top: 5px;
+  border-radius: 50%;
+  border: 2px solid var(--rule);
+  background: var(--raise);
+}
+.trk__step.is-done .trk__dot { border-color: var(--steel); background: var(--steel); }
+.trk__step.is-now .trk__dot { border-color: var(--seal); background: var(--seal); }
+.trk__step b { display: block; font-size: 16px; font-weight: 600; }
+.trk__step.is-now b { color: var(--seal); }
+.trk__step span { font-size: 14px; color: var(--ink-2); }
+.trk__when { font-size: 13px; color: var(--ink-2); font-variant-numeric: tabular-nums; white-space: nowrap; }
+@media (max-width: 480px) {
+  .trk__step { grid-template-columns: auto minmax(0, 1fr); }
+  .trk__when { grid-column: 2; }
+}
+
+.trk__eta { display: flex; justify-content: space-between; gap: 14px; margin-top: 10px; padding-top: 18px; border-top: 1px solid var(--rule); font-size: 15px; color: var(--ink-2); }
+.trk__eta b { color: var(--ink); font-weight: 600; }
+.trk__miss { display: grid; gap: 10px; }
+
+/* ------------------------------- INTERACTIVE DIRECTIONS ---- */
+.corr__row { cursor: pointer; }
+.corr__row:hover { background: rgba(20, 25, 27, .03); }
+.corr__more {
+  grid-column: 1 / -1;
+  display: none;
+  gap: clamp(16px, 2.4vw, 34px);
+  padding-top: 22px;
+  margin-top: 4px;
+  border-top: 1px solid var(--rule);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 190px), 1fr));
+  align-items: start;
+}
+.corr__row.is-open .corr__more { display: grid; }
+.corr__more div { display: grid; gap: 4px; }
+.corr__more b { font-size: 16px; font-weight: 600; }
+.corr__more .btn { justify-self: start; align-self: center; }
+.corr__hint { font-size: 13px; color: var(--ink-2); }
+.corr__row.is-open .corr__hint { color: var(--seal); }
+
+/* --------------------------------- INTERACTIVE SERVICES ---- */
+.svc__row { cursor: pointer; }
+.svc__more {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows .34s var(--expo);
+}
+.svc__row.is-open .svc__more { grid-template-rows: 1fr; }
+.svc__more > div { overflow: hidden; }
+.svc__inner { display: grid; gap: 12px; padding: 18px 0 4px; }
+.svc__bens { display: flex; flex-wrap: wrap; gap: 6px 24px; list-style: none; }
+.svc__bens li { font-size: 15px; color: var(--ink-2); }
+.svc__bens li::before { content: '— '; color: var(--steel); }
+.svc__cta { justify-self: start; }
+
+/* ------------------------------------ MOBILE ACTION BAR ---- */
+/* The two things a visitor most often wants, always one tap away. */
+.actbar {
+  position: fixed;
+  left: 0; right: 0; bottom: 0;
+  z-index: 82;
+  display: none;
+  gap: 8px;
+  padding: 10px 12px calc(10px + env(safe-area-inset-bottom, 0px));
+  background: rgba(243, 244, 240, .94);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-top: 1px solid var(--rule);
+}
+.actbar .btn { flex: 1 1 0; min-height: 50px; }
+@media (max-width: 1120px) {
+  .actbar { display: flex; }
+  /* must match the bar's own height plus its safe-area padding */
+  body { padding-bottom: calc(72px + env(safe-area-inset-bottom, 0px)); }
+  .hotline { bottom: calc(84px + env(safe-area-inset-bottom, 0px)); }
+}
+@media (prefers-reduced-motion: reduce) { .trk__bar span { transition: none; } }
+
+/* ============================================================
+   JOL AI — the Hero assistant.
+   Two view states of one assistant. Collapsed is a capsule that
+   belongs to the composition; expanded is a working panel. The
+   transition animates real properties, never display.
+   ============================================================ */
+.hai {
+  position: absolute;
+  z-index: 5;
+  right: var(--pad);
+  /* Bounded by the stage, never taller than it. The clipping in the
+     previous build came from a panel that could grow past 100vh inside
+     an overflow:hidden stage, taking the header and the input with it. */
+  top: clamp(88px, 12vh, 116px);
+  bottom: clamp(22px, 5vh, 60px);
+  width: min(352px, calc(100vw - var(--pad) * 2));
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  pointer-events: none;
+  color: var(--chalk);
+}
+.hai__pill, .hai__body { pointer-events: auto; }
+
+.hai__pill, .hai__body {
+  background: rgba(14, 21, 24, .8);
+  backdrop-filter: blur(16px) saturate(130%);
+  -webkit-backdrop-filter: blur(16px) saturate(130%);
+  border-radius: 6px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .13), 0 22px 54px rgba(0, 0, 0, .45);
+}
+
+.hai__mark {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 26px; height: 26px; flex: 0 0 auto;
+  border-radius: 50%;
+  background: rgba(228, 105, 92, .16);
+  color: var(--seal-lift);
+}
+
+/* ------------------------------- COLLAPSED (the launcher) ---- */
+.hai__pill {
+  display: flex; align-items: center; gap: 11px;
+  width: 100%; padding: 13px 15px;
+  text-align: left; color: var(--chalk);
+  transition: opacity .28s var(--out), transform .4s var(--expo);
+}
+.hai__pill b { font-size: 15px; font-weight: 600; }
+.hai__pillhint { margin-left: auto; font-size: 14px; color: var(--chalk-2); }
+.hai__plus { display: inline-flex; flex: 0 0 auto; color: var(--chalk-2); transition: transform .3s var(--expo); }
+.hai__pill:hover .hai__plus { transform: rotate(90deg); color: var(--chalk); }
+
+/* ------------------------------- EXPANDED (the assistant) ---- */
+/* Three rows: header and input are pinned, only the middle scrolls.
+   The collapse control and the text field are therefore always reachable. */
+.hai__body {
+  display: grid;
+  grid-template-rows: auto auto minmax(0, 1fr) auto;
+  gap: 10px;
+  padding: 14px;
+  max-height: 100%;
+  min-height: 0;
+  transform-origin: top right;
+}
+
+.hai__head { display: flex; align-items: center; gap: 9px; }
+.hai__head b { font-size: 15px; font-weight: 600; }
+.hai__sub {
+  font-size: 13px;
+  line-height: 1.45;
+  color: var(--chalk-2);
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, .12);
+}
+
+.hai__status { margin-left: auto; display: inline-flex; align-items: center; gap: 6px; font-size: 12px; color: var(--chalk-2); }
+.hai__status i, .cx__dot i {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--clear-lift);
+  transition: background .25s var(--out);
+}
+.hai.is-busy .hai__status i, .cx__dot.is-busy i { background: var(--hold-lift); }
+
+.hai__collapse {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 32px; height: 32px; flex: 0 0 auto; margin-right: -6px;
+  border-radius: 50%;
+  color: var(--chalk-2);
+  transition: background .2s var(--out), color .2s var(--out);
+}
+.hai__collapse:hover { background: rgba(255, 255, 255, .1); color: var(--chalk); }
+
+.hai__scroll {
+  display: grid;
+  gap: 10px;
+  align-content: start;
+  min-height: 0;
+  overflow-y: auto;
+  padding-right: 4px;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+}
+.hai__log { display: grid; gap: 7px; align-content: start; }
+.hai__chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.hai__chips .ai-chip { border-color: rgba(255, 255, 255, .22); color: var(--chalk-2); }
+.hai__chips .ai-chip:hover { border-color: var(--chalk); color: var(--chalk); }
+
+.hai__form { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 8px; }
+.hai__form .input {
+  background: rgba(255, 255, 255, .07);
+  border-color: rgba(255, 255, 255, .18);
+  color: var(--chalk);
+  font-size: 16px;              /* 16px keeps iOS Safari from zooming on focus */
+  min-height: 46px;
+}
+.hai__form .input::placeholder { color: var(--chalk-2); }
+.hai__form .input:focus { border-color: var(--chalk); box-shadow: 0 0 0 3px rgba(255, 255, 255, .1); }
+.hai__send {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 46px; height: 46px; border-radius: 50%;
+  background: var(--seal-lift); color: #14191b;
+  transition: background .2s var(--out), transform .2s var(--out);
+}
+.hai__send:hover { background: #f08276; }
+.hai__send:active { transform: scale(.94); }
+
+/* ------------------------- the state transition itself ---- */
+.hai__body {
+  opacity: 0;
+  transform: scale(.97) translateY(-6px);
+  pointer-events: none;
+  visibility: hidden;
+  transition: opacity .26s var(--out), transform .4s var(--expo), visibility 0s linear .4s;
+}
+.hai.is-open .hai__body {
+  opacity: 1; transform: none; pointer-events: auto; visibility: visible;
+  transition: opacity .32s var(--out) .05s, transform .44s var(--expo) .05s, visibility 0s;
+}
+.hai.is-open .hai__pill { opacity: 0; transform: scale(.97); pointer-events: none; position: absolute; inset: 0 0 auto 0; }
+@media (prefers-reduced-motion: reduce) { .hai__pill, .hai__body { transition: none; } }
+
+/* ---- messages, shared by both surfaces ---- */
+.ai-msg { max-width: 92%; padding: 9px 12px; border-radius: 4px; font-size: 14px; line-height: 1.45; }
+.hai .ai-msg--bot { background: rgba(255, 255, 255, .09); justify-self: start; }
+.hai .ai-msg--user { background: var(--chalk); color: var(--deep); justify-self: end; }
+.cx__log .ai-msg { font-size: 15px; padding: 10px 13px; }
+.cx__log .ai-msg--bot { background: var(--haze); justify-self: start; }
+.cx__log .ai-msg--user { background: var(--ink); color: var(--paper); justify-self: end; }
+
+.ai-typing { display: inline-flex; gap: 4px; align-items: center; padding: 12px; }
+.ai-typing i { width: 5px; height: 5px; border-radius: 50%; background: currentColor; opacity: .4; animation: ai-blink 1s infinite; }
+.ai-typing i:nth-child(2) { animation-delay: .16s; }
+.ai-typing i:nth-child(3) { animation-delay: .32s; }
+@keyframes ai-blink { 0%, 60%, 100% { opacity: .28; } 30% { opacity: .9; } }
+@media (prefers-reduced-motion: reduce) { .ai-typing i { animation: none; } }
+
+.ai-chip {
+  min-height: 34px; padding: 0 12px;
+  border: 1px solid var(--rule); border-radius: var(--r-ctl);
+  font-size: 13px; color: var(--ink-2);
+  transition: border-color .18s var(--out), color .18s var(--out);
+}
+.ai-chip:hover { border-color: var(--ink); color: var(--ink); }
+
+/* ---- result: one primary block, two scannable alternates ---- */
+.hai .ai-card { display: grid; gap: 11px; }
+
+.ai-best {
+  display: grid;
+  gap: 2px;
+  padding: 13px 14px;
+  border-radius: 4px;
+  background: rgba(228, 105, 92, .1);
+  border-left: 2px solid var(--seal-lift);
+}
+.ai-best__label { font-size: 12px; font-weight: 600; color: var(--seal-lift); }
+.ai-best__price { font-size: 30px; font-weight: 800; line-height: 1.05; font-variant-numeric: tabular-nums; letter-spacing: -.02em; }
+.ai-best__meta { font-size: 14px; color: var(--chalk); }
+.ai-best__lane { font-size: 12px; color: var(--chalk-2); margin-top: 3px; }
+
+.ai-alts { display: grid; gap: 5px; }
+.ai-alt {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 1px 12px;
+  padding: 9px 12px;
+  text-align: left;
+  border: 1px solid rgba(255, 255, 255, .14);
+  border-radius: 4px;
+  color: var(--chalk);
+  transition: border-color .18s var(--out), background .18s var(--out);
+}
+.ai-alt:hover { border-color: rgba(255, 255, 255, .4); background: rgba(255, 255, 255, .05); }
+.ai-alt__mode { font-size: 14px; font-weight: 600; }
+.ai-alt__tag { font-size: 12px; color: var(--chalk-2); }
+.ai-alt__price { font-size: 15px; font-weight: 700; text-align: right; font-variant-numeric: tabular-nums; }
+.ai-alt__days { font-size: 12px; color: var(--chalk-2); text-align: right; }
+
+/* one loud action, the rest quiet */
+.ai-card__acts { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px; }
+.hai .ai-card__acts .btn--seal { min-height: 42px; padding: 0 18px; font-size: 14px; flex: 1 1 auto; }
+.ai-quiet {
+  font-size: 13px;
+  color: var(--chalk-2);
+  border-bottom: 1px solid transparent;
+  transition: color .18s var(--out), border-color .18s var(--out);
+}
+.ai-quiet:hover { color: var(--chalk); border-bottom-color: rgba(255, 255, 255, .5); }
+
+/* the calculator section keeps the full card; these are its option rows */
+.ai-opts { display: grid; gap: 7px; }
+.ai-opt {
+  display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 3px 16px;
+  width: 100%; padding: 12px 14px; text-align: left;
+  border: 1px solid var(--rule); border-radius: 4px;
+  transition: border-color .18s var(--out), background .18s var(--out);
+}
+.ai-opt.is-on { border-color: var(--seal); background: rgba(176, 51, 42, .06); }
+.ai-opt__mode { font-size: 16px; font-weight: 600; }
+.ai-opt__tag { font-size: 13px; opacity: .7; }
+.ai-opt__price { grid-row: 1 / 3; grid-column: 2; align-self: center; text-align: right; }
+.ai-opt__price b { display: block; font-size: 20px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.ai-opt__price span { font-size: 12px; opacity: .7; }
+
+/* ------------------------------------------- RESPONSIVE ---- */
+@media (max-width: 1240px) { .hai { width: min(320px, calc(100vw - var(--pad) * 2)); } }
+
+@media (max-width: 1040px) {
+  /* Anchored to the bottom of the hero so the headline keeps the top of
+     the frame; still bounded, still scroll-safe. */
+  .hai {
+    top: auto;
+    bottom: calc(clamp(18px, 3vh, 34px) + env(safe-area-inset-bottom, 0px));
+    left: var(--pad); right: var(--pad); width: auto;
+    max-height: min(74svh, calc(100svh - 150px));
+    justify-content: flex-end;
+  }
+  .hai__body { transform-origin: bottom center; }
+  .hai.is-open .hai__pill { inset: auto 0 0 0; }
+  .hero__figures, .hero__caption { display: none; }
+}
+
+@media (max-width: 560px) {
+  .hai { max-height: min(70svh, calc(100svh - 128px)); }
+  .hai__pillhint { display: none; }
+  .hai__body { padding: 12px; gap: 9px; }
+  .hai .ai-best__price { font-size: 26px; }
+  .hai .ai-card__acts .btn--seal { width: 100%; }
+}
+
+@media (max-height: 520px) and (orientation: landscape) {
+  .hai { width: min(320px, 46vw); top: 66px; bottom: 12px; left: auto; right: var(--pad); max-height: none; }
+  .hai__sub { display: none; }
+}
+
+
+/* --------------------------------- NAV ACTIVE STATE ---- */
+/* Scroll-spy: the visitor should always know where they are. */
+.nav a { position: relative; }
+.nav a::after {
+  content: '';
+  position: absolute;
+  left: 13px; right: 13px; bottom: 3px;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  opacity: .5;
+  transition: transform .3s var(--expo);
+}
+.nav a.is-here { opacity: 1; }
+.nav a.is-here::after { transform: scaleX(1); }
+.menu a.is-here { color: var(--seal-lift); }
+@media (prefers-reduced-motion: reduce) { .nav a::after { transition: none; } }
+
+/* --------------------------- SPLIT ROW TOGGLES ---- */
+/* The clickable summary of a corridor / service row. A real button, with
+   the expandable detail as a sibling rather than a child. */
+.corr__toggle, .svc__toggle {
+  display: grid;
+  width: 100%;
+  text-align: left;
+  color: inherit;
+  font: inherit;
+  border-radius: 2px;
+}
+.corr__toggle {
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, .55fr);
+  align-items: center;
+  gap: clamp(18px, 4vw, 64px);
+}
+.svc__toggle {
+  grid-template-columns: minmax(0, 300px) minmax(0, 1fr);
+  align-items: baseline;
+  gap: clamp(16px, 4vw, 64px);
+}
+@media (max-width: 860px) {
+  .corr__toggle { grid-template-columns: 1fr auto; row-gap: 14px; }
+}
+@media (max-width: 760px) { .svc__toggle { grid-template-columns: 1fr; row-gap: 8px; } }
+@media (max-width: 520px) { .corr__toggle { grid-template-columns: 1fr; } }
 </style>
 </head>
 
 <body>
 
 <header class="topbar" id="topbar">
-  <a class="mark" href="#top" data-i18n-aria="markAria" aria-label="CARGOX GROUP — в начало">
-    <b>CARGOX GROUP</b>
+  <a class="mark" href="#top" data-i18n-aria="markAria" aria-label="JOL CARGO — в начало">
+    <b>JOL CARGO</b>
     <i data-i18n="markSub">Бишкек</i>
   </a>
 
   <nav class="nav" data-i18n-aria="navAria" aria-label="Основная навигация">
     <a href="#corridors" data-i18n="navCorridors">Направления</a>
-    <a href="#services" data-i18n="navServices">Услуги</a>
     <a href="#quote" data-i18n="navQuote">Расчёт</a>
+    <a href="#tracking" data-i18n="navTrack">Отслеживание</a>
+    <a href="#services" data-i18n="navServices">Услуги</a>
     <a href="#dispatch" data-i18n="navDispatch">Технология</a>
-    <a href="#proof" data-i18n="navProof">Вопросы</a>
     <a href="#contact" data-i18n="navContact">Контакты</a>
   </nav>
 
@@ -1115,10 +1667,10 @@ input[type="range"]:active::-webkit-slider-thumb { transform: scale(1.15); }
 <nav class="menu" id="menu" aria-hidden="true" data-i18n-aria="navAria" aria-label="Основная навигация">
   <button class="menu__close" id="menuClose" type="button" data-i18n-aria="menuClose" aria-label="Закрыть меню">&times;</button>
   <a href="#corridors" data-i18n="navCorridors">Направления</a>
-  <a href="#services" data-i18n="navServices">Услуги</a>
   <a href="#quote" data-i18n="navQuote">Расчёт</a>
+  <a href="#tracking" data-i18n="navTrack">Отслеживание</a>
+  <a href="#services" data-i18n="navServices">Услуги</a>
   <a href="#dispatch" data-i18n="navDispatch">Технология</a>
-  <a href="#proof" data-i18n="navProof">Вопросы</a>
   <a href="#contact" data-i18n="navContact">Контакты</a>
 </nav>
 
@@ -1140,7 +1692,7 @@ input[type="range"]:active::-webkit-slider-thumb { transform: scale(1.15); }
         <h1 class="h-hero" data-i18n="heroTitle">Груз из Китая в Бишкек. Круглый год.</h1>
         <p class="hero__lead" data-i18n="heroLead">Автомобильные, мультимодальные и авиаперевозки из Китая, Казахстана, ОАЭ и России — с расчётом срока до дня и одним ответственным оператором на всём плече.</p>
         <div class="hero__actions">
-          <a class="btn btn--seal" href="#quote" data-i18n="heroCta">Рассчитать перевозку</a>
+          <button class="btn btn--seal" type="button" id="heroCta" data-i18n="heroCta">Рассчитать перевозку</button>
           <a class="btn btn--quiet" href="#corridors" data-i18n="heroCta2">Наши направления</a>
         </div>
       </div>
@@ -1156,22 +1708,68 @@ input[type="range"]:active::-webkit-slider-thumb { transform: scale(1.15); }
 
       <span class="hero__meter" aria-hidden="true"><i id="heroMeter"></i></span>
 
-      <!-- the assistant: collapsed by default, never co-starring -->
-      <aside class="ask" id="ask" data-i18n-aria="askAria" aria-label="Быстрый расчёт">
-        <button class="ask__bar" id="askToggle" type="button" aria-expanded="false" aria-controls="askBody">
-          <b data-i18n="askTitle">Опишите груз одной строкой</b>
-          <span data-i18n="askHint">Открыть</span>
+      <!-- ============================================================
+           JOL AI — part of the Hero composition, not a plugin.
+           Two view states of one assistant: expanded and collapsed.
+           ============================================================ -->
+      <aside class="hai" id="heroAI" data-phase="idle" data-i18n-aria="aiAria" aria-label="JOL AI — расчёт перевозки">
+
+        <!-- collapsed launcher -->
+        <button class="hai__pill" id="haiToggle" type="button" aria-expanded="true" aria-controls="haiBody">
+          <span class="hai__mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 3.2 13.9 9l5.9 1.9-5.9 1.9L12 18.7l-1.9-5.9L4.2 10.9 10.1 9z"/>
+            </svg>
+          </span>
+          <b>JOL AI</b>
+          <span class="hai__pillhint" data-i18n="aiPillHint">Рассчитать перевозку</span>
+          <span class="hai__plus" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+              <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+            </svg>
+          </span>
         </button>
-        <div class="ask__body" id="askBody">
-          <form class="ask__form" id="askForm" novalidate>
-            <label class="vh" for="askInput" data-i18n="askLabel">Опишите перевозку</label>
-            <input class="input" id="askInput" type="text" maxlength="200" autocomplete="off"
-                   data-i18n-placeholder="askPlaceholder" placeholder="Иу — Бишкек, 1200 кг">
-            <button class="btn btn--seal" type="submit" data-i18n="askSend">Считать</button>
+
+        <!-- expanded assistant -->
+        <div class="hai__body" id="haiBody">
+          <header class="hai__head">
+            <span class="hai__mark" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 3.2 13.9 9l5.9 1.9-5.9 1.9L12 18.7l-1.9-5.9L4.2 10.9 10.1 9z"/>
+              </svg>
+            </span>
+            <b>JOL AI</b>
+            <span class="hai__status"><i aria-hidden="true"></i><span id="haiState" aria-live="polite" data-i18n="aiOnline">Онлайн</span></span>
+            <button class="hai__collapse" id="haiCollapse" type="button" aria-expanded="true" aria-controls="haiBody"
+                    data-i18n-aria="aiCollapseAria" aria-label="Свернуть ассистента">
+              <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+                <line x1="5" y1="12" x2="19" y2="12"/>
+              </svg>
+            </button>
+          </header>
+
+          <p class="hai__sub" data-i18n="aiSubline">Стоимость, срок и лучший маршрут — за пару секунд.</p>
+
+          <div class="hai__scroll">
+            <div class="hai__log" id="haiLog" role="log" aria-live="polite"></div>
+            <div class="hai__out" id="haiOut"></div>
+            <div class="hai__chips" id="haiChips"></div>
+          </div>
+
+          <form class="hai__form" id="haiForm" novalidate>
+            <label class="vh" for="haiInput" data-i18n="aiInputLabel">Сообщение ассистенту</label>
+            <input class="input" id="haiInput" type="text" maxlength="220" autocomplete="off" enterkeyhint="send"
+                   data-i18n-placeholder="aiHint" placeholder="Например: 30 кг из Китая в Бишкек">
+            <button class="hai__send" type="submit" data-i18n-aria="aiSend" aria-label="Отправить">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/>
+              </svg>
+            </button>
           </form>
-          <p class="ask__note" data-i18n="askNote">Разберём маршрут и вес и подставим их в расчёт ниже.</p>
         </div>
       </aside>
+
+
     </div>
   </section>
 
@@ -1243,10 +1841,131 @@ input[type="range"]:active::-webkit-slider-thumb { transform: scale(1.15); }
     </div>
   </section>
 
+  
+
+  
+
+
+    <!-- ============================================================
+       03 · CALCULATE — JOL AI
+       Guided controls and natural language are two doors into the
+       same state. Whichever the visitor uses, the other updates.
+       ============================================================ -->
+  <section class="bay on-haze" id="quote">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <span class="kicker">JOL AI</span>
+          <h2 class="h-sec rise"><span data-i18n="aiTitle">Рассчитайте перевозку вместе с AI</span></h2>
+        </div>
+        <p class="lede fade" style="--d:.1s" data-i18n="aiLead">Опишите груз своими словами или заполните поля — система разберёт маршрут, вес и приоритет и сравнит три варианта доставки.</p>
+      </div>
+
+      <div class="cx">
+        <!-- ---------------------------------------- guided panel -- -->
+        <div class="cx__panel surf">
+          <div class="cx__step"><i>01</i><b data-i18n="aiStepRoute">Маршрут</b></div>
+          <div class="cx__pair">
+            <div class="field">
+              <label for="cxFrom" data-i18n="qFrom">Откуда</label>
+              <select class="input" id="cxFrom"></select>
+            </div>
+            <span class="cx__dir" aria-hidden="true">→</span>
+            <div class="field">
+              <label for="cxTo" data-i18n="qTo">Куда</label>
+              <select class="input" id="cxTo"></select>
+            </div>
+          </div>
+
+          <div class="cx__step"><i>02</i><b data-i18n="aiStepCargo">Груз</b></div>
+          <div class="cx__trio">
+            <div class="field">
+              <label for="cxCargo" data-i18n="aiCargoType">Что везём</label>
+              <select class="input" id="cxCargo"></select>
+            </div>
+            <div class="field">
+              <label for="cxWeight" data-i18n="aiWeightKg">Вес, кг</label>
+              <input class="input" id="cxWeight" type="number" min="1" max="20000" step="10" value="650" inputmode="numeric">
+            </div>
+            <div class="field">
+              <label for="cxVolume" data-i18n="aiVolumeM3">Объём, м³</label>
+              <input class="input" id="cxVolume" type="number" min="0" max="200" step="0.1" value="0" inputmode="decimal"
+                     data-i18n-placeholder="aiOptional" placeholder="Необязательно">
+            </div>
+          </div>
+
+          <div class="cx__step"><i>03</i><b data-i18n="aiStepPriority">Что для вас важнее</b></div>
+          <div class="picks" id="cxPriority" role="group" data-i18n-aria="qPriorityAria" aria-label="Приоритет">
+            <button type="button" class="pick" data-priority="fast" aria-pressed="false" data-i18n="qFast">Быстрее</button>
+            <button type="button" class="pick" data-priority="balanced" aria-pressed="true" data-i18n="aiBalanced">Оптимальный баланс</button>
+            <button type="button" class="pick" data-priority="cheap" aria-pressed="false" data-i18n="qCheap">Дешевле</button>
+          </div>
+
+          <div class="cx__acts">
+            <button class="btn btn--seal" id="cxCalc" type="button" data-i18n="aiCalc">Рассчитать</button>
+            <button class="btn btn--quiet" id="cxReset" type="button" data-i18n="aiReset">Сбросить</button>
+          </div>
+        </div>
+
+        <!-- ---------------------------------------- conversation -- -->
+        <div class="cx__talk surf">
+          <div class="cx__talkhead">
+            <b data-i18n="aiTalkTitle">Опишите груз своими словами</b>
+            <span class="cx__dot"><i aria-hidden="true"></i><span id="cxState" aria-live="polite" data-i18n="aiOnline">Онлайн</span></span>
+          </div>
+          <div class="cx__log" id="cxLog" role="log" aria-live="polite"></div>
+          <div class="cx__chips" id="cxChips"></div>
+          <form class="cx__form" id="cxForm" novalidate>
+            <label class="vh" for="cxInput" data-i18n="aiInputLabel">Сообщение ассистенту</label>
+            <input class="input" id="cxInput" type="text" maxlength="220" autocomplete="off"
+                   data-i18n-placeholder="aiPlaceholder" placeholder="Из Китая в Бишкек 25 кг одежды">
+            <button class="btn btn--seal" type="submit" data-i18n="aiSend">Отправить</button>
+          </form>
+        </div>
+
+        <!-- ------------------------------------------ result card -- -->
+        <div class="cx__out" id="cxOut"></div>
+      </div>
+    </div>
+  </section>
+
   <!-- ============================================================
+       04 · TRACK — Где ваш груз?
+       ============================================================ -->
+  <section class="bay" id="tracking">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <span class="kicker" data-i18n="trkKicker">Отслеживание</span>
+          <h2 class="h-sec rise"><span data-i18n="trkTitle">Где ваш груз?</span></h2>
+        </div>
+        <p class="lede fade" style="--d:.1s" data-i18n="trkLead">Введите номер отправления и увидите, где груз находится сейчас и какой шаг следующий.</p>
+      </div>
+
+      <div class="trk">
+        <div class="trk__search surf">
+          <div class="field">
+            <label for="trkInput" data-i18n="trkNumber">Номер отправления</label>
+            <div class="trk__row">
+              <input class="input" id="trkInput" maxlength="20" autocomplete="off" placeholder="CX-10482">
+              <button class="btn btn--seal" id="trkGo" type="button" data-i18n="trkGo">Отследить</button>
+            </div>
+          </div>
+          <div class="trk__demo">
+            <span class="label" data-i18n="trkDemo">Примеры для проверки</span>
+            <div class="trk__ids" id="trkIds"></div>
+          </div>
+          <p class="cx__note" data-i18n="trkNote">Демонстрационные данные интерфейса. Подключается к вашей системе учёта.</p>
+        </div>
+        <div class="trk__out surf" id="trkOut" role="status" aria-live="polite"></div>
+      </div>
+    </div>
+  </section>
+
+<!-- ============================================================
        4 · SERVICES
        ============================================================ -->
-  <section class="bay" id="services">
+  <section class="bay on-haze" id="services">
     <div class="wrap">
       <div class="sec-head">
         <h2 class="h-sec rise"><span data-i18n="svcTitle">Одна сеть, шесть режимов работы</span></h2>
@@ -1256,59 +1975,6 @@ input[type="range"]:active::-webkit-slider-thumb { transform: scale(1.15); }
     </div>
   </section>
 
-  <!-- ============================================================
-       5 · GET A PRICE — the one commercial action
-       ============================================================ -->
-  <section class="bay on-haze" id="quote">
-    <div class="wrap">
-      <div class="sec-head">
-        <h2 class="h-sec rise"><span data-i18n="quoteTitle">Стоимость и срок за тридцать секунд</span></h2>
-        <p class="lede fade" style="--d:.1s" data-i18n="quoteLead">Укажите направление и вес — покажем три варианта с ценой, сроком и причиной, по которой рекомендуем именно этот.</p>
-      </div>
-
-      <div class="quote">
-        <div class="quote__form surf">
-          <div class="field">
-            <label for="qFrom" data-i18n="qFrom">Откуда</label>
-            <select class="input" id="qFrom"></select>
-          </div>
-          <div class="field">
-            <label for="qTo" data-i18n="qTo">Куда</label>
-            <select class="input" id="qTo"></select>
-          </div>
-
-          <div class="field">
-            <div class="slider__head">
-              <label for="qWeight" data-i18n="qWeight">Вес груза</label>
-              <output id="qWeightOut" for="qWeight">650 кг</output>
-            </div>
-            <input type="range" id="qWeight" min="50" max="20000" step="50" value="650"
-                   data-i18n-aria="qWeightAria" aria-label="Вес груза в килограммах">
-            <div class="slider__scale"><span>50 кг</span><span>20 т</span></div>
-          </div>
-
-          <div class="field">
-            <label data-i18n="qPriority">Что важнее</label>
-            <div class="picks" id="qPriority" role="group" data-i18n-aria="qPriorityAria" aria-label="Приоритет">
-              <button type="button" class="pick" data-priority="fast" aria-pressed="false" data-i18n="qFast">Быстрее</button>
-              <button type="button" class="pick" data-priority="balanced" aria-pressed="true" data-i18n="qBalanced">Баланс</button>
-              <button type="button" class="pick" data-priority="cheap" aria-pressed="false" data-i18n="qCheap">Дешевле</button>
-            </div>
-          </div>
-        </div>
-
-        <div>
-          <div class="opts" id="qOptions" role="group" data-i18n-aria="qOptionsAria" aria-label="Варианты перевозки"></div>
-          <p class="quote__why" id="qWhy" role="status" aria-live="polite"></p>
-          <div class="quote__eta" id="qEta"></div>
-          <div class="quote__foot">
-            <a class="btn btn--seal" href="#contact" id="qSend" data-i18n="qSend">Отправить заявку</a>
-            <p class="quote__disc" data-i18n="qDisc">Расчёт предварительный. Итоговый тариф подтверждает оператор после проверки груза и документов.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
 
   <!-- ============================================================
        6 · OPERATIONS — people and terminals
@@ -1411,6 +2077,11 @@ input[type="range"]:active::-webkit-slider-thumb { transform: scale(1.15); }
   </section>
 </main>
 
+<nav class="actbar" data-i18n-aria="navAria" aria-label="Быстрые действия">
+  <a class="btn btn--seal" href="#quote" data-i18n="actCalc">Рассчитать</a>
+  <a class="btn btn--quiet" href="#tracking" data-i18n="actTrack">Отследить</a>
+</nav>
+
 <a class="hotline" id="hotline" href="#contact">
   <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
     <path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"/>
@@ -1419,10 +2090,12 @@ input[type="range"]:active::-webkit-slider-thumb { transform: scale(1.15); }
 </a>
 
 
+
+
 <!-- 01-config.js -->
 <script>
 /* ============================================================
-   CARGOX GROUP — deployment configuration.
+   JOL CARGO — deployment configuration.
 
    Fill these in and the matching blocks appear on the page.
    Anything left empty is simply not rendered — the site never
@@ -1430,7 +2103,7 @@ input[type="range"]:active::-webkit-slider-thumb { transform: scale(1.15); }
    ============================================================ */
 (function () {
   'use strict';
-  var C = (window.CARGOX = window.CARGOX || {});
+  var C = (window.JOL = window.JOL || {});
 
   C.config = {
     /* Where the contact form posts. Empty = the form validates and
@@ -1445,7 +2118,7 @@ input[type="range"]:active::-webkit-slider-thumb { transform: scale(1.15); }
 
     /* Company identity. */
     address:   '',             /* 'Бишкек, ул. ..., 00' */
-    legalName: '',             /* 'ОсОО «CARGOX GROUP»' */
+    legalName: '',             /* 'ОсОО «JOL CARGO»' */
     hours:     ''              /* 'Пн–Сб, 09:00–18:00' */
   };
 
@@ -1477,7 +2150,7 @@ input[type="range"]:active::-webkit-slider-thumb { transform: scale(1.15); }
    ============================================================ */
 (function () {
   'use strict';
-  var B = (window.CARGOX = window.CARGOX || {});
+  var B = (window.JOL = window.JOL || {});
   var U = (B.util = {});
 
   var motionQuery = window.matchMedia
@@ -1615,16 +2288,16 @@ input[type="range"]:active::-webkit-slider-thumb { transform: scale(1.15); }
    ============================================================ */
 (function () {
   'use strict';
-  var C = (window.CARGOX = window.CARGOX || {});
+  var C = (window.JOL = window.JOL || {});
   var U = C.util;
-  var LANG_KEY = 'cargox-lang-v1';
+  var LANG_KEY = 'jol-lang-v1';
 
   var RU = {
-    title: 'CARGOX GROUP — грузоперевозки Китай, Казахстан, ОАЭ, Россия — Бишкек',
+    title: 'JOL CARGO — грузоперевозки Китай, Казахстан, ОАЭ, Россия — Бишкек',
     metaDesc: 'Международные грузоперевозки из Китая, Казахстана, ОАЭ и России в Бишкек и Ош. Авто, мультимодал и авиа. Расчёт стоимости и срока онлайн.',
     ogLocale: 'ru_RU',
 
-    markAria: 'CARGOX GROUP — в начало',
+    markAria: 'JOL CARGO — в начало',
     markSub: 'Бишкек',
     navAria: 'Основная навигация',
     langAria: 'Выбор языка',
@@ -1633,9 +2306,107 @@ input[type="range"]:active::-webkit-slider-thumb { transform: scale(1.15); }
     navCorridors: 'Направления',
     navServices: 'Услуги',
     navQuote: 'Расчёт',
+    navTrack: 'Отслеживание',
     navDispatch: 'Технология',
     navProof: 'Вопросы',
     navContact: 'Контакты',
+
+
+    /* --- product layer --- */
+    aiOnline: 'Онлайн',
+    aiSubline: 'Стоимость, срок и лучший маршрут — за пару секунд.',
+    aiHint: 'Например: 30 кг из Китая в Бишкек',
+    aiQaRoute: 'Китай → Бишкек',
+    aiQaTerm: 'Узнать срок',
+    aiBestLabel: 'Оптимальный вариант',
+    aiAlternatives: 'Другие варианты',
+    aiPicked: 'Отлично. Передам этот вариант оператору — он подтвердит тариф и дату.',
+    aiCalcDone: 'Понял. Рассчитал 3 варианта доставки.',
+    aiPillHint: 'Рассчитать перевозку',
+    aiCollapseAria: 'Свернуть ассистента',
+    aiAria: 'JOL AI — расчёт перевозки',
+    aiQaCalc: 'Рассчитать доставку',
+    aiOpenTracking: 'Открыть отслеживание',
+    aiTrackFound: 'Нашёл отправление {id}. Текущий статус: {status}.',
+    aiTitle: 'Рассчитайте перевозку вместе с AI',
+    aiLead: 'Опишите груз своими словами или заполните поля — система разберёт маршрут, вес и приоритет и сравнит три варианта доставки.',
+    aiStepRoute: 'Маршрут', aiStepCargo: 'Груз', aiStepPriority: 'Что для вас важнее',
+    aiCargoType: 'Что везём', aiCargoAny: 'Не указан',
+    aiWeightKg: 'Вес, кг', aiVolumeM3: 'Объём, м³', aiOptional: 'Необязательно',
+    aiBalanced: 'Оптимальный баланс',
+    aiCalc: 'Рассчитать', aiReset: 'Сбросить',
+    aiTalkTitle: 'Опишите груз своими словами',
+    aiReady: 'Готов', aiThinking: 'Считаю',
+    aiInputLabel: 'Сообщение ассистенту',
+    aiPlaceholder: 'Из Китая в Бишкек 25 кг одежды',
+    aiSend: 'Отправить',
+    aiGreeting: 'Здравствуйте. Помогу рассчитать стоимость и срок доставки.',
+    aiExample2: 'Из Китая, 25 кг одежды',
+    aiAskOrigin: 'Откуда забираем груз?',
+    aiAskDestination: 'Куда нужно доставить?',
+    aiAskDestinationCtx: 'Понял, отправление — {origin}. В какой город доставить груз?',
+    aiAskWeightCtx: 'Я определил {route}, но не вижу вес груза. Укажите примерный вес — например 25 кг или 1,5 т.',
+    aiAskWeight: 'Какой вес груза? Например: 25 кг, 300 кг или 1,5 т.',
+    aiNeedOrigin: 'Укажите город отправления — и покажу варианты.',
+    aiNeedDestination: 'Я определил отправление, но мне нужен город доставки.',
+    aiNeedWeight: 'Маршрут вижу. Осталось указать вес груза.',
+    aiNotUnderstood: 'Не удалось разобрать это сообщение. Попробуйте указать город, вес или приоритет.',
+    aiBadDestination: 'В {city} мы пока не возим. Доступны Бишкек и Ош.',
+    aiWeightCapped: 'Для веса свыше {max} кг нужен отдельный расчёт — оператор посчитает вручную.',
+    aiRestart: 'Начнём заново.',
+    aiResult: 'Готово. {route}, {weight}. Рекомендую {mode} — {price}, {days}.',
+    aiBest: 'Лучший вариант',
+    aiWeight: 'Вес', aiTransport: 'Транспорт', aiPrice: 'Оценка стоимости', aiEta: 'Срок доставки',
+    aiWhy: 'Почему этот вариант',
+    aiActChoose: 'Выбрать этот вариант',
+    aiActOthers: 'Другие варианты', aiActHide: 'Скрыть варианты',
+    aiActAgain: 'Пересчитать',
+    aiActManager: 'Связаться с менеджером',
+    aiHandoff: 'Здравствуйте! Прошу рассчитать перевозку: {route}, {weight}, груз: {cargo}. Предварительно подходит {mode}, оценка {price}.',
+
+    trkKicker: 'Отслеживание',
+    trkTitle: 'Где ваш груз?',
+    trkLead: 'Введите номер отправления и увидите, где груз находится сейчас и какой шаг следующий.',
+    trkNumber: 'Номер отправления', trkGo: 'Отследить',
+    trkDemo: 'Примеры для проверки',
+    trkNote: 'Демонстрационные данные интерфейса. Подключается к вашей системе учёта.',
+    trkEmpty: 'Введите номер отправления.',
+    trkNotFound: 'Отправление не найдено',
+    trkNotFoundHint: 'Номер {id} не найден. Проверьте написание или попробуйте один из примеров слева.',
+    trkProgress: 'Пройдено по маршруту', trkEta: 'Ожидаемая доставка',
+    trkTransit: 'В пути', trkDocs: 'Оформление документов', trkDone: 'Доставлено',
+    trkEv0: 'Заявка принята', trkEv1: 'Забран у отправителя', trkEv2: 'Консолидация на складе',
+    trkEv3: 'В пути по Китаю', trkEv4: 'Прохождение границы', trkEv5: 'Доставка в город назначения',
+    trkEv6: 'Проверка документов', trkEv7: 'Выдан получателю',
+
+    corrOpen: 'Подробнее о направлении',
+    corrCalc: 'Рассчитать этот маршрут',
+    corrBorder: 'Пункт пропуска',
+    corrBorderCn: 'Торугарт / Иркештам',
+    corrBorderOther: 'Прямое сообщение',
+    svcMore: 'Рассчитать перевозку',
+
+    svcAutoBen1: 'Сборные и отдельные машины',
+    svcAutoBen2: 'Доставка до склада получателя',
+    svcAutoBen3: 'Один оператор на всём плече',
+    svcAirBen1: 'Срок 2–4 дня',
+    svcAirBen2: 'Меньше перегрузов в пути',
+    svcAirBen3: 'Подходит для срочного и ценного груза',
+    svcMultiBen1: 'Низкая ставка на длинном плече',
+    svcMultiBen2: 'Контейнер целиком или часть',
+    svcMultiBen3: 'Перегрузка на авто до двери',
+    svcWarehouseBen1: 'Приём и хранение в Китае',
+    svcWarehouseBen2: 'Переупаковка и маркировка',
+    svcWarehouseBen3: 'Консолидация нескольких поставщиков',
+    svcCustomsBen1: 'Подбор кода ТН ВЭД',
+    svcCustomsBen2: 'Проверка комплекта до отправки',
+    svcCustomsBen3: 'Сопровождение выпуска',
+    svcExpedBen1: 'Один номер отправления',
+    svcExpedBen2: 'Ответственный оператор',
+    svcExpedBen3: 'Отчёт по статусу груза',
+
+    actCalc: 'Рассчитать', actTrack: 'Отследить',
+    cityChina: 'Китай',
 
     /* hero */
     heroEyebrow: 'Международные грузоперевозки',
@@ -1646,16 +2417,6 @@ input[type="range"]:active::-webkit-slider-thumb { transform: scale(1.15); }
     heroPassLine: 'Торугарт, 3 752 м',
     heroPassMeta: 'Перевал Тянь-Шаня на пути из Кашгара. Дальше 400 км до Бишкека.',
 
-    askAria: 'Быстрый расчёт',
-    askTitle: 'Опишите груз одной строкой',
-    askHint: 'Открыть',
-    askHintClose: 'Свернуть',
-    askLabel: 'Опишите перевозку',
-    askPlaceholder: 'Иу — Бишкек, 1200 кг',
-    askSend: 'Считать',
-    askNote: 'Разберём маршрут и вес и подставим их в расчёт ниже.',
-    askOk: 'Готово: {route}. Расчёт ниже.',
-    askFail: 'Не удалось разобрать маршрут. Например: «Иу — Бишкек, 1200 кг».',
 
     /* figures used in the hero and over the operations photograph */
     figCorridors: 'направлений в расчётной сети',
@@ -1813,11 +2574,11 @@ input[type="range"]:active::-webkit-slider-thumb { transform: scale(1.15); }
   };
 
   var KG = {
-    title: 'CARGOX GROUP — Кытай, Казакстан, БАЭ, Орусиядан Бишкекке жүк ташуу',
+    title: 'JOL CARGO — Кытай, Казакстан, БАЭ, Орусиядан Бишкекке жүк ташуу',
     metaDesc: 'Кытай, Казакстан, БАЭ жана Орусиядан Бишкек менен Ошко эл аралык жүк ташуу. Авто, мультимодал жана авиа. Нарк менен мөөнөттү онлайн эсептөө.',
     ogLocale: 'ky_KG',
 
-    markAria: 'CARGOX GROUP — башына',
+    markAria: 'JOL CARGO — башына',
     markSub: 'Бишкек',
     navAria: 'Негизги навигация',
     langAria: 'Тил тандоо',
@@ -1826,9 +2587,106 @@ input[type="range"]:active::-webkit-slider-thumb { transform: scale(1.15); }
     navCorridors: 'Багыттар',
     navServices: 'Кызматтар',
     navQuote: 'Эсептөө',
+    navTrack: 'Көзөмөлдөө',
     navDispatch: 'Технология',
     navProof: 'Суроолор',
     navContact: 'Байланыш',
+
+
+    aiOnline: 'Онлайн',
+    aiSubline: 'Наркы, мөөнөтү жана эң жакшы багыт — бир нече секундда.',
+    aiHint: 'Мисалы: Кытайдан Бишкекке 30 кг',
+    aiQaRoute: 'Кытай → Бишкек',
+    aiQaTerm: 'Мөөнөттү билүү',
+    aiBestLabel: 'Оптималдуу вариант',
+    aiAlternatives: 'Башка варианттар',
+    aiPicked: 'Сонун. Бул вариантты операторго берем — ал тарифти жана күндү ырастайт.',
+    aiCalcDone: 'Түшүндүм. 3 жеткирүү вариантын эсептедим.',
+    aiPillHint: 'Ташууну эсептөө',
+    aiCollapseAria: 'Жардамчыны жыйноо',
+    aiAria: 'JOL AI — ташууну эсептөө',
+    aiQaCalc: 'Жеткирүүнү эсептөө',
+    aiOpenTracking: 'Көзөмөлдөөнү ачуу',
+    aiTrackFound: '{id} жөнөтмөсүн таптым. Учурдагы статусу: {status}.',
+    aiTitle: 'Ташууну AI менен эсептеңиз',
+    aiLead: 'Жүктү өз сөзүңүз менен жазыңыз же талааларды толтуруңуз — система багытты, салмакты жана артыкчылыкты таанып, үч вариантты салыштырат.',
+    aiStepRoute: 'Багыт', aiStepCargo: 'Жүк', aiStepPriority: 'Сиз үчүн эмне маанилүү',
+    aiCargoType: 'Эмне ташыйбыз', aiCargoAny: 'Көрсөтүлгөн эмес',
+    aiWeightKg: 'Салмагы, кг', aiVolumeM3: 'Көлөмү, м³', aiOptional: 'Милдеттүү эмес',
+    aiBalanced: 'Оптималдуу тең салмак',
+    aiCalc: 'Эсептөө', aiReset: 'Тазалоо',
+    aiTalkTitle: 'Жүктү өз сөзүңүз менен жазыңыз',
+    aiReady: 'Даяр', aiThinking: 'Эсептеп жатам',
+    aiInputLabel: 'Жардамчыга билдирүү',
+    aiPlaceholder: 'Кытайдан Бишкекке 25 кг кийим',
+    aiSend: 'Жөнөтүү',
+    aiGreeting: 'Саламатсызбы. Наркын жана жеткирүү мөөнөтүн эсептеп берем.',
+    aiExample2: 'Кытайдан, 25 кг кийим',
+    aiAskOrigin: 'Жүктү кайдан алабыз?',
+    aiAskDestination: 'Кайда жеткирүү керек?',
+    aiAskDestinationCtx: 'Түшүндүм, жөнөтүү — {origin}. Кайсы шаарга жеткирүү керек?',
+    aiAskWeightCtx: '{route} аныктадым, бирок жүктүн салмагын көрбөй турам. Болжолдуу салмакты жазыңыз — мисалы 25 кг же 1,5 т.',
+    aiAskWeight: 'Жүктүн салмагы канча? Мисалы: 25 кг, 300 кг же 1,5 т.',
+    aiNeedOrigin: 'Жөнөтүү шаарын көрсөтүңүз — варианттарды көрсөтөм.',
+    aiNeedDestination: 'Жөнөтүүнү аныктадым, бирок жеткирүү шаары керек.',
+    aiNeedWeight: 'Багыт көрүнүп турат. Жүктүн салмагын көрсөтүңүз.',
+    aiNotUnderstood: 'Бул билдирүүнү тааный албадым. Шаарды, салмакты же артыкчылыкты жазып көрүңүз.',
+    aiBadDestination: '{city} шаарына азырынча ташыбайбыз. Бишкек жана Ош бар.',
+    aiWeightCapped: '{max} кг ашык салмак үчүн өзүнчө эсеп керек — оператор кол менен эсептейт.',
+    aiRestart: 'Жаңыдан баштайлы.',
+    aiResult: 'Даяр. {route}, {weight}. {mode} сунуштайм — {price}, {days}.',
+    aiBest: 'Эң ылайыктуу вариант',
+    aiWeight: 'Салмагы', aiTransport: 'Транспорт', aiPrice: 'Болжолдуу наркы', aiEta: 'Жеткирүү мөөнөтү',
+    aiWhy: 'Эмне үчүн ушул вариант',
+    aiActChoose: 'Ушул вариантты тандоо',
+    aiActOthers: 'Башка варианттар', aiActHide: 'Варианттарды жашыруу',
+    aiActAgain: 'Кайра эсептөө',
+    aiActManager: 'Менеджер менен байланышуу',
+    aiHandoff: 'Саламатсызбы! Ташууну эсептеп бериңиз: {route}, {weight}, жүк: {cargo}. Алдын ала {mode} ылайык, болжол {price}.',
+
+    trkKicker: 'Көзөмөлдөө',
+    trkTitle: 'Жүгүңүз кайда?',
+    trkLead: 'Жөнөтмө номерин киргизиңиз — жүк азыр кайда экенин жана кийинки кадамды көрөсүз.',
+    trkNumber: 'Жөнөтмө номери', trkGo: 'Көзөмөлдөө',
+    trkDemo: 'Текшерүү үчүн мисалдар',
+    trkNote: 'Интерфейстин демо маалыматы. Сиздин эсепке алуу системаңызга туташат.',
+    trkEmpty: 'Жөнөтмө номерин киргизиңиз.',
+    trkNotFound: 'Жөнөтмө табылган жок',
+    trkNotFoundHint: '{id} номери табылган жок. Жазылышын текшериңиз же сол жактагы мисалдардан бирин колдонуңуз.',
+    trkProgress: 'Багыт боюнча өттү', trkEta: 'Күтүлгөн жеткирүү',
+    trkTransit: 'Жолдо', trkDocs: 'Документтерди тариздөө', trkDone: 'Жеткирилди',
+    trkEv0: 'Арыз кабыл алынды', trkEv1: 'Жөнөтүүчүдөн алынды', trkEv2: 'Кампада топтолду',
+    trkEv3: 'Кытай боюнча жолдо', trkEv4: 'Чек арадан өтүү', trkEv5: 'Дайындалган шаарга жеткирүү',
+    trkEv6: 'Документтерди текшерүү', trkEv7: 'Алуучуга берилди',
+
+    corrOpen: 'Багыт жөнүндө кеңири',
+    corrCalc: 'Бул багытты эсептөө',
+    corrBorder: 'Өткөрүү пункту',
+    corrBorderCn: 'Торугарт / Иркештам',
+    corrBorderOther: 'Түз каттам',
+    svcMore: 'Ташууну эсептөө',
+
+    svcAutoBen1: 'Чогуу жана өзүнчө машиналар',
+    svcAutoBen2: 'Алуучунун кампасына чейин',
+    svcAutoBen3: 'Бүт жол боюнча бир оператор',
+    svcAirBen1: 'Мөөнөтү 2–4 күн',
+    svcAirBen2: 'Жолдо которуштуруу азыраак',
+    svcAirBen3: 'Шашылыш жана баалуу жүк үчүн',
+    svcMultiBen1: 'Узун жолдо төмөн ставка',
+    svcMultiBen2: 'Контейнер толук же бөлүгү',
+    svcMultiBen3: 'Эшикке чейин автого которуу',
+    svcWarehouseBen1: 'Кытайда кабыл алуу жана сактоо',
+    svcWarehouseBen2: 'Кайра таңгактоо жана маркировка',
+    svcWarehouseBen3: 'Бир нече жеткирүүчүнү топтоо',
+    svcCustomsBen1: 'ТН ВЭД кодун тандоо',
+    svcCustomsBen2: 'Жөнөтүүгө чейин текшерүү',
+    svcCustomsBen3: 'Чыгарууну коштоо',
+    svcExpedBen1: 'Бир жөнөтмө номери',
+    svcExpedBen2: 'Жооптуу оператор',
+    svcExpedBen3: 'Жүктүн статусу боюнча отчёт',
+
+    actCalc: 'Эсептөө', actTrack: 'Көзөмөлдөө',
+    cityChina: 'Кытай',
 
     heroEyebrow: 'Эл аралык жүк ташуу',
     heroTitle: 'Кытайдан Бишкекке жүк. Жыл бою.',
@@ -1838,16 +2696,6 @@ input[type="range"]:active::-webkit-slider-thumb { transform: scale(1.15); }
     heroPassLine: 'Торугарт, 3 752 м',
     heroPassMeta: 'Кашгардан келген жолдогу Тянь-Шань ашуусу. Андан ары Бишкекке 400 км.',
 
-    askAria: 'Тез эсептөө',
-    askTitle: 'Жүктү бир сап менен жазыңыз',
-    askHint: 'Ачуу',
-    askHintClose: 'Жыйноо',
-    askLabel: 'Ташууну сүрөттөңүз',
-    askPlaceholder: 'Иу — Бишкек, 1200 кг',
-    askSend: 'Эсептөө',
-    askNote: 'Багытты жана салмакты таанып, төмөнкү эсептөөгө коёбуз.',
-    askOk: 'Даяр: {route}. Эсептөө төмөндө.',
-    askFail: 'Багытты тааный албадым. Мисалы: «Иу — Бишкек, 1200 кг».',
 
     figCorridors: 'багыт эсептөө тармагында',
     figCountries: 'жөнөтүү өлкөсү',
@@ -2052,7 +2900,7 @@ input[type="range"]:active::-webkit-slider-thumb { transform: scale(1.15); }
 
     for (var i = 0; i < subscribers.length; i++) {
       try { subscribers[i](current); }
-      catch (e) { if (window.console) console.error('[CARGOX i18n]', e); }
+      catch (e) { if (window.console) console.error('[JOL i18n]', e); }
     }
     U.set(LANG_KEY, current);
   }
@@ -2083,7 +2931,7 @@ input[type="range"]:active::-webkit-slider-thumb { transform: scale(1.15); }
    ============================================================ */
 (function () {
   'use strict';
-  var B = (window.CARGOX = window.CARGOX || {});
+  var B = (window.JOL = window.JOL || {});
   var U = B.util;
 
   var END = '(?![a-zA-Zа-яёА-ЯЁ])';
@@ -2371,7 +3219,7 @@ input[type="range"]:active::-webkit-slider-thumb { transform: scale(1.15); }
    ============================================================ */
 (function () {
   'use strict';
-  var B = (window.CARGOX = window.CARGOX || {});
+  var B = (window.JOL = window.JOL || {});
   var U = B.util;
   var t = function (k) { return B.i18n.t(k); };
 
@@ -2652,7 +3500,7 @@ input[type="range"]:active::-webkit-slider-thumb { transform: scale(1.15); }
 /* ============================================================
    HERO — one truck, driven by scroll.
 
-   The truck is the one from the original CARGOX clip, because the
+   The truck is the one from the original JOL CARGO clip, because the
    clip itself is the animation: its playhead is bound to scroll
    position. Scroll down and the truck drives forward down the
    road; scroll up and it reverses through exactly the same frames.
@@ -2671,7 +3519,7 @@ input[type="range"]:active::-webkit-slider-thumb { transform: scale(1.15); }
    ============================================================ */
 (function () {
   'use strict';
-  var B = (window.CARGOX = window.CARGOX || {});
+  var B = (window.JOL = window.JOL || {});
   var U = B.util;
 
   var hero, stage, video, copy, cue, meter;
@@ -2802,7 +3650,7 @@ input[type="range"]:active::-webkit-slider-thumb { transform: scale(1.15); }
       var third = p >= 0.66;
       if (third && !countedFigures) {
         countedFigures = true;
-        if (CARGOX.motion) CARGOX.motion.count(U.$('heroFigures'));
+        if (JOL.motion) JOL.motion.count(U.$('heroFigures'));
       }
       hero.classList.toggle('is-stage-3', third);
     }
@@ -2916,7 +3764,7 @@ input[type="range"]:active::-webkit-slider-thumb { transform: scale(1.15); }
    ============================================================ */
 (function () {
   'use strict';
-  var C = (window.CARGOX = window.CARGOX || {});
+  var C = (window.JOL = window.JOL || {});
   var U = C.util;
   var t = function (k) { return C.i18n.t(k); };
 
@@ -3170,7 +4018,7 @@ input[type="range"]:active::-webkit-slider-thumb { transform: scale(1.15); }
 })();
 </script>
 
-<!-- 08-site.js -->
+<!-- 08-motion.js -->
 <script>
 /* ============================================================
    MOTION — five patterns, nothing else moves.
@@ -3186,7 +4034,7 @@ input[type="range"]:active::-webkit-slider-thumb { transform: scale(1.15); }
    ============================================================ */
 (function () {
   'use strict';
-  var C = (window.CARGOX = window.CARGOX || {});
+  var C = (window.JOL = window.JOL || {});
   var U = C.util;
   var motion = (C.motion = {});
 
@@ -3261,14 +4109,16 @@ input[type="range"]:active::-webkit-slider-thumb { transform: scale(1.15); }
   };
 })();
 
+</script>
 
-/* ============================================================
+<!-- 09-chrome.js -->
+<script>/* ============================================================
    CHROME — navigation, top bar, photography, hotline.
    Rule: no branch may ever leave content invisible.
    ============================================================ */
 (function () {
   'use strict';
-  var C = (window.CARGOX = window.CARGOX || {});
+  var C = (window.JOL = window.JOL || {});
   var U = C.util;
   var t = function (k) { return C.i18n.t(k); };
   var ui = (C.ui = {});
@@ -3294,6 +4144,43 @@ input[type="range"]:active::-webkit-slider-thumb { transform: scale(1.15); }
     });
     U.on(window, 'scroll', onScroll, { passive: true });
     onScroll();
+  }
+
+  /* Scroll-spy. One observer, no scroll handler, no layout reads. */
+  function initSpy() {
+    var links = U.qsa('.nav a[href^="#"], .menu a[href^="#"]');
+    if (!links.length || !('IntersectionObserver' in window)) return;
+
+    var byId = {};
+    links.forEach(function (a) {
+      var id = a.getAttribute('href').slice(1);
+      (byId[id] = byId[id] || []).push(a);
+    });
+
+    var visible = {};
+    function paint() {
+      var best = null;
+      Object.keys(visible).forEach(function (id) {
+        if (visible[id] > 0 && (!best || visible[id] > visible[best])) best = id;
+      });
+      links.forEach(function (a) {
+        a.classList.toggle('is-here', best !== null && a.getAttribute('href') === '#' + best);
+      });
+    }
+
+    try {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          visible[e.target.id] = e.isIntersecting ? e.intersectionRatio : 0;
+        });
+        paint();
+      }, { rootMargin: '-84px 0px -55% 0px', threshold: [0, .2, .5, 1] });
+
+      Object.keys(byId).forEach(function (id) {
+        var el = U.$(id);
+        if (el) io.observe(el);
+      });
+    } catch (e) { /* the nav simply stays unhighlighted */ }
   }
 
   function initMenu() {
@@ -3336,7 +4223,7 @@ input[type="range"]:active::-webkit-slider-thumb { transform: scale(1.15); }
 
   /* Photography: a configured URL replaces the tonal fallback. */
   function initPhotos() {
-    var images = (C.config && window.CARGOX.images) || {};
+    var images = (C.config && window.JOL.images) || {};
     U.each(document.querySelectorAll('[data-photo]'), function (el) {
       var key = el.getAttribute('data-photo');
       var url = images[key];
@@ -3360,11 +4247,28 @@ input[type="range"]:active::-webkit-slider-thumb { transform: scale(1.15); }
     el.classList.add('is-on');
   }
 
+  /* The primary hero call to action opens the assistant rather than
+     sending the visitor somewhere else. */
+  function initHeroCta() {
+    var cta = U.$('heroCta');
+    if (!cta) return;
+    U.on(cta, 'click', function () {
+      if (!C.assistant) return;
+      C.assistant.open(true);
+      if ((window.innerWidth || 1200) <= 860) {
+        var host = U.$('heroAI');
+        if (host && host.scrollIntoView) host.scrollIntoView({ block: 'nearest' });
+      }
+    });
+  }
+
   ui.init = function () {
     initLang();
     initTopbar();
     initMenu();
     initAnchors();
+    initHeroCta();
+    initSpy();
     initPhotos();
     initHotline();
   };
@@ -3376,15 +4280,17 @@ input[type="range"]:active::-webkit-slider-thumb { transform: scale(1.15); }
   }
 })();
 
+</script>
 
-/* ============================================================
+<!-- 10-views.js -->
+<script>/* ============================================================
    VIEWS — corridors, services, cases, FAQ, figures.
    Every section renders from data and repaints on language
    change. Nothing here holds state of its own.
    ============================================================ */
 (function () {
   'use strict';
-  var C = (window.CARGOX = window.CARGOX || {});
+  var C = (window.JOL = window.JOL || {});
   var U = C.util;
   var t = function (k) { return C.i18n.t(k); };
 
@@ -3431,7 +4337,9 @@ input[type="range"]:active::-webkit-slider-thumb { transform: scale(1.15); }
       var days = road ? (road.etaMin + '–' + road.etaMax) : '—';
       var hasRail = quote && !!C.engine.optionById(quote, 'rail');
 
+      var rid = 'corr' + i;
       return '<div class="corr__row fade" style="--d:' + (i * 0.05).toFixed(2) + 's">' +
+        '<button type="button" class="corr__toggle" aria-expanded="false" aria-controls="' + rid + '">' +
         '<div class="corr__lane">' +
           '<b>' + U.safe(placeName(lane.from)) + ' — ' + U.safe(placeName(lane.to)) + '</b>' +
           '<span>' + U.safe(t(hasRail ? 'corrRoad' : 'corrRoadShort')) + '</span>' +
@@ -3441,7 +4349,22 @@ input[type="range"]:active::-webkit-slider-thumb { transform: scale(1.15); }
           '<em>' + U.safe(C.engine.days(road ? road.etaMax : 0)) + '</em>' +
         '</div>' +
         '<div class="corr__meta">' +
-          '<i>' + U.safe(t('corrDistance')) + ' — ' + U.number(quote ? quote.distanceKm : 0) + ' км</i>' +
+          '<i>' + U.safe(t('corrDistance')) + ' — ' + U.number(quote ? quote.distanceKm : 0) + ' ' + U.safe(t('unitKm')) + '</i>' +
+          '<i class="corr__hint">' + U.safe(t('corrOpen')) + '</i>' +
+        '</div>' +
+        '</button>' +
+
+        /* the detail state: what this lane actually costs and how long by mode */
+        '<div class="corr__more" id="' + rid + '" role="region">' +
+          (quote ? quote.options.map(function (o) {
+            return '<div><span class="label">' + U.safe(C.engine.modeName(o.id)) + '</span>' +
+              '<b>' + U.money(o.price) + '</b>' +
+              '<span class="label">' + U.safe(C.engine.daysText(o)) + '</span></div>';
+          }).join('') : '') +
+          '<div><span class="label">' + U.safe(t('corrBorder')) + '</span>' +
+            '<b>' + U.safe(t(lane.fc === 'CN' ? 'corrBorderCn' : 'corrBorderOther')) + '</b></div>' +
+          '<button type="button" class="btn btn--seal corr__calc" data-from="' + U.safe(lane.from) +
+            '" data-to="' + U.safe(lane.to) + '">' + U.safe(t('corrCalc')) + '</button>' +
         '</div>' +
       '</div>';
     }).join('');
@@ -3449,17 +4372,76 @@ input[type="range"]:active::-webkit-slider-thumb { transform: scale(1.15); }
     C.motion.observe(host);
   }
 
+  function bindCorridors() {
+    var host = U.$('corrList');
+    if (!host) return;
+    U.on(host, 'click', function (e) {
+      var calc = e.target.closest ? e.target.closest('.corr__calc') : null;
+      if (calc) {
+        e.stopPropagation();
+        if (C.product) C.product.focusCalc({
+          originId: calc.getAttribute('data-from'),
+          destinationId: calc.getAttribute('data-to')
+        });
+        return;
+      }
+      var toggle = e.target.closest ? e.target.closest('.corr__toggle') : null;
+      if (!toggle) return;
+      var row = toggle.parentNode;
+      var open = !row.classList.contains('is-open');
+      U.each(host.querySelectorAll('.corr__row'), function (r) {
+        r.classList.remove('is-open');
+        var b = r.querySelector('.corr__toggle');
+        if (b) b.setAttribute('aria-expanded', 'false');
+      });
+      row.classList.toggle('is-open', open);
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+  }
+
   /* -------------------------------------------------------- services -- */
   function renderServices() {
     var host = U.$('svcList');
     if (!host) return;
     host.innerHTML = SERVICES.map(function (key, i) {
+      var bens = [1, 2, 3].map(function (n) {
+        return '<li>' + U.safe(t('svc' + key + 'Ben' + n)) + '</li>';
+      }).join('');
+      var sid = 'svc' + i;
       return '<div class="svc__row fade" style="--d:' + (i * 0.04).toFixed(2) + 's">' +
-        '<span class="svc__name">' + U.safe(t('svc' + key + 'Title')) + '</span>' +
-        '<span class="svc__text">' + U.safe(t('svc' + key + 'Text')) + '</span>' +
+        '<button type="button" class="svc__toggle" aria-expanded="false" aria-controls="' + sid + '">' +
+          '<span class="svc__name">' + U.safe(t('svc' + key + 'Title')) + '</span>' +
+          '<span class="svc__text">' + U.safe(t('svc' + key + 'Text')) + '</span>' +
+        '</button>' +
+        '<div class="svc__more" id="' + sid + '" role="region"><div><div class="svc__inner">' +
+          '<ul class="svc__bens">' + bens + '</ul>' +
+          '<button type="button" class="btn btn--quiet svc__cta">' + U.safe(t('svcMore')) + '</button>' +
+        '</div></div></div>' +
       '</div>';
     }).join('');
     C.motion.observe(host);
+  }
+
+  function bindServices() {
+    var host = U.$('svcList');
+    if (!host) return;
+    U.on(host, 'click', function (e) {
+      if (e.target.closest && e.target.closest('.svc__cta')) {
+        if (C.product) C.product.focusCalc(null);
+        return;
+      }
+      var toggle = e.target.closest ? e.target.closest('.svc__toggle') : null;
+      if (!toggle) return;
+      var row = toggle.parentNode;
+      var open = !row.classList.contains('is-open');
+      U.each(host.querySelectorAll('.svc__row'), function (r) {
+        r.classList.remove('is-open');
+        var b = r.querySelector('.svc__toggle');
+        if (b) b.setAttribute('aria-expanded', 'false');
+      });
+      row.classList.toggle('is-open', open);
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
   }
 
   /* --------------------------------------------------------- figures -- */
@@ -3585,7 +4567,7 @@ input[type="range"]:active::-webkit-slider-thumb { transform: scale(1.15); }
 
     if (legal) {
       var year = new Date().getFullYear();
-      var left = cfg.legalName ? U.safe(cfg.legalName) : 'CARGOX GROUP';
+      var left = cfg.legalName ? U.safe(cfg.legalName) : 'JOL CARGO';
       var right = cfg.address ? U.safe(cfg.address) : U.safe(t('markSub'));
       legal.innerHTML = '<span>© ' + year + ' ' + left + '</span>' + '<span>' + right + '</span>';
     }
@@ -3604,6 +4586,8 @@ input[type="range"]:active::-webkit-slider-thumb { transform: scale(1.15); }
     init: function () {
       renderAll();
       bindFaq();
+      bindCorridors();
+      bindServices();
       C.i18n.onChange(renderAll);
     },
     corridors: function () { return CORRIDORS.slice(); },
@@ -3611,237 +4595,715 @@ input[type="range"]:active::-webkit-slider-thumb { transform: scale(1.15); }
   };
 })();
 
+</script>
 
+<!-- 11-assistant.js -->
+<script>
 /* ============================================================
-   QUOTE — the one commercial interaction.
-   Route comparison, weight and priority in a single surface.
-   The pricing brain is the original deterministic engine.
+   JOL AI — one assistant, two surfaces.
+
+   There is exactly one conversation and one state object. The
+   Hero panel and the calculator section are two *views* of it,
+   both re-rendered from the same model, so they can never drift
+   apart. Collapsing the Hero panel is a view state; it does not
+   touch the conversation.
+
+     parseUserMessage → detectRoute / detectWeight / detectCargo
+                        / detectPriority / detectTracking
+                      → missing()            what still to ask
+                      → calculateShipping()  deterministic engine
+                      → generateResponse()   what the assistant says
+                      → renderAssistant()    paint every surface
+
+   Replacing the local parser with a backend call means changing
+   parseUserMessage() and nothing else.
    ============================================================ */
 (function () {
   'use strict';
-  var C = (window.CARGOX = window.CARGOX || {});
+  var C = (window.JOL = window.JOL || {});
   var U = C.util;
   var t = function (k) { return C.i18n.t(k); };
 
-  var ORIGINS = ['yiwu', 'guangzhou', 'shanghai', 'urumqi', 'almaty', 'astana', 'tashkent', 'dubai', 'istanbul', 'moscow', 'spb'];
-  var TARGETS = ['bishkek', 'osh'];
-
-  var state = {
-    from: 'yiwu', to: 'bishkek',
-    weight: 650, priority: 'balanced',
-    selected: null
+  /* =============================================== CONFIGURATION == */
+  var CONFIG = {
+    origins: ['yiwu', 'guangzhou', 'shanghai', 'urumqi', 'china', 'almaty', 'astana', 'tashkent', 'dubai', 'istanbul', 'moscow', 'spb'],
+    targets: ['bishkek', 'osh'],
+    cargoKeys: ['', 'cargoTextile', 'cargoElectronics', 'cargoFurniture', 'cargoEquipment', 'cargoBuilding', 'cargoParts', 'cargoFood'],
+    defaults: { originId: 'yiwu', destinationId: 'bishkek', weightKg: 650, priority: 'balanced' },
+    weight: { min: 1, max: 20000 },
+    volume: { min: 0, max: 200 },
+    replyDelay: 260
   };
-  var quote = null;
 
-  function place(id) {
-    var places = (C.parser && C.parser.places) || [];
-    for (var i = 0; i < places.length; i++) if (places[i].id === id) return places[i];
+  var TRACKING = {
+    'CX-10482': {
+      from: 'yiwu', to: 'bishkek', statusKey: 'trkTransit', eta: '14.09', progress: 0.68,
+      steps: [
+        { k: 'trkEv1', place: 'Иу', when: '02.09 · 09:15', state: 'done' },
+        { k: 'trkEv2', place: 'Иу', when: '03.09 · 18:40', state: 'done' },
+        { k: 'trkEv3', place: 'Урумчи', when: '06.09 · 07:05', state: 'done' },
+        { k: 'trkEv4', place: 'Торугарт', when: '07.09 · 11:20', state: 'now' },
+        { k: 'trkEv5', place: 'Бишкек', when: '14.09', state: '' }
+      ]
+    },
+    'CX-10483': {
+      from: 'guangzhou', to: 'osh', statusKey: 'trkDocs', eta: '18.09', progress: 0.24,
+      steps: [
+        { k: 'trkEv0', place: 'Гуанчжоу', when: '05.09 · 15:30', state: 'done' },
+        { k: 'trkEv6', place: 'Гуанчжоу', when: '07.09 · 10:10', state: 'now' },
+        { k: 'trkEv3', place: 'Урумчи', when: '—', state: '' },
+        { k: 'trkEv4', place: 'Иркештам', when: '—', state: '' },
+        { k: 'trkEv5', place: 'Ош', when: '18.09', state: '' }
+      ]
+    },
+    'CX-10484': {
+      from: 'dubai', to: 'bishkek', statusKey: 'trkDone', eta: '05.09', progress: 1,
+      steps: [
+        { k: 'trkEv0', place: 'Дубай', when: '28.08 · 12:00', state: 'done' },
+        { k: 'trkEv2', place: 'Дубай', when: '29.08 · 16:20', state: 'done' },
+        { k: 'trkEv4', place: 'Бишкек', when: '04.09 · 08:45', state: 'done' },
+        { k: 'trkEv7', place: 'Бишкек', when: '05.09 · 10:30', state: 'done' }
+      ]
+    }
+  };
+
+  var TRACK_RE = /\b(CX[\s-]?\d{4,6})\b/i;
+
+  /* ======================================================= STATE == */
+  var S = {
+    open: true,              /* hero panel expanded?  view state only */
+    phase: 'idle',           /* idle · asking · calculating · result · error */
+    messages: [],            /* the single shared conversation        */
+    chips: [],
+    trip: {
+      originId: null, destinationId: null,
+      weightKg: 0, volumeM3: 0, pieces: 1,
+      cargoKey: '', priority: null, deadline: null, fragile: false
+    },
+    quote: null,
+    chosenId: null,
+    showAll: false,
+    lastTracking: null
+  };
+
+  /* Two mount points, one model. */
+  var SURFACES = [
+    { id: 'hero',  log: 'haiLog', chips: 'haiChips', out: 'haiOut', state: 'haiState', input: 'haiInput', compact: true, maxChips: 3 },
+    { id: 'panel', log: 'cxLog',  chips: 'cxChips',  out: 'cxOut',  state: 'cxState',  input: 'cxInput',  compact: false }
+  ];
+
+  /* ==================================================== HELPERS == */
+  function placeOf(id) {
+    var list = (C.parser && C.parser.places) || [];
+    for (var i = 0; i < list.length; i++) if (list[i].id === id) return list[i];
+    return null;
+  }
+  function placeName(id) {
+    var p = placeOf(id);
+    return p ? (p[C.i18n.lang()] || p.ru) : (id || '');
+  }
+  function shipment() {
+    var a = placeOf(S.trip.originId), b = placeOf(S.trip.destinationId);
+    return {
+      originId: S.trip.originId, originCountry: a ? a.country : '',
+      destinationId: S.trip.destinationId, destinationCountry: b ? b.country : '',
+      weightKg: U.clamp(S.trip.weightKg || 0, 0, CONFIG.weight.max),
+      volumeM3: U.clamp(S.trip.volumeM3 || 0, 0, CONFIG.volume.max),
+      pieces: S.trip.pieces || 1,
+      priority: S.trip.priority || 'balanced',
+      deadline: S.trip.deadline, cargoKey: S.trip.cargoKey, fragile: !!S.trip.fragile
+    };
+  }
+  function missing() {
+    if (!S.trip.originId) return 'Origin';
+    if (!S.trip.destinationId) return 'Destination';
+    if (!(S.trip.weightKg > 0)) return 'Weight';
     return null;
   }
 
-  function shipment() {
-    var a = place(state.from), b = place(state.to);
-    return {
-      originId: state.from, originCountry: a ? a.country : '',
-      destinationId: state.to, destinationCountry: b ? b.country : '',
-      weightKg: state.weight, volumeM3: 0, pieces: 1,
-      priority: state.priority, deadline: null, cargoKey: '', fragile: false
-    };
+  /* ============================================ PARSING LAYER == */
+  /* Swap the body of parseUserMessage for a backend call and every
+     detector below keeps the same contract. */
+  function parseUserMessage(text) {
+    var out = { tracking: detectTracking(text), patch: {} };
+    try {
+      var r = C.parser.parse(text, shipment(), null);
+      out.intent = r && r.intent;
+      out.patch = (r && r.patch) || {};
+    } catch (e) { out.intent = null; }
+    return out;
+  }
+  function detectTracking(text) {
+    var m = String(text || '').match(TRACK_RE);
+    return m ? m[1].toUpperCase().replace(/\s/g, '-').replace(/^CX(?!-)/, 'CX-') : null;
+  }
+  function detectRoute(patch) { return { originId: patch.originId || null, destinationId: patch.destinationId || null }; }
+  function detectWeight(patch) { return patch.weightKg || null; }
+  function detectCargo(patch) { return patch.cargoKey || null; }
+  function detectPriority(patch) { return patch.priority || null; }
+
+  function calculateShipping() {
+    if (missing()) { S.quote = null; return null; }
+    S.quote = C.engine.build(shipment());
+    if (S.quote && (!S.chosenId || !C.engine.optionById(S.quote, S.chosenId))) S.chosenId = S.quote.bestId;
+    return S.quote;
   }
 
-  function fillSelects() {
-    var from = U.$('qFrom'), to = U.$('qTo');
-    function opts(ids, current) {
-      return ids.map(function (id) {
-        return '<option value="' + id + '"' + (id === current ? ' selected' : '') + '>' +
-          U.safe(C.views.placeName(id)) + '</option>';
-      }).join('');
-    }
-    if (from) from.innerHTML = opts(ORIGINS, state.from);
-    if (to) to.innerHTML = opts(TARGETS, state.to);
+  /* ================================================ RENDERING == */
+  function say(text, who) { S.messages.push({ text: text, who: who }); }
+  function setChips(list) { S.chips = list || []; }
+
+  function renderLog(el) {
+    if (!el) return;
+    el.innerHTML = S.messages.map(function (m) {
+      return '<div class="ai-msg ai-msg--' + m.who + '">' + U.safe(m.text) + '</div>';
+    }).join('') + (S.phase === 'calculating'
+      ? '<div class="ai-msg ai-msg--bot ai-typing"><i></i><i></i><i></i></div>' : '');
+    el.scrollTop = el.scrollHeight;
   }
 
-  function recalc() {
-    quote = C.engine.build(shipment());
-    if (quote && (!state.selected || !C.engine.optionById(quote, state.selected))) {
-      state.selected = quote.bestId;
-    }
-    render();
+  function renderChips(el, cap) {
+    if (!el) return;
+    var list = cap ? S.chips.slice(0, cap) : S.chips;
+    el.innerHTML = list.map(function (c) {
+      return '<button type="button" class="ai-chip" data-send="' + U.safe(c.value || c.label) + '">' +
+        U.safe(c.label) + '</button>';
+    }).join('');
   }
 
-  function render() {
-    var host = U.$('qOptions');
-    var why = U.$('qWhy');
-    var eta = U.$('qEta');
-    var out = U.$('qWeightOut');
-
-    if (out) out.textContent = U.number(state.weight) + ' ' + t('unitKg');
-
-    if (!host) return;
-    if (!quote) { host.innerHTML = ''; return; }
-
-    host.innerHTML = quote.options.map(function (o) {
-      var on = o.id === state.selected;
-      var pros = o.advantages.map(function (k) {
-        return '<i data-kind="plus">' + U.safe(t(k)) + '</i>';
-      }).concat(o.disadvantages.map(function (k) {
-        return '<i data-kind="minus">' + U.safe(t(k)) + '</i>';
-      })).join('');
-
-      return '<button type="button" class="opt" data-opt="' + U.safe(o.id) + '" aria-pressed="' + (on ? 'true' : 'false') + '">' +
-        '<span class="opt__mode">' + U.safe(C.engine.modeName(o.id)) + '</span>' +
-        '<span class="opt__tag">' + U.safe(t(o.tag)) + '</span>' +
-        '<span class="opt__price"><b>' + U.money(o.price) + '</b>' +
+  function optionRows() {
+    return S.quote.options.map(function (o) {
+      return '<button type="button" class="ai-opt' + (o.id === S.chosenId ? ' is-on' : '') +
+        '" data-opt="' + U.safe(o.id) + '">' +
+        '<span class="ai-opt__mode">' + U.safe(C.engine.modeName(o.id)) + '</span>' +
+        '<span class="ai-opt__tag">' + U.safe(t(o.tag)) + '</span>' +
+        '<span class="ai-opt__price"><b>' + U.money(o.price) + '</b>' +
           '<span>' + U.safe(C.engine.daysText(o)) + '</span></span>' +
-        '<span class="opt__pros">' + pros + '</span>' +
       '</button>';
     }).join('');
+  }
 
-    if (why) why.textContent = C.engine.explain(quote);
+  function renderOut(el, compact) {
+    if (!el) return;
 
-    if (eta) {
-      var chosen = C.engine.optionById(quote, state.selected);
-      eta.innerHTML =
-        '<span>' + U.safe(t('qEtaLabel')) + ' <b>' + U.safe(U.shortDate(C.engine.etaDate(chosen))) + '</b></span>' +
-        '<span>' + U.safe(t('qDistLabel')) + ' <b>' + U.number(quote.distanceKm) + ' км</b></span>';
+    if (S.lastTracking) {
+      el.innerHTML = trackingCard(S.lastTracking, compact);
+      return;
     }
+    if (!S.quote) { el.innerHTML = ''; return; }
+
+    var best = C.engine.optionById(S.quote, S.chosenId) || C.engine.optionById(S.quote, S.quote.bestId);
+
+    var acts =
+      '<div class="ai-card__acts">' +
+        '<button class="btn btn--seal" type="button" data-act="choose">' + U.safe(t('aiActChoose')) + '</button>' +
+        '<button class="btn btn--quiet" type="button" data-act="others">' + U.safe(t(S.showAll ? 'aiActHide' : 'aiActOthers')) + '</button>' +
+        '<button class="btn btn--quiet" type="button" data-act="again">' + U.safe(t('aiActAgain')) + '</button>' +
+        '<button class="btn btn--quiet" type="button" data-act="manager">' + U.safe(t('aiActManager')) + '</button>' +
+      '</div>';
+
+    if (compact) {
+      /* One primary block, then the alternatives as compact rows that can be
+         promoted with a tap. No toggle: hiding them was what made this panel
+         taller than the viewport in the first place. */
+      var others = S.quote.options.filter(function (o) { return o.id !== best.id; });
+      el.innerHTML =
+        '<article class="ai-card">' +
+          '<div class="ai-best">' +
+            '<span class="ai-best__label">' + U.safe(t(best.tag)) + '</span>' +
+            '<b class="ai-best__price">' + U.money(best.price) + '</b>' +
+            '<span class="ai-best__meta">' + U.safe(C.engine.modeName(best.id)) + ' · ' +
+              U.safe(C.engine.daysText(best)) + '</span>' +
+            '<span class="ai-best__lane">' + U.safe(placeName(S.trip.originId)) + ' → ' +
+              U.safe(placeName(S.trip.destinationId)) + ' · ' + U.number(S.trip.weightKg) + ' ' + U.safe(t('unitKg')) + '</span>' +
+          '</div>' +
+          '<div class="ai-alts">' + others.map(function (o) {
+            return '<button type="button" class="ai-alt" data-opt="' + U.safe(o.id) + '">' +
+              '<span class="ai-alt__mode">' + U.safe(C.engine.modeName(o.id)) + '</span>' +
+              '<span class="ai-alt__tag">' + U.safe(t(o.tag)) + '</span>' +
+              '<span class="ai-alt__price">' + U.money(o.price) + '</span>' +
+              '<span class="ai-alt__days">' + U.safe(C.engine.daysText(o)) + '</span>' +
+            '</button>';
+          }).join('') + '</div>' +
+          '<div class="ai-card__acts">' +
+            '<button class="btn btn--seal" type="button" data-act="choose">' + U.safe(t('aiActChoose')) + '</button>' +
+            '<button class="ai-quiet" type="button" data-act="again">' + U.safe(t('aiActAgain')) + '</button>' +
+            '<button class="ai-quiet" type="button" data-act="manager">' + U.safe(t('aiActManager')) + '</button>' +
+          '</div>' +
+        '</article>';
+      return;
+    }
+
+    var pros = (best.advantages || []).map(function (k) { return '<li>' + U.safe(t(k)) + '</li>'; }).join('');
+    el.innerHTML =
+      '<article class="cx-card">' +
+        '<header class="cx-card__head"><span class="kicker">' + U.safe(t('aiBest')) + '</span>' +
+          '<h3 class="h-sub">' + U.safe(placeName(S.trip.originId)) + ' → ' + U.safe(placeName(S.trip.destinationId)) + '</h3></header>' +
+        '<div class="cx-card__grid">' +
+          '<div><span class="label">' + U.safe(t('aiCargoType')) + '</span><b>' + U.safe(S.trip.cargoKey ? t(S.trip.cargoKey) : t('aiCargoAny')) + '</b></div>' +
+          '<div><span class="label">' + U.safe(t('aiWeight')) + '</span><b>' + U.number(S.trip.weightKg) + ' ' + U.safe(t('unitKg')) + '</b></div>' +
+          '<div><span class="label">' + U.safe(t('aiTransport')) + '</span><b>' + U.safe(C.engine.modeName(best.id)) + '</b></div>' +
+          '<div><span class="label">' + U.safe(t('qDistLabel')) + '</span><b>' + U.number(S.quote.distanceKm) + ' ' + U.safe(t('unitKm')) + '</b></div>' +
+        '</div>' +
+        '<div class="cx-card__price">' +
+          '<div><span class="label">' + U.safe(t('aiPrice')) + '</span><b class="figure figure--mid" id="cxPrice">' + U.money(best.price) + '</b></div>' +
+          '<div><span class="label">' + U.safe(t('aiEta')) + '</span><b class="h-sub">' + U.safe(C.engine.daysText(best)) + '</b>' +
+            '<span class="label">' + U.safe(U.shortDate(C.engine.etaDate(best))) + '</span></div>' +
+        '</div>' +
+        '<div class="cx-card__why"><span class="label">' + U.safe(t('aiWhy')) + '</span>' +
+          '<p>' + U.safe(C.engine.explain(S.quote)) + '</p>' +
+          (pros ? '<ul class="cx-card__pros">' + pros + '</ul>' : '') + '</div>' +
+        acts +
+        (S.showAll ? '<div class="ai-opts">' + optionRows() + '</div>' : '') +
+        '<p class="cx__note">' + U.safe(t('qDisc')) + '</p>' +
+      '</article>';
   }
 
-  /* The hero bar feeds this section rather than opening a chat. */
-  function fromText(text) {
-    if (!C.parser) return null;
-    var parsed = C.parser.parse(text, shipment());
-    var patch = parsed && parsed.patch;
-    if (!patch) return null;
-
-    var moved = false;
-    if (patch.originId && ORIGINS.indexOf(patch.originId) > -1) { state.from = patch.originId; moved = true; }
-    if (patch.destinationId && TARGETS.indexOf(patch.destinationId) > -1) { state.to = patch.destinationId; moved = true; }
-    if (patch.weightKg) { state.weight = U.clamp(Math.round(patch.weightKg), 50, 20000); moved = true; }
-    if (patch.priority) { state.priority = patch.priority; moved = true; }
-    if (!moved) return null;
-
-    state.selected = null;
-    syncControls();
-    recalc();
-    return C.views.placeName(state.from) + ' — ' + C.views.placeName(state.to);
+  function trackingCard(rec, compact) {
+    var pct = Math.round(rec.progress * 100);
+    var head =
+      '<div class="trk__head"><div><span class="code">' + U.safe(rec.id) + '</span>' +
+        '<b class="h-sub">' + U.safe(placeName(rec.from)) + ' → ' + U.safe(placeName(rec.to)) + '</b></div>' +
+        '<span class="trk__status' + (rec.progress >= 1 ? ' is-done' : '') + '">' + U.safe(t(rec.statusKey)) + '</span></div>' +
+      '<div class="trk__bar"><span style="width:' + pct + '%"></span></div>';
+    if (compact) {
+      var now = rec.steps.filter(function (s) { return s.state === 'now'; })[0] ||
+                rec.steps[rec.steps.length - 1];
+      return '<article class="ai-card ai-card--compact">' + head +
+        '<div class="ai-card__lane">' + U.safe(t(now.k)) + ' · ' + U.safe(now.place) + '</div>' +
+        '<div class="ai-card__acts"><a class="btn btn--quiet" href="#tracking" data-act="opentrack">' +
+          U.safe(t('aiOpenTracking')) + '</a></div></article>';
+    }
+    return '<article class="cx-card">' + head +
+      '<ol class="trk__steps">' + rec.steps.map(function (s) {
+        return '<li class="trk__step' + (s.state ? ' is-' + s.state : '') + '">' +
+          '<span class="trk__dot" aria-hidden="true"></span>' +
+          '<div><b>' + U.safe(t(s.k)) + '</b><span>' + U.safe(s.place) + '</span></div>' +
+          '<span class="trk__when">' + U.safe(s.when) + '</span></li>';
+      }).join('') + '</ol>' +
+      '<div class="trk__eta"><span>' + U.safe(t('trkEta')) + '</span><b>' + U.safe(rec.eta) + '</b></div></article>';
   }
 
-  function syncControls() {
-    var from = U.$('qFrom'), to = U.$('qTo'), w = U.$('qWeight');
-    if (from) from.value = state.from;
-    if (to) to.value = state.to;
-    if (w) w.value = String(state.weight);
-    U.each(document.querySelectorAll('#qPriority .pick'), function (b) {
-      b.setAttribute('aria-pressed', b.getAttribute('data-priority') === state.priority ? 'true' : 'false');
-    });
-  }
-
-  function init() {
-    if (!U.$('qOptions')) return;
-    fillSelects();
-    syncControls();
-
-    U.on(U.$('qFrom'), 'change', function (e) { state.from = e.target.value; state.selected = null; recalc(); });
-    U.on(U.$('qTo'), 'change', function (e) { state.to = e.target.value; state.selected = null; recalc(); });
-
-    U.on(U.$('qWeight'), 'input', function (e) {
-      state.weight = parseInt(e.target.value, 10) || 50;
-      recalc();
-    });
-
-    U.on(U.$('qPriority'), 'click', function (e) {
-      var btn = e.target.closest ? e.target.closest('[data-priority]') : null;
-      if (!btn) return;
-      state.priority = btn.getAttribute('data-priority');
-      state.selected = null;
-      syncControls();
-      recalc();
-    });
-
-    U.on(U.$('qOptions'), 'click', function (e) {
-      var btn = e.target.closest ? e.target.closest('[data-opt]') : null;
-      if (!btn) return;
-      state.selected = btn.getAttribute('data-opt');
-      render();
-    });
-
-    C.i18n.onChange(function () { fillSelects(); syncControls(); render(); });
-    recalc();
-  }
-
-  C.quote = { init: init, fromText: fromText, focus: function () { U.scrollTo(U.$('quote')); } };
-})();
-
-
-/* ============================================================
-   ASK — the hero's collapsed one-line entry point.
-   It does not hold a conversation. It reads a sentence, fills
-   the quote section and gets out of the way.
-   ============================================================ */
-(function () {
-  'use strict';
-  var C = (window.CARGOX = window.CARGOX || {});
-  var U = C.util;
-  var t = function (k) { return C.i18n.t(k); };
-
-  function init() {
-    var box = U.$('ask');
-    var toggle = U.$('askToggle');
-    var form = U.$('askForm');
-    var input = U.$('askInput');
-    if (!box || !toggle || !form) return;
-
-    var note = U.qs('.ask__note', box);
-    var hint = U.qs('.ask__bar span', box);
-
-    function setOpen(open) {
-      box.classList.toggle('is-open', open);
-      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-      if (hint) hint.textContent = t(open ? 'askHintClose' : 'askHint');
-      if (open && input) {
-        try { input.focus({ preventScroll: true }); } catch (e) { input.focus(); }
+  function renderAssistant() {
+    SURFACES.forEach(function (s) {
+      renderLog(U.$(s.log));
+      renderChips(U.$(s.chips), s.maxChips);
+      renderOut(U.$(s.out), s.compact);
+      var dot = U.$(s.state);
+      if (dot) {
+        dot.textContent = t(S.phase === 'calculating' ? 'aiThinking' : 'aiOnline');
+        dot.parentNode.classList.toggle('is-busy', S.phase === 'calculating');
       }
+    });
+    syncPanel();
+    var host = U.$('heroAI');
+    if (host) host.setAttribute('data-phase', S.phase);
+  }
+
+  /* ============================================== CONVERSATION == */
+  function askNext() {
+    var need = missing();
+    if (!need) return false;
+    S.phase = 'asking';
+
+    if (need === 'Origin') {
+      say(t('aiAskOrigin'), 'bot');
+      setChips([{ label: 'Иу', value: 'из Иу' }, { label: 'Гуанчжоу', value: 'из Гуанчжоу' },
+                { label: t('cityChina'), value: 'из Китая' }, { label: 'Дубай', value: 'из Дубая' }]);
+    } else if (need === 'Destination') {
+      say(S.trip.originId
+        ? t('aiAskDestinationCtx').replace('{origin}', placeName(S.trip.originId))
+        : t('aiAskDestination'), 'bot');
+      setChips([{ label: 'Бишкек', value: 'в Бишкек' }, { label: 'Ош', value: 'в Ош' }]);
+    } else {
+      say((S.trip.originId && S.trip.destinationId)
+        ? t('aiAskWeightCtx')
+            .replace('{route}', placeName(S.trip.originId) + ' → ' + placeName(S.trip.destinationId))
+        : t('aiAskWeight'), 'bot');
+      setChips([{ label: '25 кг', value: '25 кг' }, { label: '300 кг', value: '300 кг' },
+                { label: '1200 кг', value: '1200 кг' }, { label: '3 т', value: '3 т' }]);
+    }
+    return true;
+  }
+
+  function summarise() {
+    calculateShipping();
+    if (!S.quote) { S.phase = 'error'; return; }
+    S.phase = 'result';
+    var best = C.engine.optionById(S.quote, S.chosenId);
+    say(t('aiCalcDone'), 'bot');
+    say(t('aiResult')
+      .replace('{route}', placeName(S.trip.originId) + ' → ' + placeName(S.trip.destinationId))
+      .replace('{weight}', U.number(S.trip.weightKg) + ' ' + t('unitKg'))
+      .replace('{mode}', C.engine.modeName(best.id))
+      .replace('{price}', U.money(best.price))
+      .replace('{days}', C.engine.daysText(best)), 'bot');
+    setChips([
+      { label: t('qCheap'), value: 'дешевле' },
+      { label: t('qFast'), value: 'быстрее' },
+      { label: t('aiActManager'), value: '__manager' },
+      { label: t('aiBalanced'), value: 'баланс' }
+    ]);
+  }
+
+  function send(text) {
+    text = String(text || '').trim();
+    if (!text || S.phase === 'calculating') return;
+
+    if (text === '__manager') { goContact(); return; }
+    if (text === '__reset') { reset(true); return; }
+
+    say(text, 'user');
+    S.phase = 'calculating';
+    renderAssistant();
+
+    window.setTimeout(function () {
+      respond(text);
+      renderAssistant();
+    }, U.reduced() ? 0 : CONFIG.replyDelay);
+  }
+
+  function respond(text) {
+    var parsed = parseUserMessage(text);
+
+    /* One ecosystem: a tracking number anywhere in the sentence wins. */
+    if (parsed.tracking) {
+      var rec = TRACKING[parsed.tracking];
+      if (rec) {
+        S.lastTracking = assign(rec, { id: parsed.tracking });
+        S.phase = 'result';
+        say(t('aiTrackFound').replace('{id}', parsed.tracking).replace('{status}', t(rec.statusKey)), 'bot');
+        setChips([{ label: t('aiOpenTracking'), value: '__opentrack' },
+                  { label: t('aiCalc'), value: '__calc' }]);
+        var input = U.$('trkInput');
+        if (input) { input.value = parsed.tracking; renderTracking(parsed.tracking); }
+        return;
+      }
+      S.phase = 'error';
+      say(t('trkNotFoundHint').replace('{id}', parsed.tracking), 'bot');
+      setChips(Object.keys(TRACKING).map(function (id) { return { label: id, value: 'Где груз ' + id + '?' }; }));
+      return;
+    }
+    if (text === '__opentrack') { var t2 = U.$('tracking'); if (t2) U.scrollTo(t2); S.phase = 'result'; return; }
+    if (text === '__calc') { S.lastTracking = null; S.phase = 'idle'; if (!askNext()) summarise(); return; }
+
+    S.lastTracking = null;
+
+    if (parsed.intent === 'reset') { reset(true); return; }
+
+    var patch = parsed.patch || {};
+    var understood = false;
+
+    /* The parser reports a bare city as an origin because it cannot know
+       what we already have. In a progressive conversation the empty slot
+       is the one the visitor means. */
+    if (patch.originId && !patch.destinationId && CONFIG.targets.indexOf(patch.originId) > -1) {
+      patch = assign(patch, { destinationId: patch.originId, originId: null });
     }
 
-    U.on(toggle, 'click', function () { setOpen(!box.classList.contains('is-open')); });
+    var route = detectRoute(patch), w = detectWeight(patch),
+        cargo = detectCargo(patch), prio = detectPriority(patch);
 
-    U.on(form, 'submit', function (e) {
+    if (route.originId) { S.trip.originId = route.originId; understood = true; }
+    if (route.destinationId) { S.trip.destinationId = route.destinationId; understood = true; }
+    if (w) { S.trip.weightKg = w; understood = true; }
+    if (cargo) { S.trip.cargoKey = cargo; understood = true; }
+    if (prio) { S.trip.priority = prio; S.chosenId = null; understood = true; }
+    if (patch.volumeM3) { S.trip.volumeM3 = patch.volumeM3; understood = true; }
+    if (patch.pieces) { S.trip.pieces = patch.pieces; understood = true; }
+    if (patch.deadline) { S.trip.deadline = patch.deadline; understood = true; }
+
+    if (S.trip.destinationId && CONFIG.targets.indexOf(S.trip.destinationId) === -1) {
+      say(t('aiBadDestination').replace('{city}', placeName(S.trip.destinationId)), 'bot');
+      S.trip.destinationId = null;
+    }
+    if (S.trip.weightKg > CONFIG.weight.max) {
+      S.trip.weightKg = CONFIG.weight.max;
+      say(t('aiWeightCapped').replace('{max}', U.number(CONFIG.weight.max)), 'bot');
+    }
+
+    if (!understood && missing()) {
+      S.phase = 'error';
+      say(t('aiNotUnderstood'), 'bot');
+    }
+    if (!askNext()) summarise();
+  }
+
+  function greet() {
+    if (S.messages.length) return;
+    say(t('aiGreeting'), 'bot');
+    setChips([
+      { label: t('aiQaCalc'), value: 'Иу → Бишкек, 1200 кг' },
+      { label: t('aiQaRoute'), value: 'Из Китая в Бишкек' },
+      { label: 'Китай → Ош', value: 'Из Китая в Ош' },
+      { label: t('qCheap'), value: 'как дешевле?' },
+      { label: t('aiActManager'), value: '__manager' }
+    ]);
+    S.phase = 'idle';
+  }
+
+  /* ================================================== ACTIONS == */
+  function assign(a, b) {
+    var o = {}, k;
+    for (k in a) if (Object.prototype.hasOwnProperty.call(a, k)) o[k] = a[k];
+    for (k in b) if (Object.prototype.hasOwnProperty.call(b, k)) o[k] = b[k];
+    return o;
+  }
+
+  function goContact() {
+    var target = U.$('contact');
+    if (target) U.scrollTo(target);
+    var note = U.$('fMessage');
+    if (note && S.quote) {
+      var best = C.engine.optionById(S.quote, S.chosenId);
+      note.value = t('aiHandoff')
+        .replace('{route}', placeName(S.trip.originId) + ' → ' + placeName(S.trip.destinationId))
+        .replace('{weight}', U.number(S.trip.weightKg) + ' ' + t('unitKg'))
+        .replace('{cargo}', S.trip.cargoKey ? t(S.trip.cargoKey) : t('aiCargoAny'))
+        .replace('{mode}', C.engine.modeName(best.id))
+        .replace('{price}', U.money(best.price));
+    }
+  }
+
+  function reset(fromChat) {
+    S.trip = { originId: null, destinationId: null, weightKg: 0, volumeM3: 0, pieces: 1,
+               cargoKey: '', priority: null, deadline: null, fragile: false };
+    S.quote = null; S.chosenId = null; S.showAll = false; S.lastTracking = null;
+    S.phase = 'idle';
+    if (fromChat) { say(t('aiRestart'), 'bot'); askNext(); }
+    renderAssistant();
+  }
+
+  /* ======================================= HERO PANEL: OPEN/SHUT == */
+  function setOpen(open, focus) {
+    S.open = !!open;
+    var host = U.$('heroAI');
+    if (!host) return;
+    host.classList.toggle('is-open', S.open);
+    var toggle = U.$('haiToggle'), collapse = U.$('haiCollapse');
+    if (toggle) toggle.setAttribute('aria-expanded', S.open ? 'true' : 'false');
+    if (collapse) collapse.setAttribute('aria-expanded', S.open ? 'true' : 'false');
+    host.setAttribute('aria-hidden', 'false');
+    if (S.open && focus) {
+      var input = U.$('haiInput');
+      if (input) { try { input.focus({ preventScroll: true }); } catch (e) { input.focus(); } }
+    }
+    if (!S.open && focus && toggle) { try { toggle.focus({ preventScroll: true }); } catch (e) { /* ignore */ } }
+  }
+
+  /* =============================================== GUIDED PANEL == */
+  function fillSelects() {
+    var from = U.$('cxFrom'), to = U.$('cxTo'), cargo = U.$('cxCargo');
+    if (from) from.innerHTML = CONFIG.origins.map(function (id) {
+      return '<option value="' + id + '">' + U.safe(placeName(id)) + '</option>'; }).join('');
+    if (to) to.innerHTML = CONFIG.targets.map(function (id) {
+      return '<option value="' + id + '">' + U.safe(placeName(id)) + '</option>'; }).join('');
+    if (cargo) cargo.innerHTML = CONFIG.cargoKeys.map(function (k) {
+      return '<option value="' + k + '">' + U.safe(k ? t(k) : t('aiCargoAny')) + '</option>'; }).join('');
+  }
+
+  function syncPanel() {
+    var from = U.$('cxFrom'), to = U.$('cxTo');
+    if (from) from.value = S.trip.originId || CONFIG.defaults.originId;
+    if (to) to.value = S.trip.destinationId || CONFIG.defaults.destinationId;
+    var w = U.$('cxWeight'); if (w) w.value = S.trip.weightKg > 0 ? S.trip.weightKg : '';
+    var v = U.$('cxVolume'); if (v) v.value = S.trip.volumeM3 || '';
+    var c = U.$('cxCargo'); if (c) c.value = S.trip.cargoKey || '';
+    U.each(document.querySelectorAll('#cxPriority .pick'), function (b) {
+      b.setAttribute('aria-pressed', b.getAttribute('data-priority') === (S.trip.priority || 'balanced') ? 'true' : 'false');
+    });
+  }
+
+  function readPanel() {
+    var from = U.$('cxFrom'), to = U.$('cxTo');
+    if (from) S.trip.originId = from.value;
+    if (to) S.trip.destinationId = to.value;
+    var w = U.$('cxWeight'); if (w) S.trip.weightKg = U.clamp(parseFloat(w.value) || 0, 0, CONFIG.weight.max);
+    var v = U.$('cxVolume'); if (v) S.trip.volumeM3 = U.clamp(parseFloat(v.value) || 0, 0, CONFIG.volume.max);
+    var c = U.$('cxCargo'); if (c) S.trip.cargoKey = c.value;
+    S.lastTracking = null;
+  }
+
+  /* ==================================================== TRACKING == */
+  function renderTracking(raw) {
+    var host = U.$('trkOut');
+    if (!host) return;
+    var id = String(raw || '').trim().toUpperCase();
+    if (!id) { host.innerHTML = '<div class="cx-empty">' + U.safe(t('trkEmpty')) + '</div>'; return; }
+    var rec = TRACKING[id];
+    if (!rec) {
+      host.innerHTML = '<div class="trk__miss"><b class="h-sub">' + U.safe(t('trkNotFound')) + '</b>' +
+        '<p class="body">' + U.safe(t('trkNotFoundHint').replace('{id}', id)) + '</p></div>';
+      return;
+    }
+    var pct = Math.round(rec.progress * 100);
+    host.innerHTML =
+      '<div class="trk__head"><div><span class="code">' + U.safe(id) + '</span>' +
+        '<b class="h-sub">' + U.safe(placeName(rec.from)) + ' → ' + U.safe(placeName(rec.to)) + '</b></div>' +
+        '<span class="trk__status' + (rec.progress >= 1 ? ' is-done' : '') + '">' + U.safe(t(rec.statusKey)) + '</span></div>' +
+      '<div class="trk__bar"><span style="width:' + pct + '%"></span></div>' +
+      '<div class="trk__meta"><span>' + U.safe(t('trkProgress')) + '</span><b>' + pct + '%</b></div>' +
+      '<ol class="trk__steps">' + rec.steps.map(function (s) {
+        return '<li class="trk__step' + (s.state ? ' is-' + s.state : '') + '">' +
+          '<span class="trk__dot" aria-hidden="true"></span>' +
+          '<div><b>' + U.safe(t(s.k)) + '</b><span>' + U.safe(s.place) + '</span></div>' +
+          '<span class="trk__when">' + U.safe(s.when) + '</span></li>';
+      }).join('') + '</ol>' +
+      '<div class="trk__eta"><span>' + U.safe(t('trkEta')) + '</span><b>' + U.safe(rec.eta) + '</b></div>';
+  }
+
+  /* ===================================================== WIRING == */
+  function bindSurface(s) {
+    var chips = U.$(s.chips), out = U.$(s.out);
+    if (chips) U.on(chips, 'click', function (e) {
+      var b = e.target.closest ? e.target.closest('[data-send]') : null;
+      if (b) send(b.getAttribute('data-send'));
+    });
+    if (out) U.on(out, 'click', function (e) {
+      var el = e.target.closest ? e.target.closest('[data-act], [data-opt]') : null;
+      if (!el) return;
+      var opt = el.getAttribute('data-opt');
+      if (opt) { S.chosenId = opt; renderAssistant(); return; }
+      switch (el.getAttribute('data-act')) {
+        case 'choose':
+          say(t('aiPicked'), 'bot');
+          renderAssistant();
+          goContact();
+          break;
+        case 'manager': goContact(); break;
+        case 'others': S.showAll = !S.showAll; renderAssistant(); break;
+        case 'again': calculateShipping(); renderAssistant(); break;
+        case 'opentrack': break; /* the anchor does the work */
+      }
+    });
+  }
+
+  function initHero() {
+    var host = U.$('heroAI');
+    if (!host) return;
+
+    U.on(U.$('haiToggle'), 'click', function () { setOpen(true, true); });
+    U.on(U.$('haiCollapse'), 'click', function () { setOpen(false, true); });
+    U.on(U.$('haiForm'), 'submit', function (e) {
       e.preventDefault();
-      if (!input) return;
-      var text = String(input.value || '').trim();
-      if (!text) { input.focus(); return; }
-
-      var route = C.quote ? C.quote.fromText(text) : null;
-      if (note) {
-        note.textContent = route
-          ? t('askOk').replace('{route}', route)
-          : t('askFail');
-      }
-      if (route) {
-        input.value = '';
-        window.setTimeout(function () { C.quote.focus(); }, 260);
-      }
+      var input = U.$('haiInput');
+      var v = input ? input.value : '';
+      if (input) input.value = '';
+      send(v);
     });
 
-    C.i18n.onChange(function () {
-      if (hint) hint.textContent = t(box.classList.contains('is-open') ? 'askHintClose' : 'askHint');
-      if (note) note.textContent = t('askNote');
-    });
-
-    setOpen(false);
+    /* Desktop opens expanded; a phone opens as the compact launcher so
+       the cinematic hero is not buried on a small screen. */
+    setOpen((window.innerWidth || 1200) > 860, false);
   }
 
-  C.ask = { init: init };
+  function initPanel() {
+    if (!U.$('cxOut')) return;
+    fillSelects();
+    syncPanel();
+
+    ['cxFrom', 'cxTo', 'cxCargo'].forEach(function (id) {
+      U.on(U.$(id), 'change', function () { readPanel(); S.chosenId = null; calculateShipping(); renderAssistant(); });
+    });
+    ['cxWeight', 'cxVolume'].forEach(function (id) {
+      U.on(U.$(id), 'input', U.debounce(function () { readPanel(); calculateShipping(); renderAssistant(); }, 180));
+    });
+    U.on(U.$('cxPriority'), 'click', function (e) {
+      var b = e.target.closest ? e.target.closest('[data-priority]') : null;
+      if (!b) return;
+      S.trip.priority = b.getAttribute('data-priority');
+      S.chosenId = null;
+      calculateShipping();
+      renderAssistant();
+    });
+    U.on(U.$('cxCalc'), 'click', function () {
+      readPanel(); S.chosenId = null;
+      if (!missing()) { summarise(); } else { askNext(); }
+      renderAssistant();
+    });
+    U.on(U.$('cxReset'), 'click', function () { reset(false); });
+    U.on(U.$('cxForm'), 'submit', function (e) {
+      e.preventDefault();
+      var input = U.$('cxInput');
+      var v = input ? input.value : '';
+      if (input) input.value = '';
+      send(v);
+    });
+  }
+
+  function initTracking() {
+    if (!U.$('trkOut')) return;
+    var ids = U.$('trkIds');
+    if (ids) {
+      ids.innerHTML = Object.keys(TRACKING).map(function (id) {
+        return '<button type="button" class="ai-chip" data-id="' + id + '">' + id + '</button>'; }).join('');
+      U.on(ids, 'click', function (e) {
+        var b = e.target.closest ? e.target.closest('[data-id]') : null;
+        if (!b) return;
+        var input = U.$('trkInput');
+        if (input) input.value = b.getAttribute('data-id');
+        renderTracking(b.getAttribute('data-id'));
+      });
+    }
+    U.on(U.$('trkGo'), 'click', function () { renderTracking(U.$('trkInput') ? U.$('trkInput').value : ''); });
+    U.on(U.$('trkInput'), 'keydown', function (e) {
+      if (e.key === 'Enter') { e.preventDefault(); renderTracking(e.target.value); }
+    });
+    var first = U.$('trkInput');
+    if (first) first.value = 'CX-10482';
+    renderTracking('CX-10482');
+  }
+
+  function init() {
+    SURFACES.forEach(bindSurface);
+    initHero();
+    initPanel();
+    initTracking();
+
+    S.trip.originId = CONFIG.defaults.originId;
+    S.trip.destinationId = CONFIG.defaults.destinationId;
+    S.trip.weightKg = CONFIG.defaults.weightKg;
+    S.trip.priority = CONFIG.defaults.priority;
+    calculateShipping();
+    greet();
+    renderAssistant();
+
+    C.i18n.onChange(function () { fillSelects(); renderAssistant(); renderTracking(U.$('trkInput') ? U.$('trkInput').value : ''); });
+  }
+
+  C.assistant = {
+    init: init,
+    send: send,
+    open: function (focus) { setOpen(true, focus !== false); },
+    close: function () { setOpen(false, true); },
+    isOpen: function () { return S.open; },
+    state: S,
+    config: CONFIG,
+    tracking: TRACKING,
+    focusCalc: function (prefill) {
+      if (prefill) {
+        if (prefill.originId) S.trip.originId = prefill.originId;
+        if (prefill.destinationId) S.trip.destinationId = prefill.destinationId;
+        if (!S.trip.weightKg) S.trip.weightKg = CONFIG.defaults.weightKg;
+        S.chosenId = null; S.lastTracking = null;
+        calculateShipping();
+        renderAssistant();
+      }
+      var target = U.$('quote');
+      if (target) U.scrollTo(target);
+    }
+  };
+  C.product = C.assistant;   /* the views module talks to this name */
 })();
+</script>
 
-
-/* ============================================================
+<!-- 12-form.js -->
+<script>/* ============================================================
    CONTACT FORM — the only part of the page that sends data.
    ============================================================ */
 (function () {
   'use strict';
-  var C = (window.CARGOX = window.CARGOX || {});
+  var C = (window.JOL = window.JOL || {});
   var U = C.util;
   var t = function (k) { return C.i18n.t(k); };
 
@@ -3921,20 +5383,22 @@ input[type="range"]:active::-webkit-slider-thumb { transform: scale(1.15); }
   C.form = { init: init };
 })();
 
+</script>
 
-/* ============================================================
+<!-- 13-boot.js -->
+<script>/* ============================================================
    BOOT — one entry point, one initialisation pass.
    Every module starts inside its own guard, so a failure in one
    feature can never blank the page or hide a section.
    ============================================================ */
 (function () {
   'use strict';
-  var C = (window.CARGOX = window.CARGOX || {});
+  var C = (window.JOL = window.JOL || {});
 
   function guard(name, fn) {
     try { fn(); }
     catch (e) {
-      if (window.console) console.error('[CARGOX] ' + name + ' failed:', e);
+      if (window.console) console.error('[JOL] ' + name + ' failed:', e);
       if (C.motion && C.motion.showAll) C.motion.showAll();
     }
   }
@@ -3950,13 +5414,12 @@ input[type="range"]:active::-webkit-slider-thumb { transform: scale(1.15); }
     guard('i18n', function () { C.i18n.apply(C.i18n.detect()); });
     guard('ui', function () { C.ui.init(); });
     guard('views', function () { C.views.init(); });
-    guard('quote', function () { C.quote.init(); });
-    guard('ask', function () { C.ask.init(); });
+    guard('assistant', function () { C.assistant.init(); });
     guard('form', function () { C.form.init(); });
     guard('motion', function () { C.motion.observe(); });
     guard('hero', function () { C.hero.init(); });
     guard('route', function () { C.route.init(); });
-    document.documentElement.classList.add('cargox-ready');
+    document.documentElement.classList.add('jol-ready');
   }
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start);

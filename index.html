@@ -578,7 +578,7 @@ body.menu-open { overflow: hidden; }
   position: absolute;
   z-index: 3;
   left: var(--pad);
-  bottom: clamp(26px, 4vh, 42px);
+  bottom: calc(clamp(26px, 4vh, 42px) + env(safe-area-inset-bottom, 0px));
   width: clamp(120px, 16vw, 240px);
   height: 1px;
   background: rgba(255, 255, 255, .22);
@@ -591,7 +591,7 @@ body.menu-open { overflow: hidden; }
   position: absolute;
   z-index: 4;
   right: var(--pad);
-  bottom: clamp(26px, 4vh, 48px);
+  bottom: calc(clamp(26px, 4vh, 48px) + env(safe-area-inset-bottom, 0px));
   width: min(380px, calc(100vw - var(--pad) * 2));
   border-radius: var(--r-surf);
   background: rgba(14, 21, 24, .74);
@@ -737,6 +737,11 @@ body.menu-open { overflow: hidden; }
   .rt-foot { grid-template-columns: 1fr; gap: 20px; }
   .rt-steps { grid-auto-flow: row; grid-template-columns: repeat(2, 1fr); gap: 10px 14px; }
   .rt-read { justify-content: flex-start; }
+}
+@media (max-width: 480px) {
+  /* mode, tag and price stop competing for one line */
+  .opt { grid-template-columns: 1fr; }
+  .opt__price { grid-row: auto; grid-column: 1; text-align: left; margin-top: 8px; }
 }
 @media (max-width: 400px) {
   .rt-step span { display: none; }
@@ -909,8 +914,13 @@ input[type="range"]:active::-webkit-slider-thumb { transform: scale(1.15); }
 .quote__disc { font-size: 13px; color: var(--ink-2); max-width: 42ch; }
 
 /* ---------------------------------------------- DISPATCH ---- */
-.disp { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(20px, 3vw, 52px); }
-@media (max-width: 900px) { .disp { grid-template-columns: 1fr; gap: 30px; } }
+.disp {
+  display: grid;
+  /* auto-fit rather than a breakpoint: three columns on a desktop, two on a
+     tablet, one on a phone, with no arbitrary cut-off in between */
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 268px), 1fr));
+  gap: clamp(20px, 3vw, 52px);
+}
 .disp__col { display: grid; gap: 10px; align-content: start; padding-top: 20px; border-top: 1px solid var(--rule); }
 .disp__col b { font-family: var(--edit); font-size: clamp(19px, 1.9vw, 25px); font-weight: 600; line-height: 1.2; }
 .disp__col p { font-size: 16px; line-height: 1.55; color: var(--ink-2); }
@@ -1014,6 +1024,42 @@ input[type="range"]:active::-webkit-slider-thumb { transform: scale(1.15); }
   box-shadow: 0 10px 30px rgba(20, 25, 27, .3);
 }
 @media (max-width: 1120px) { .hotline.is-on { display: inline-flex; } }
+
+/* ------------------------------------- SHORT / LANDSCAPE ---- */
+/* A phone held sideways gives about 375 px of height. The hero and the
+   route stage both have to fit inside that without clipping, so they
+   trade type size and vertical offsets rather than hiding content. */
+@media (max-height: 620px) and (orientation: landscape) {
+  .hero { height: 260vh; }
+  .hero__copy { top: clamp(64px, 12vh, 84px); max-width: 34ch; gap: 8px; }
+  .hero__copy h1 { font-size: clamp(26px, 4.4vw, 40px); max-width: 22ch; }
+  .hero__lead { font-size: 15px; max-width: 46ch; }
+  .hero__eyebrow { font-size: 13px; }
+  .hero__actions { gap: 8px; }
+  .hero__actions .btn { min-height: 42px; padding: 0 16px; }
+  .hero__caption { bottom: 74px; max-width: 40ch; }
+  .hero__caption b { font-size: 19px; }
+  .hero__figures { bottom: 66px; gap: 20px; }
+  .hero__figures b { font-size: 24px; }
+  .ask { width: min(320px, 42vw); left: auto; }
+  .ask__body { max-height: 42vh; overflow-y: auto; }
+
+  .route { height: 300vh; }
+  .rt-stage { padding-top: 66px; padding-bottom: 22px; gap: 10px; }
+  .rt-foot { grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr); }
+  .rt-steps { grid-auto-flow: column; grid-template-columns: none; }
+  .rt-step { padding-top: 8px; }
+  .rt-step span { display: none; }
+
+  .photo--tall { height: 96vh; }
+  .photo--wide { height: 92vh; }
+}
+
+/* Very short windows on a laptop too — a stage that cannot fit should
+   shed its scrub track rather than clip. */
+@media (max-height: 460px) {
+  .hero__caption, .hero__figures { display: none; }
+}
 
 /* ---------------------------------------------- MOBILE ---- */
 @media (max-width: 860px) {
@@ -3002,7 +3048,12 @@ input[type="range"]:active::-webkit-slider-thumb { transform: scale(1.15); }
 
   /* -------------------------------------------------------- geometry -- */
   function pickMode() {
-    return (window.innerWidth || 1200) <= 860 ? 'tall' : 'wide';
+    var w = window.innerWidth || 1200;
+    var h = window.innerHeight || 800;
+    /* A vertical climb only makes sense on a viewport that is both narrow
+       and tall. A phone turned sideways is narrow but short, so it takes
+       the horizontal traverse like a laptop does. */
+    return (w <= 860 && h > w) ? 'tall' : 'wide';
   }
 
   function applyGeometry() {

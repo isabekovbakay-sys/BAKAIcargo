@@ -1316,16 +1316,21 @@ input[type="range"]:active::-webkit-slider-thumb { transform: scale(1.15); }
 @media (max-width: 360px) { .actbar .btn { font-size: 14px; padding: 0 10px; } }
 
 /* --------------------------------- THE ASSISTANT ON MOBILE ---- */
-/* Fixed, docked above the action bar, and small until asked for.
-   Fixed rather than absolute-in-hero: the old build put an absolute
-   pill at bottom:18px underneath a 72px fixed bar, so the launcher
-   was unreachable on every phone. */
+/* Two presentations of one assistant.
+     > 1040px  panel docked in the hero composition
+   861–1040px  compact capsule pinned above the action bar
+     <= 860px  round draggable orb + floating dialog
+   The orb is not the pill made smaller: it is a separate element, so
+   neither breakpoint has to fight the other's rules. */
+
+.hai__orb { display: none; }
+
+/* ---- tablet: the capsule, pinned, no drag ---- */
 @media (max-width: 1040px) {
   .hai {
     position: fixed;
     z-index: 84;
-    top: auto;
-    left: auto;
+    top: auto; left: auto;
     right: 12px;
     bottom: calc(70px + env(safe-area-inset-bottom, 0px));
     width: auto;
@@ -1333,8 +1338,6 @@ input[type="range"]:active::-webkit-slider-thumb { transform: scale(1.15); }
     display: block;
     transform: none;
   }
-
-  /* closed: a small capsule, secondary by design */
   .hai__pill {
     width: auto;
     padding: 10px 15px;
@@ -1346,12 +1349,7 @@ input[type="range"]:active::-webkit-slider-thumb { transform: scale(1.15); }
   .hai__pillhint, .hai__plus { display: none; }
   .hai__mark { width: 22px; height: 22px; }
 
-  /* open: a bounded sheet, never the whole screen */
-  .hai.is-open {
-    left: 12px;
-    right: 12px;
-    bottom: calc(66px + env(safe-area-inset-bottom, 0px));
-  }
+  .hai.is-open { left: 12px; right: 12px; bottom: calc(66px + env(safe-area-inset-bottom, 0px)); }
   .hai.is-open .hai__pill { position: absolute; inset: auto 0 0 auto; }
   .hai__body {
     max-height: min(58svh, calc(100svh - 190px));
@@ -1363,21 +1361,120 @@ input[type="range"]:active::-webkit-slider-thumb { transform: scale(1.15); }
   .hai .ai-best__price { font-size: 26px; }
   .hai .ai-card__acts .btn--seal { width: 100%; }
 
-  /* the hero keeps its headline and loses the decoration */
   .hero__figures, .hero__caption { display: none; }
 }
 
-@media (max-width: 400px) {
-  .hai.is-open { left: 10px; right: 10px; }
-  .hai__body { max-height: min(56svh, calc(100svh - 176px)); }
+/* ---- phone: the orb ---- */
+@media (max-width: 860px) {
+  /* The container becomes an invisible full-viewport stage. The orb is
+     positioned inside it by transform, which makes clamping to the
+     viewport a simple min/max and keeps dragging on the compositor. */
+  .hai {
+    position: fixed;
+    inset: 0;
+    right: auto; bottom: auto;
+    width: auto; height: auto;
+    z-index: 84;
+    pointer-events: none;
+  }
+  .hai.is-open { left: 0; right: 0; bottom: 0; }
+
+  .hai__pill { display: none; }
+
+  .hai__orb {
+    display: inline-flex;
+    position: absolute;
+    top: 0; left: 0;
+    align-items: center;
+    justify-content: center;
+    width: 54px; height: 54px;
+    border-radius: 50%;
+    background: rgba(14, 21, 24, .82);
+    backdrop-filter: blur(14px) saturate(130%);
+    -webkit-backdrop-filter: blur(14px) saturate(130%);
+    border: 1px solid rgba(255, 255, 255, .16);
+    box-shadow: 0 10px 28px rgba(0, 0, 0, .42);
+    color: var(--seal-lift);
+    pointer-events: auto;
+    touch-action: none;              /* the drag owns the gesture */
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    will-change: transform;
+    animation: orb-in .42s var(--expo) both;
+  }
+  .hai__orb:active { filter: brightness(1.12); }
+  .hai__orb.is-dragging { cursor: grabbing; box-shadow: 0 16px 38px rgba(0, 0, 0, .5); }
+
+  /* the settle after a drag; suppressed while the finger is down */
+  .hai__orb.is-settling { transition: transform .34s var(--expo); }
+
+  .hai__orbdot {
+    position: absolute;
+    top: 9px; right: 9px;
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: var(--clear-lift);
+    box-shadow: 0 0 0 2px rgba(14, 21, 24, .82);
+  }
+  .hai.is-busy .hai__orbdot { background: var(--hold-lift); }
+
+  /* A whisper of a scrim: enough that the dialog reads as a window over
+     the page, not enough to feel like a modal takeover. */
+  .hai.is-open { pointer-events: auto; }
+  .hai.is-open::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(10, 16, 18, .34);
+    opacity: 0;
+    animation: scrim-in .28s var(--out) forwards;
+  }
+  @keyframes scrim-in { to { opacity: 1; } }
+
+  .hai.is-open .hai__orb { opacity: 0; transform: scale(.85) translate3d(var(--ox, 0px), var(--oy, 0px), 0); pointer-events: none; }
+
+  /* the floating dialog — a window over the page, not a hero panel */
+  .hai__body {
+    position: absolute;
+    left: 12px; right: 12px;
+    bottom: calc(70px + env(safe-area-inset-bottom, 0px));
+    width: auto;
+    max-width: 390px;
+    margin-inline: auto;
+    max-height: min(62svh, calc(100svh - 168px));
+    padding: 13px;
+    gap: 9px;
+    pointer-events: auto;
+    transform-origin: bottom center;
+  }
+  .hai[data-side="left"] .hai__body { margin-inline: 0 auto; transform-origin: bottom left; }
+  .hai[data-side="right"] .hai__body { margin-inline: auto 0; transform-origin: bottom right; }
+
+  .hai__sub { display: none; }
+  .hai .ai-best__price { font-size: 26px; }
+  .hai .ai-card__acts .btn--seal { width: 100%; }
 }
 
-/* Landscape phone: short viewport, so the sheet shrinks rather than
+@media (max-width: 400px) {
+  .hai__orb { width: 50px; height: 50px; }
+  .hai__body { left: 10px; right: 10px; max-height: min(60svh, calc(100svh - 158px)); }
+}
+
+@keyframes orb-in {
+  from { opacity: 0; transform: scale(.9) translate3d(var(--ox, 0px), var(--oy, 0px), 0); }
+  to   { opacity: 1; transform: scale(1) translate3d(var(--ox, 0px), var(--oy, 0px), 0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hai__orb { animation: none; }
+  .hai.is-open::before { animation: none; opacity: 1; }
+  .hai__orb.is-settling { transition: none; }
+}
+
+/* Landscape phone: short viewport, so the dialog shrinks rather than
    spilling past the top of the screen. */
 @media (max-height: 560px) and (orientation: landscape) and (max-width: 1040px) {
-  .hai { right: 12px; bottom: calc(62px + env(safe-area-inset-bottom, 0px)); }
-  .hai.is-open { left: auto; width: min(380px, 62vw); }
-  .hai__body { max-height: calc(100svh - 92px); }
+  .hai__body { max-height: calc(100svh - 96px); bottom: calc(58px + env(safe-area-inset-bottom, 0px)); max-width: 380px; }
 }
 
 /* ------------------------------------- HERO ON MOBILE ---- */
@@ -1794,7 +1891,16 @@ input[type="range"]:active::-webkit-slider-thumb { transform: scale(1.15); }
            ============================================================ -->
       <aside class="hai" id="heroAI" data-phase="idle" data-i18n-aria="aiAria" aria-label="JOL AI — расчёт перевозки">
 
-        <!-- collapsed launcher -->
+        <!-- mobile launcher: a round, draggable orb -->
+        <button class="hai__orb" id="haiOrb" type="button" aria-expanded="false" aria-controls="haiBody"
+                data-i18n-aria="aiOrbAria" aria-label="Открыть JOL AI">
+          <svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 3.2 13.9 9l5.9 1.9-5.9 1.9L12 18.7l-1.9-5.9L4.2 10.9 10.1 9z"/>
+          </svg>
+          <i class="hai__orbdot" aria-hidden="true"></i>
+        </button>
+
+        <!-- desktop launcher -->
         <button class="hai__pill" id="haiToggle" type="button" aria-expanded="true" aria-controls="haiBody">
           <span class="hai__mark" aria-hidden="true">
             <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
@@ -2391,6 +2497,7 @@ input[type="range"]:active::-webkit-slider-thumb { transform: scale(1.15); }
 
 
     /* --- product layer --- */
+    aiOrbAria: 'Открыть JOL AI',
     aiOnline: 'Онлайн',
     aiSubline: 'Стоимость, срок и лучший маршрут — за пару секунд.',
     aiHint: 'Например: 30 кг из Китая в Бишкек',
@@ -2671,6 +2778,7 @@ input[type="range"]:active::-webkit-slider-thumb { transform: scale(1.15); }
     navContact: 'Байланыш',
 
 
+    aiOrbAria: 'JOL AI ачуу',
     aiOnline: 'Онлайн',
     aiSubline: 'Наркы, мөөнөтү жана эң жакшы багыт — бир нече секундда.',
     aiHint: 'Мисалы: Кытайдан Бишкекке 30 кг',
@@ -5149,21 +5257,161 @@ input[type="range"]:active::-webkit-slider-thumb { transform: scale(1.15); }
     renderAssistant();
   }
 
+
+  /* ============================================ ORB (mobile) ==
+     A round launcher the visitor can drag. Pointer Events only, so
+     one code path covers mouse, touch and pen on iOS Safari and
+     Android Chrome alike.
+
+       pointerdown            → arm, record origin
+       pointermove < 8px      → still a tap
+       pointermove >= 8px     → drag; the orb follows the pointer
+       pointerup  (tap)       → open the assistant
+       pointerup  (drag)      → settle to the nearest safe edge
+
+     Position lives in one place (orbX / orbY) and is applied as a
+     transform, so dragging never touches layout.
+     ============================================================ */
+  var ORB = {
+    size: 54, margin: 12, threshold: 8,
+    x: null, y: null, dragging: false, moved: 0,
+    startX: 0, startY: 0, baseX: 0, baseY: 0, pid: null
+  };
+
+  function orbEl() { return U.$('haiOrb'); }
+  function isPhone() { return (window.innerWidth || 1200) <= 860; }
+
+  /* Reserved strips the orb must never sit on: the fixed action bar at
+     the bottom and the fixed top bar. Read from the DOM so the orb
+     follows whatever those elements actually do. */
+  function bounds() {
+    var vw = window.innerWidth || 360;
+    var vh = window.innerHeight || 640;
+    var el = orbEl();
+    var size = el ? (el.offsetWidth || ORB.size) : ORB.size;
+    var bar = U.qs('.actbar');
+    var barH = (bar && bar.offsetHeight) ? bar.offsetHeight : 0;
+    var top = U.qs('.topbar');
+    var topH = (top && top.offsetHeight) ? top.offsetHeight : 64;
+    return {
+      minX: ORB.margin,
+      maxX: Math.max(ORB.margin, vw - size - ORB.margin),
+      minY: topH + ORB.margin,
+      maxY: Math.max(topH + ORB.margin, vh - size - barH - ORB.margin),
+      size: size, vw: vw
+    };
+  }
+
+  function applyOrb(settle) {
+    var el = orbEl();
+    if (!el || ORB.x === null) return;
+    el.classList.toggle('is-settling', !!settle);
+    el.style.setProperty('--ox', ORB.x + 'px');
+    el.style.setProperty('--oy', ORB.y + 'px');
+    el.style.transform = 'translate3d(' + ORB.x + 'px,' + ORB.y + 'px,0)';
+    var host = U.$('heroAI');
+    if (host) host.setAttribute('data-side', ORB.x + ORB.size / 2 < bounds().vw / 2 ? 'left' : 'right');
+  }
+
+  function placeOrb(settle) {
+    var b = bounds();
+    if (ORB.x === null) { ORB.x = b.maxX; ORB.y = b.maxY; }
+    ORB.x = U.clamp(ORB.x, b.minX, b.maxX);
+    ORB.y = U.clamp(ORB.y, b.minY, b.maxY);
+    applyOrb(settle);
+  }
+
+  /* A soft pull to the nearer side. Vertical position is kept, so the
+     orb stays where the visitor put it rather than snapping to a corner. */
+  function settleOrb() {
+    var b = bounds();
+    ORB.x = (ORB.x + b.size / 2 < b.vw / 2) ? b.minX : b.maxX;
+    ORB.y = U.clamp(ORB.y, b.minY, b.maxY);
+    applyOrb(true);
+  }
+
+  function initOrb() {
+    var el = orbEl();
+    if (!el) return;
+
+    U.on(el, 'pointerdown', function (e) {
+      if (!isPhone()) return;
+      ORB.pid = e.pointerId;
+      ORB.dragging = false;
+      ORB.moved = 0;
+      ORB.startX = e.clientX; ORB.startY = e.clientY;
+      ORB.baseX = ORB.x; ORB.baseY = ORB.y;
+      el.classList.remove('is-settling');
+      try { el.setPointerCapture(e.pointerId); } catch (err) { /* older engines */ }
+    });
+
+    U.on(el, 'pointermove', function (e) {
+      if (ORB.pid !== e.pointerId || !isPhone()) return;
+      var dx = e.clientX - ORB.startX;
+      var dy = e.clientY - ORB.startY;
+      ORB.moved = Math.max(ORB.moved, Math.sqrt(dx * dx + dy * dy));
+      if (ORB.moved < ORB.threshold) return;
+
+      if (!ORB.dragging) { ORB.dragging = true; el.classList.add('is-dragging'); }
+      e.preventDefault();
+      var b = bounds();
+      ORB.x = U.clamp(ORB.baseX + dx, b.minX, b.maxX);
+      ORB.y = U.clamp(ORB.baseY + dy, b.minY, b.maxY);
+      applyOrb(false);
+    });
+
+    function release(e) {
+      if (ORB.pid !== e.pointerId) return;
+      ORB.pid = null;
+      try { el.releasePointerCapture(e.pointerId); } catch (err) { /* ignore */ }
+      el.classList.remove('is-dragging');
+      if (ORB.dragging) { ORB.dragging = false; settleOrb(); return; }
+      /* under the threshold: a tap */
+      setOpen(true, true);
+    }
+    U.on(el, 'pointerup', release);
+    U.on(el, 'pointercancel', function (e) {
+      if (ORB.pid !== e.pointerId) return;
+      ORB.pid = null;
+      ORB.dragging = false;
+      el.classList.remove('is-dragging');
+      settleOrb();
+    });
+
+    /* keyboard users get a plain button */
+    U.on(el, 'keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setOpen(true, true); }
+    });
+
+    var reflow = U.debounce(function () { if (isPhone()) placeOrb(true); }, 150);
+    U.on(window, 'resize', reflow, { passive: true });
+    U.on(window, 'orientationchange', function () { window.setTimeout(reflow, 250); });
+
+    placeOrb(false);
+  }
+
   /* ======================================= HERO PANEL: OPEN/SHUT == */
   function setOpen(open, focus) {
     S.open = !!open;
     var host = U.$('heroAI');
     if (!host) return;
     host.classList.toggle('is-open', S.open);
-    var toggle = U.$('haiToggle'), collapse = U.$('haiCollapse');
+    var toggle = U.$('haiToggle'), collapse = U.$('haiCollapse'), orb = U.$('haiOrb');
     if (toggle) toggle.setAttribute('aria-expanded', S.open ? 'true' : 'false');
+    if (orb) orb.setAttribute('aria-expanded', S.open ? 'true' : 'false');
+    /* A page-level flag, so nothing else has to guess the panel's state.
+       Nothing here changes layout, so the page cannot jump. */
+    document.body.classList.toggle('ai-open', S.open);
     if (collapse) collapse.setAttribute('aria-expanded', S.open ? 'true' : 'false');
     host.setAttribute('aria-hidden', 'false');
     if (S.open && focus) {
       var input = U.$('haiInput');
       if (input) { try { input.focus({ preventScroll: true }); } catch (e) { input.focus(); } }
     }
-    if (!S.open && focus && toggle) { try { toggle.focus({ preventScroll: true }); } catch (e) { /* ignore */ } }
+    if (!S.open && focus) {
+      var back = isPhone() ? orb : toggle;
+      if (back) { try { back.focus({ preventScroll: true }); } catch (e) { /* ignore */ } }
+    }
   }
 
   /* =============================================== GUIDED PANEL == */
@@ -5256,6 +5504,17 @@ input[type="range"]:active::-webkit-slider-thumb { transform: scale(1.15); }
   function initHero() {
     var host = U.$('heroAI');
     if (!host) return;
+
+    initOrb();
+
+    /* Tapping the page behind the dialog closes it — the usual escape
+       hatch for a floating window. The dialog itself stops the event. */
+    U.on(host, 'click', function (e) {
+      if (e.target === host && S.open && isPhone()) setOpen(false, true);
+    });
+    U.on(document, 'keydown', function (e) {
+      if (e.key === 'Escape' && S.open && isPhone()) setOpen(false, true);
+    });
 
     U.on(U.$('haiToggle'), 'click', function () { setOpen(true, true); });
     U.on(U.$('haiCollapse'), 'click', function () { setOpen(false, true); });

@@ -403,6 +403,7 @@ textarea.input { min-height: 110px; resize: vertical; line-height: 1.5; }
   font-weight: 800;
   letter-spacing: .06em;
   text-transform: uppercase;
+  white-space: nowrap;      /* the wordmark is one word, on every width */
 }
 .mark i {
   font-style: normal;
@@ -444,6 +445,17 @@ textarea.input { min-height: 110px; resize: vertical; line-height: 1.5; }
 }
 @media (max-width: 1120px) { .burger { display: inline-flex; } }
 
+/* Phone header: wordmark, language, burger — one row, nothing else.
+   The city line is the first thing to go; it is a caption, not a
+   control, and it is what pushed the bar to two lines. */
+@media (max-width: 560px) {
+  .topbar { gap: 10px; padding: 12px var(--pad); }
+  .mark b { font-size: 18px; }
+  .mark i { display: none; }
+  .lang button { min-width: 40px; }
+  .burger { width: 44px; height: 44px; }
+}
+
 .menu {
   position: fixed;
   inset: 0;
@@ -452,9 +464,15 @@ textarea.input { min-height: 110px; resize: vertical; line-height: 1.5; }
   flex-direction: column;
   justify-content: center;
   gap: 4px;
-  padding: var(--pad);
+  padding: max(var(--pad), env(safe-area-inset-top, 0px)) var(--pad)
+           max(var(--pad), env(safe-area-inset-bottom, 0px));
   background: var(--deep);
   color: var(--chalk);
+  /* a phone held sideways cannot fit six display-size links; the sheet
+     scrolls rather than pushing the first and last item off-screen */
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
 }
 body.menu-open .menu { display: flex; }
 body.menu-open { overflow: hidden; }
@@ -467,7 +485,18 @@ body.menu-open { overflow: hidden; }
   border-bottom: 1px solid rgba(255, 255, 255, .12);
 }
 .menu a:last-of-type { border-bottom: 0; }
-.menu__close { position: absolute; top: 18px; right: var(--pad); width: 46px; height: 46px; font-size: 26px; }
+.menu__close {
+  position: fixed;
+  top: max(18px, env(safe-area-inset-top, 0px));
+  right: var(--pad);
+  z-index: 1;
+  width: 46px; height: 46px; font-size: 26px;
+  color: var(--chalk);
+}
+@media (max-height: 560px) and (orientation: landscape) {
+  .menu { justify-content: flex-start; padding-top: 68px; }
+  .menu a { font-size: 24px; padding: 7px 0; }
+}
 
 /* ---------------------------------------------------- HERO ---- */
 .hero { position: relative; height: 200vh; background: var(--deep); }
@@ -1315,176 +1344,6 @@ input[type="range"]:active::-webkit-slider-thumb { transform: scale(1.15); }
 }
 @media (max-width: 360px) { .actbar .btn { font-size: 14px; padding: 0 10px; } }
 
-/* --------------------------------- THE ASSISTANT ON MOBILE ---- */
-/* Two presentations of one assistant.
-     > 1040px  panel docked in the hero composition
-   861–1040px  compact capsule pinned above the action bar
-     <= 860px  round draggable orb + floating dialog
-   The orb is not the pill made smaller: it is a separate element, so
-   neither breakpoint has to fight the other's rules. */
-
-.hai__orb { display: none; }
-
-/* ---- tablet: the capsule, pinned, no drag ---- */
-@media (max-width: 1040px) {
-  .hai {
-    position: fixed;
-    z-index: 84;
-    top: auto; left: auto;
-    right: 12px;
-    bottom: calc(70px + env(safe-area-inset-bottom, 0px));
-    width: auto;
-    max-height: none;
-    display: block;
-    transform: none;
-  }
-  .hai__pill {
-    width: auto;
-    padding: 10px 15px;
-    gap: 9px;
-    border-radius: var(--r-ctl);
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, .14), 0 10px 26px rgba(0, 0, 0, .38);
-  }
-  .hai__pill b { font-size: 14px; }
-  .hai__pillhint, .hai__plus { display: none; }
-  .hai__mark { width: 22px; height: 22px; }
-
-  .hai.is-open { left: 12px; right: 12px; bottom: calc(66px + env(safe-area-inset-bottom, 0px)); }
-  .hai.is-open .hai__pill { position: absolute; inset: auto 0 0 auto; }
-  .hai__body {
-    max-height: min(58svh, calc(100svh - 190px));
-    transform-origin: bottom right;
-    padding: 13px;
-    gap: 9px;
-  }
-  .hai__sub { display: none; }
-  .hai .ai-best__price { font-size: 26px; }
-  .hai .ai-card__acts .btn--seal { width: 100%; }
-
-  .hero__figures, .hero__caption { display: none; }
-}
-
-/* ---- phone: the orb ---- */
-@media (max-width: 860px) {
-  /* The container becomes an invisible full-viewport stage. The orb is
-     positioned inside it by transform, which makes clamping to the
-     viewport a simple min/max and keeps dragging on the compositor. */
-  .hai {
-    position: fixed;
-    inset: 0;
-    right: auto; bottom: auto;
-    width: auto; height: auto;
-    z-index: 84;
-    pointer-events: none;
-  }
-  .hai.is-open { left: 0; right: 0; bottom: 0; }
-
-  .hai__pill { display: none; }
-
-  .hai__orb {
-    display: inline-flex;
-    position: absolute;
-    top: 0; left: 0;
-    align-items: center;
-    justify-content: center;
-    width: 54px; height: 54px;
-    border-radius: 50%;
-    background: rgba(14, 21, 24, .82);
-    backdrop-filter: blur(14px) saturate(130%);
-    -webkit-backdrop-filter: blur(14px) saturate(130%);
-    border: 1px solid rgba(255, 255, 255, .16);
-    box-shadow: 0 10px 28px rgba(0, 0, 0, .42);
-    color: var(--seal-lift);
-    pointer-events: auto;
-    touch-action: none;              /* the drag owns the gesture */
-    -webkit-user-select: none;
-    user-select: none;
-    -webkit-tap-highlight-color: transparent;
-    will-change: transform;
-    animation: orb-in .42s var(--expo) both;
-  }
-  .hai__orb:active { filter: brightness(1.12); }
-  .hai__orb.is-dragging { cursor: grabbing; box-shadow: 0 16px 38px rgba(0, 0, 0, .5); }
-
-  /* the settle after a drag; suppressed while the finger is down */
-  .hai__orb.is-settling { transition: transform .34s var(--expo); }
-
-  .hai__orbdot {
-    position: absolute;
-    top: 9px; right: 9px;
-    width: 7px; height: 7px;
-    border-radius: 50%;
-    background: var(--clear-lift);
-    box-shadow: 0 0 0 2px rgba(14, 21, 24, .82);
-  }
-  /* quiet state accents — a dot, never a blink */
-  .hai[data-state="busy"]   .hai__orbdot { background: var(--hold-lift); }
-  .hai[data-state="result"] .hai__orbdot { background: var(--seal-lift); }
-  .hai[data-state="error"]  .hai__orbdot { background: var(--hold-lift); }
-  .hai[data-state="busy"] .hai__orb { border-color: rgba(233, 166, 63, .45); }
-  .hai[data-state="result"] .hai__orb { border-color: rgba(228, 105, 92, .42); }
-
-  /* A whisper of a scrim: enough that the dialog reads as a window over
-     the page, not enough to feel like a modal takeover. */
-  .hai.is-open { pointer-events: auto; }
-  .hai.is-open::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: rgba(10, 16, 18, .34);
-    opacity: 0;
-    animation: scrim-in .28s var(--out) forwards;
-  }
-  @keyframes scrim-in { to { opacity: 1; } }
-
-  .hai.is-open .hai__orb { opacity: 0; transform: scale(.85) translate3d(var(--ox, 0px), var(--oy, 0px), 0); pointer-events: none; }
-
-  /* the floating dialog — a window over the page, not a hero panel */
-  .hai__body {
-    position: absolute;
-    left: 12px; right: 12px;
-    /* --kb is the height the on-screen keyboard is covering; the window
-       lifts by exactly that much so the input stays visible. */
-    bottom: calc(70px + env(safe-area-inset-bottom, 0px) + var(--kb, 0px));
-    width: auto;
-    max-width: 400px;
-    margin-inline: auto;
-    max-height: min(62svh, calc(100svh - 168px - var(--kb, 0px)));
-    transition: bottom .22s var(--out), max-height .22s var(--out);
-    padding: 13px;
-    gap: 9px;
-    pointer-events: auto;
-    transform-origin: bottom center;
-  }
-  .hai__body { transform-origin: bottom right; }
-  .hai[data-side="left"] .hai__body { margin-inline: 0 auto; transform-origin: bottom left; }
-  .hai[data-side="right"] .hai__body { margin-inline: auto 0; transform-origin: bottom right; }
-
-  .hai__sub { display: none; }
-  .hai .ai-best__price { font-size: 26px; }
-  .hai .ai-card__acts .btn--seal { width: 100%; }
-}
-
-@media (max-width: 400px) {
-  .hai__orb { width: 50px; height: 50px; }
-  .hai__body { left: 10px; right: 10px; max-height: min(60svh, calc(100svh - 158px)); }
-}
-
-@keyframes orb-in {
-  from { opacity: 0; transform: scale(.9) translate3d(var(--ox, 0px), var(--oy, 0px), 0); }
-  to   { opacity: 1; transform: scale(1) translate3d(var(--ox, 0px), var(--oy, 0px), 0); }
-}
-@media (prefers-reduced-motion: reduce) {
-  .hai__orb { animation: none; }
-  .hai.is-open::before { animation: none; opacity: 1; }
-  .hai__orb.is-settling { transition: none; }
-}
-
-/* Landscape phone: short viewport, so the dialog shrinks rather than
-   spilling past the top of the screen. */
-@media (max-height: 560px) and (orientation: landscape) and (max-width: 1040px) {
-  .hai__body { max-height: calc(100svh - 96px); bottom: calc(58px + env(safe-area-inset-bottom, 0px)); max-width: 380px; }
-}
 
 /* ------------------------------------- HERO ON MOBILE ---- */
 /* The headline is the only thing competing for attention. */
@@ -1542,6 +1401,16 @@ input[type="range"]:active::-webkit-slider-thumb { transform: scale(1.15); }
   .ai-chip, .pick { min-height: 42px; }
   .faq__q { padding: 22px 0; }
   .lang button { min-width: 46px; min-height: 42px; }
+  /* the quiet actions were 22px of text; the underline moves from the
+     box edge to the glyphs so the target can grow without drifting */
+  .ai-quiet {
+    display: inline-flex; align-items: center; min-height: 42px;
+    border-bottom: 0;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    text-decoration-color: rgba(255, 255, 255, .38);
+  }
+  .hai__collapse { width: 42px; height: 42px; }
 }
 
 @media (prefers-reduced-motion: reduce) { .trk__bar span { transition: none; } }
@@ -1615,15 +1484,20 @@ input[type="range"]:active::-webkit-slider-thumb { transform: scale(1.15); }
 /* ------------------------------- EXPANDED (the assistant) ---- */
 /* Three rows: header and input are pinned, only the middle scrolls.
    The collapse control and the text field are therefore always reachable. */
+/* A column, not a fixed row template: the subline is hidden below
+   1040px, and a positional `grid-template-rows` handed its 1fr track
+   to the input row, which collapsed the field to zero height. With a
+   flex column only the scroller flexes, whatever else is present. */
 .hai__body {
-  display: grid;
-  grid-template-rows: auto auto minmax(0, 1fr) auto;
+  display: flex;
+  flex-direction: column;
   gap: 10px;
   padding: 14px;
   max-height: 100%;
   min-height: 0;
   transform-origin: top right;
 }
+.hai__head, .hai__sub, .hai__form { flex: 0 0 auto; }
 
 .hai__head { display: flex; align-items: center; gap: 9px; }
 .hai__head b { font-size: 15px; font-weight: 600; }
@@ -1656,6 +1530,7 @@ input[type="range"]:active::-webkit-slider-thumb { transform: scale(1.15); }
   display: grid;
   gap: 10px;
   align-content: start;
+  flex: 1 1 auto;
   min-height: 0;
   overflow-y: auto;
   padding-right: 4px;
@@ -1784,6 +1659,203 @@ input[type="range"]:active::-webkit-slider-thumb { transform: scale(1.15); }
 .ai-opt__price { grid-row: 1 / 3; grid-column: 2; align-self: center; text-align: right; }
 .ai-opt__price b { display: block; font-size: 20px; font-weight: 700; font-variant-numeric: tabular-nums; }
 .ai-opt__price span { font-size: 12px; opacity: .7; }
+
+/* ============================================================
+   JOL AI — RESPONSIVE PRESENTATIONS
+   These rules sit *after* the desktop base on purpose. A media
+   query adds no specificity, so a mobile rule placed above the
+   base was simply losing to it — which is how the desktop pill
+   ended up stretched across the hero on a phone. Everything that
+   overrides the base now lives here, in one place, in width order.
+
+     > 1040px   panel docked in the hero composition   (the base)
+     861–1040   compact capsule pinned above the action bar
+     <= 860px   round draggable orb + floating dialog
+
+   The orb is not the pill made smaller: it is a separate element,
+   so neither breakpoint has to fight the other's rules.
+   ============================================================ */
+
+/* the orb exists on phones only */
+.hai__orb { display: none; }
+
+/* ---- tablet: the capsule, pinned, no drag ---- */
+@media (max-width: 1040px) {
+  .hai {
+    position: fixed;
+    z-index: 84;
+    top: auto; left: auto;
+    right: 12px;
+    bottom: calc(70px + env(safe-area-inset-bottom, 0px));
+    width: auto;
+    max-height: none;
+    display: block;
+    transform: none;
+  }
+  .hai__pill {
+    width: auto;
+    padding: 10px 15px;
+    gap: 9px;
+    border-radius: var(--r-ctl);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, .14), 0 10px 26px rgba(0, 0, 0, .38);
+  }
+  .hai__pill b { font-size: 14px; }
+  .hai__pillhint, .hai__plus { display: none; }
+  .hai__mark { width: 22px; height: 22px; }
+
+  .hai.is-open { left: 12px; right: 12px; bottom: calc(66px + env(safe-area-inset-bottom, 0px)); }
+  .hai.is-open .hai__pill { position: absolute; inset: auto 0 0 auto; }
+  .hai__body {
+    max-height: min(58svh, calc(100svh - 190px));
+    transform-origin: bottom right;
+    padding: 13px;
+    gap: 9px;
+  }
+  .hai__sub { display: none; }
+  .hai .ai-best__price { font-size: 26px; }
+  .hai .ai-card__acts .btn--seal { width: 100%; }
+
+  .hero__figures, .hero__caption { display: none; }
+}
+
+/* ---- phone: the orb ---- */
+@media (max-width: 860px) {
+  /* The container becomes an invisible stage pinned to the viewport.
+     The orb is positioned inside it by transform, which makes clamping
+     to the viewport a simple min/max and keeps dragging on the
+     compositor. */
+  .hai {
+    position: fixed;
+    inset: 0;
+    right: auto; bottom: auto;
+    width: auto; height: auto;
+    max-height: none;
+    display: block;
+    z-index: 84;
+    pointer-events: none;
+    transform: none;
+  }
+  .hai.is-open { left: 0; right: 0; bottom: 0; }
+
+  /* the desktop launcher has no role here, at any state */
+  .hai__pill,
+  .hai.is-open .hai__pill { display: none; }
+
+  .hai__orb {
+    display: inline-flex;
+    position: absolute;
+    top: 0; left: 0;
+    align-items: center;
+    justify-content: center;
+    width: 54px; height: 54px;
+    border-radius: 50%;
+    background: rgba(14, 21, 24, .82);
+    backdrop-filter: blur(14px) saturate(130%);
+    -webkit-backdrop-filter: blur(14px) saturate(130%);
+    border: 1px solid rgba(255, 255, 255, .16);
+    box-shadow: 0 10px 28px rgba(0, 0, 0, .42);
+    color: var(--seal-lift);
+    pointer-events: auto;
+    touch-action: none;              /* the drag owns the gesture */
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    will-change: transform;
+    animation: orb-in .42s var(--expo) both;
+  }
+  .hai__orb:active { filter: brightness(1.12); }
+  .hai__orb.is-dragging { cursor: grabbing; box-shadow: 0 16px 38px rgba(0, 0, 0, .5); }
+
+  /* the settle after a drag; suppressed while the finger is down */
+  .hai__orb.is-settling { transition: transform .34s var(--expo); }
+
+  .hai__orbdot {
+    position: absolute;
+    top: 9px; right: 9px;
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: var(--clear-lift);
+    box-shadow: 0 0 0 2px rgba(14, 21, 24, .82);
+  }
+  /* quiet state accents — a dot, never a blink */
+  .hai[data-state="busy"]   .hai__orbdot { background: var(--hold-lift); }
+  .hai[data-state="result"] .hai__orbdot { background: var(--seal-lift); }
+  .hai[data-state="error"]  .hai__orbdot { background: var(--hold-lift); }
+  .hai[data-state="busy"] .hai__orb { border-color: rgba(233, 166, 63, .45); }
+  .hai[data-state="result"] .hai__orb { border-color: rgba(228, 105, 92, .42); }
+
+  /* A whisper of a scrim: enough that the dialog reads as a window over
+     the page, not enough to feel like a modal takeover. */
+  .hai.is-open { pointer-events: auto; }
+  .hai.is-open::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(10, 16, 18, .34);
+    opacity: 0;
+    animation: scrim-in .28s var(--out) forwards;
+  }
+  @keyframes scrim-in { to { opacity: 1; } }
+
+  .hai.is-open .hai__orb { opacity: 0; pointer-events: none; }
+
+  /* the floating dialog — a window over the page, not a hero panel */
+  .hai__body {
+    position: absolute;
+    left: 12px; right: 12px;
+    /* --kb is the height the on-screen keyboard is covering; the window
+       lifts by exactly that much so the input stays visible. */
+    bottom: calc(70px + env(safe-area-inset-bottom, 0px) + var(--kb, 0px));
+    width: auto;
+    max-width: 400px;
+    margin-inline: auto;
+    max-height: min(62svh, calc(100svh - 168px - var(--kb, 0px)));
+    padding: 13px;
+    gap: 9px;
+    pointer-events: auto;
+    transform-origin: bottom right;
+    /* the base transition, plus the two properties the keyboard moves */
+    transition: opacity .26s var(--out), transform .4s var(--expo),
+                visibility 0s linear .4s,
+                bottom .22s var(--out), max-height .22s var(--out);
+  }
+  .hai.is-open .hai__body {
+    transition: opacity .32s var(--out) .05s, transform .44s var(--expo) .05s,
+                visibility 0s,
+                bottom .22s var(--out), max-height .22s var(--out);
+  }
+  .hai[data-side="left"]  .hai__body { margin-inline: 0 auto; transform-origin: bottom left; }
+  .hai[data-side="right"] .hai__body { margin-inline: auto 0; transform-origin: bottom right; }
+
+  .hai__sub { display: none; }
+  .hai .ai-best__price { font-size: 26px; }
+  .hai .ai-card__acts .btn--seal { width: 100%; }
+}
+
+@media (max-width: 400px) {
+  .hai__orb { width: 50px; height: 50px; }
+  .hai__body { left: 10px; right: 10px; max-height: min(60svh, calc(100svh - 158px - var(--kb, 0px))); }
+}
+
+@keyframes orb-in {
+  from { opacity: 0; transform: scale(.9) translate3d(var(--ox, 0px), var(--oy, 0px), 0); }
+  to   { opacity: 1; transform: scale(1) translate3d(var(--ox, 0px), var(--oy, 0px), 0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hai__orb { animation: none; }
+  .hai.is-open::before { animation: none; opacity: 1; }
+  .hai__orb.is-settling { transition: none; }
+}
+
+/* Landscape phone: short viewport, so the dialog shrinks rather than
+   spilling past the top of the screen. */
+@media (max-height: 560px) and (orientation: landscape) and (max-width: 1040px) {
+  .hai__body {
+    max-height: calc(100svh - 92px - var(--kb, 0px));
+    bottom: calc(58px + env(safe-area-inset-bottom, 0px) + var(--kb, 0px));
+    max-width: 380px;
+  }
+}
 
 /* --------------------------------- NAV ACTIVE STATE ---- */
 /* Scroll-spy: the visitor should always know where they are. */
@@ -5124,6 +5196,11 @@ input[type="range"]:active::-webkit-slider-thumb { transform: scale(1.15); }
       }
     });
     syncPanel();
+    /* In the floating dialog the scroller is the pane, not the log inside
+       it, so the newest message or result card has to be brought into
+       view here — otherwise the answer lands below the fold. */
+    var pane = U.qs('.hai__scroll');
+    if (pane) pane.scrollTop = pane.scrollHeight;
     var host = U.$('heroAI');
     if (host) host.setAttribute('data-phase', S.phase);
     paintOrbState();

@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-<meta name="theme-color" content="#f3f4f0" />
+<meta name="theme-color" content="#0e1518" />
 <meta name="description" id="metaDesc" content="Международные грузоперевозки из Китая, Казахстана, ОАЭ и России в Бишкек и Ош." />
 <meta property="og:type" content="website" />
 <meta property="og:title" content="JOL CARGO — международные грузоперевозки" />
@@ -476,6 +476,14 @@ textarea.input { min-height: 110px; resize: vertical; line-height: 1.5; }
 }
 body.menu-open .menu { display: flex; }
 body.menu-open { overflow: hidden; }
+/* the phone assistant is modal: the page is pinned, not just hidden,
+   because iOS ignores overflow on the body */
+body.ai-lock {
+  position: fixed;
+  left: 0; right: 0;
+  width: 100%;
+  overflow: hidden;
+}
 .menu a {
   font-family: var(--edit);
   font-size: clamp(28px, 6.5vw, 46px);
@@ -506,7 +514,12 @@ body.menu-open { overflow: hidden; }
   height: 100vh;
   height: 100svh;
   overflow: hidden;
-  background: var(--deep);
+  /* the painted ground doubles as the poster: it is already on screen
+     when the clip is still loading, and it is the whole hero when the
+     clip is skipped or fails */
+  background:
+    radial-gradient(120% 90% at 26% 8%, #1d3037 0%, var(--deep) 64%),
+    linear-gradient(180deg, #16242a, var(--deep));
   color: var(--chalk);
 }
 
@@ -523,11 +536,6 @@ body.menu-open { overflow: hidden; }
   backface-visibility: hidden;
 }
 .hero__video.is-ready { opacity: 1; }
-.hero__stage.is-bare {
-  background:
-    radial-gradient(120% 90% at 26% 8%, #1d3037 0%, var(--deep) 64%),
-    linear-gradient(180deg, #16242a, var(--deep));
-}
 
 /* legibility only — the footage stays visible for the whole scrub */
 .hero__veil {
@@ -685,9 +693,12 @@ body.menu-open { overflow: hidden; }
   fill: var(--ink-2);
 }
 
-/* flat vector, never an emoji */
-.rt-marker .body  { fill: var(--seal); }
-.rt-marker .cab   { fill: var(--paper); }
+/* flat vector, never an emoji.
+   The trailer is paper on the haze ground with a hairline, the cab
+   carries the accent: at 34px a solid red block read as a smudge. */
+.rt-marker .box   { fill: var(--raise); stroke: var(--ink); stroke-width: 1.2; }
+.rt-marker .cab   { fill: var(--seal); }
+.rt-marker .glass { fill: var(--haze); opacity: .85; }
 .rt-marker .wheel { fill: var(--ink); }
 
 .rt-foot {
@@ -714,6 +725,14 @@ body.menu-open { overflow: hidden; }
 .rt-read { display: flex; gap: clamp(24px, 4vw, 56px); justify-content: flex-end; }
 .rt-read div { display: grid; gap: 2px; }
 .rt-read span { font-size: 13px; color: var(--ink-2); }
+.rt-unit {
+  font-style: normal;
+  font-size: .34em;
+  font-weight: 600;
+  letter-spacing: 0;
+  margin-left: .3em;
+  color: var(--ink-2);
+}
 
 @media (max-width: 860px) {
   /* A vertical climb rather than a squeezed traverse: the phone gets
@@ -730,7 +749,10 @@ body.menu-open { overflow: hidden; }
   .opt__price { grid-row: auto; grid-column: 1; text-align: left; margin-top: 8px; }
 }
 @media (max-width: 400px) {
-  .rt-step span { display: none; }
+  /* the step captions carry the context; they get smaller, not removed */
+  .rt-step b { font-size: 14px; }
+  .rt-step span { font-size: 12px; line-height: 1.35; }
+  .rt-steps { gap: 8px 12px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -1027,9 +1049,18 @@ input[type="range"]:active::-webkit-slider-thumb { transform: scale(1.15); }
 /* Shared with the mobile composition layer further down. Only the
    structural changes live here; sizing is set once, over there. */
 @media (max-width: 860px) {
-  .hero { height: 160vh; }
+  /* 200vh of track only pays for itself when all three stages play.
+     The phone runs two, so the track is cut to match — the truck now
+     covers the whole clip inside a third of a screen of scrolling. */
+  .hero { height: 135vh; }
   .btn { min-height: 50px; }
   .pick { min-height: 46px; }
+}
+/* Sideways, a screen is ~390px tall, so the same fraction of viewport
+   buys far less scroll. The track lengthens to keep the scrub readable.
+   (This rule used to sit above the phone block and never applied.) */
+@media (max-height: 620px) and (orientation: landscape) and (max-width: 1040px) {
+  .hero { height: 260vh; }
 }
 </style>
 
@@ -1057,6 +1088,7 @@ input[type="range"]:active::-webkit-slider-thumb { transform: scale(1.15); }
 }
 .cx__out { grid-column: 1 / -1; }
 @media (max-width: 1040px) { .cx { grid-template-columns: 1fr; } }
+
 
 .cx__panel, .cx__talk { padding: clamp(20px, 2.2vw, 30px); }
 .cx__panel { display: grid; gap: 14px; align-content: start; }
@@ -1339,8 +1371,10 @@ input[type="range"]:active::-webkit-slider-thumb { transform: scale(1.15); }
 }
 @media (max-width: 1120px) {
   .actbar { display: flex; }
-  /* reserve exactly the bar's own height so the last section clears it */
-  body { padding-bottom: calc(66px + env(safe-area-inset-bottom, 0px)); }
+  /* --bar-h is written by the assistant module from the bar's own
+     offsetHeight, which already includes its safe-area padding. The
+     fallback keeps the reservation correct before scripts run. */
+  body { padding-bottom: var(--bar-h, calc(66px + env(safe-area-inset-bottom, 0px))); }
 }
 @media (max-width: 360px) { .actbar .btn { font-size: 14px; padding: 0 10px; } }
 
@@ -1354,12 +1388,60 @@ input[type="range"]:active::-webkit-slider-thumb { transform: scale(1.15); }
   .hero__eyebrow { font-size: 13px; }
   .hero__actions { gap: 9px; }
   .hero__actions .btn, .hero__actions .btn--seal { min-height: 50px; flex: 1 1 auto; }
-  .hero__meter { bottom: calc(76px + env(safe-area-inset-bottom, 0px)); width: 84px; }
+  .hero__meter { bottom: calc(var(--bar-h, calc(66px + env(safe-area-inset-bottom, 0px))) + 10px); width: 84px; }
+  /* the tablet composition drops both supporting stages */
+  .hero__caption, .hero__figures { display: none; }
+}
+
+/* Phones: one stage comes back.
+   Below 1040px both supporting stages were hidden, which left most of
+   the scroll track with nothing but footage. The caption returns —
+   it is two lines, it is left-aligned away from the orb, and it stays
+   on screen from a third of the way in to the end, so the track reads
+   as a sequence rather than a dead zone. */
+@media (max-width: 860px) {
+  .hero__caption {
+    display: grid;
+    left: var(--pad);
+    right: auto;
+    bottom: calc(var(--bar-h, calc(66px + env(safe-area-inset-bottom, 0px))) + 62px);
+    max-width: 22ch;
+    gap: 6px;
+  }
+  .hero__caption b { font-size: clamp(19px, 5.4vw, 24px); }
+  .hero__caption span { font-size: 13px; line-height: 1.45; }
+
+  /* One primary action. The second reads as a link, not a rival button. */
+  .hero__actions { flex-direction: column; align-items: stretch; gap: 14px; }
+  .hero__actions .btn--seal { width: 100%; }
+  .hero__actions .btn--quiet {
+    align-self: start;
+    min-height: 44px;
+    padding: 0;
+    border: 0;
+    background: none;
+    color: var(--chalk);
+    font-weight: 500;
+    text-decoration: underline;
+    text-underline-offset: 6px;
+    text-decoration-color: rgba(255, 255, 255, .38);
+  }
+  .hero__actions .btn--quiet::after { content: ' →'; }
+  .hero__actions .btn--quiet:hover { border: 0; text-decoration-color: var(--chalk); }
 }
 @media (max-width: 400px) {
   .hero__copy h1 { font-size: clamp(28px, 8.6vw, 38px); max-width: 15ch; }
   .hero__copy { gap: 12px; }
   .hero__lead { font-size: 15px; }
+}
+
+/* On a phone the same assistant is already one tap away in the floating
+   orb, so the calculator's own conversation column is a second copy of
+   an interface the visitor can already reach — and an expensive one in
+   vertical space. The phone keeps the guided form and the result card;
+   the desktop keeps the full two-column presentation. */
+@media (max-width: 860px) {
+  .cx__talk { display: none; }
 }
 
 /* --------------------------- CALCULATOR ON MOBILE ---- */
@@ -1381,6 +1463,19 @@ input[type="range"]:active::-webkit-slider-thumb { transform: scale(1.15); }
   .route { height: 190vh; }
   .rt-stage { padding-top: clamp(80px, 12vh, 108px); padding-bottom: clamp(78px, 12vh, 96px); }
   .rt-read { gap: 24px; }
+}
+
+/* A 568px-tall phone left the diagram 86px to live in: the padding and
+   the display figures had eaten the stage. Both give some back — the
+   drawing is the reason the section exists. */
+@media (max-width: 860px) and (max-height: 680px) {
+  .rt-stage {
+    padding-top: 72px;
+    padding-bottom: calc(var(--bar-h, calc(66px + env(safe-area-inset-bottom, 0px))) + 18px);
+    gap: 12px;
+  }
+  .rt-read .figure { font-size: clamp(30px, 9vw, 40px); }
+  .rt-steps { gap: 8px 12px; }
 }
 
 /* ------------------------------- PHOTO BLOCKS ON MOBILE ---- */
@@ -1686,8 +1781,16 @@ input[type="range"]:active::-webkit-slider-thumb { transform: scale(1.15); }
     z-index: 84;
     top: auto; left: auto;
     right: 12px;
-    bottom: calc(70px + env(safe-area-inset-bottom, 0px));
-    width: auto;
+    bottom: calc(var(--bar-h, calc(66px + env(safe-area-inset-bottom, 0px))) + 4px);
+    /* The closed panel is still in flow here, so `width: auto` measured
+       the whole assistant and stretched the box to 480×640 — the capsule
+       then sat wherever that box happened to start, mid-page, on top of
+       the route diagram. The box is now the capsule, and the window is
+       taken out of flow beneath it. */
+    width: -webkit-max-content;
+    width: max-content;
+    max-width: calc(100vw - 24px);
+    height: auto;
     max-height: none;
     display: block;
     transform: none;
@@ -1703,9 +1806,16 @@ input[type="range"]:active::-webkit-slider-thumb { transform: scale(1.15); }
   .hai__pillhint, .hai__plus { display: none; }
   .hai__mark { width: 22px; height: 22px; }
 
-  .hai.is-open { left: 12px; right: 12px; bottom: calc(66px + env(safe-area-inset-bottom, 0px)); }
+  /* Only the offset moves when it opens. Setting left *and* right here
+     over-constrained a max-content box: it collapsed to zero width at the
+     left edge and threw the window off screen. */
+  .hai.is-open { bottom: var(--bar-h, calc(66px + env(safe-area-inset-bottom, 0px))); }
   .hai.is-open .hai__pill { position: absolute; inset: auto 0 0 auto; }
   .hai__body {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: min(360px, calc(100vw - 24px));
     max-height: min(58svh, calc(100svh - 190px));
     transform-origin: bottom right;
     padding: 13px;
@@ -1714,8 +1824,6 @@ input[type="range"]:active::-webkit-slider-thumb { transform: scale(1.15); }
   .hai__sub { display: none; }
   .hai .ai-best__price { font-size: 26px; }
   .hai .ai-card__acts .btn--seal { width: 100%; }
-
-  .hero__figures, .hero__caption { display: none; }
 }
 
 /* ---- phone: the orb ---- */
@@ -1805,7 +1913,7 @@ input[type="range"]:active::-webkit-slider-thumb { transform: scale(1.15); }
     left: 12px; right: 12px;
     /* --kb is the height the on-screen keyboard is covering; the window
        lifts by exactly that much so the input stays visible. */
-    bottom: calc(70px + env(safe-area-inset-bottom, 0px) + var(--kb, 0px));
+    bottom: calc(var(--bar-h, calc(66px + env(safe-area-inset-bottom, 0px))) + 4px + var(--kb, 0px));
     width: auto;
     max-width: 400px;
     margin-inline: auto;
@@ -1852,7 +1960,7 @@ input[type="range"]:active::-webkit-slider-thumb { transform: scale(1.15); }
 @media (max-height: 560px) and (orientation: landscape) and (max-width: 1040px) {
   .hai__body {
     max-height: calc(100svh - 92px - var(--kb, 0px));
-    bottom: calc(58px + env(safe-area-inset-bottom, 0px) + var(--kb, 0px));
+    bottom: calc(var(--bar-h, calc(66px + env(safe-area-inset-bottom, 0px))) + var(--kb, 0px));
     max-width: 380px;
   }
 }
@@ -1967,7 +2075,7 @@ input[type="range"]:active::-webkit-slider-thumb { transform: scale(1.15); }
     <div class="hero__stage on-dark" id="heroStage">
       <video class="hero__video" id="heroVideo" muted playsinline preload="auto"
              disablepictureinpicture aria-hidden="true"
-             src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260620_185230_f7f71ef4-6655-469f-b9c6-efbdc1f7684a.mp4"></video>
+             data-src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260620_185230_f7f71ef4-6655-469f-b9c6-efbdc1f7684a.mp4"></video>
       <div class="hero__veil" aria-hidden="true"></div>
       <div class="hero__grain" aria-hidden="true"></div>
 
@@ -2027,11 +2135,13 @@ input[type="range"]:active::-webkit-slider-thumb { transform: scale(1.15); }
                   d="M56 196 C 210 196, 268 120, 400 106 S 620 150, 726 78 S 892 34, 944 44"></path>
             <g id="rtNodes"></g>
             <g id="rtMarker" class="rt-marker">
-              <rect class="body" x="-15" y="-8" width="19" height="13" rx="2"></rect>
-              <rect class="cab" x="4" y="-6" width="10" height="11" rx="2"></rect>
-              <circle class="wheel" cx="-9" cy="6" r="2.9"></circle>
-              <circle class="wheel" cx="-1" cy="6" r="2.9"></circle>
-              <circle class="wheel" cx="9" cy="6" r="2.9"></circle>
+              <!-- drawn above y=0 so the wheels stand on the road line -->
+              <rect class="box" x="-23" y="-18" width="21" height="13" rx="1.5"></rect>
+              <path class="cab" d="M-2 -18h6.5l4.5 5.5V-5H-2z"></path>
+              <rect class="glass" x="3.4" y="-16.6" width="4.6" height="4.2" rx="1"></rect>
+              <circle class="wheel" cx="-17.5" cy="-3.4" r="3.2"></circle>
+              <circle class="wheel" cx="-9.5" cy="-3.4" r="3.2"></circle>
+              <circle class="wheel" cx="5" cy="-3.4" r="3.2"></circle>
             </g>
           </svg>
         </div>
@@ -2171,7 +2281,7 @@ input[type="range"]:active::-webkit-slider-thumb { transform: scale(1.15); }
           <div class="field">
             <label for="trkInput" data-i18n="trkNumber">Номер отправления</label>
             <div class="trk__row">
-              <input class="input" id="trkInput" maxlength="20" autocomplete="off" placeholder="CX-10482">
+              <input class="input" id="trkInput" maxlength="20" autocomplete="off" placeholder="JOL-10482">
               <button class="btn btn--seal" id="trkGo" type="button" data-i18n="trkGo">Отследить</button>
             </div>
           </div>
@@ -3833,6 +3943,10 @@ input[type="range"]:active::-webkit-slider-thumb { transform: scale(1.15); }
 
   function lerp(a, b, p) { return a + (b - a) * p; }
 
+  /* Matches the CSS phone breakpoint. Read on demand rather than cached,
+     so a rotation or a resize needs no extra bookkeeping. */
+  function narrow() { return (window.innerWidth || 1200) <= 860; }
+
   /* -------------------------------------------------- playhead ------- */
   function startPlayback() {
     if (playing || !video) return;
@@ -3880,6 +3994,29 @@ input[type="range"]:active::-webkit-slider-thumb { transform: scale(1.15); }
     video = U.$('heroVideo');
     if (!video) { if (stage) stage.classList.add('is-bare'); return; }
 
+    /* Scrubbing needs frames, so `preload="auto"` stays: a metadata-only
+       clip cannot be seeked without a stall on the first scroll. What
+       changes is *when* the fetch starts. Holding the URL in `data-src`
+       keeps it out of the parser's preload scanner, so the stylesheet,
+       the fonts and the headline are not competing with a video file for
+       the first connections. The fetch begins here, at DOM ready, which
+       is still seconds before anyone scrolls.
+
+       On a metered or very slow connection the clip is skipped entirely
+       and the hero keeps its own painted background. Nothing else in the
+       hero depends on the video: copy, stages, veil and meter all still
+       answer to scroll. */
+    var conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+    var eff = (conn && conn.effectiveType) || '';
+    var thin = !!(conn && (conn.saveData === true || eff === 'slow-2g' || eff === '2g'));
+    var src = video.getAttribute('data-src');
+
+    if (thin || !src) {
+      if (stage) stage.classList.add('is-bare');
+      video = null;                 /* paint() then simply skips the camera */
+      return;
+    }
+
     U.on(video, 'loadedmetadata', function () {
       duration = isFinite(video.duration) ? video.duration : 0;
       video.classList.add('is-ready');
@@ -3923,8 +4060,13 @@ input[type="range"]:active::-webkit-slider-thumb { transform: scale(1.15); }
     U.on(document, 'click', once);
 
     window.setTimeout(function () {
-      if (!duration && stage && !video.classList.contains('is-ready')) stage.classList.add('is-bare');
+      if (!duration && stage && video && !video.classList.contains('is-ready')) stage.classList.add('is-bare');
     }, 7000);
+
+    /* listeners first, then the fetch, so `loadedmetadata` cannot be
+       missed on a warm cache */
+    video.src = src;
+    try { video.load(); } catch (e) { /* older engines start on their own */ }
   }
 
   /* ---------------------------------------------------- the paint ---- */
@@ -3940,22 +4082,28 @@ input[type="range"]:active::-webkit-slider-thumb { transform: scale(1.15); }
        so it stays legible for the whole scrub instead of blacking out. */
     if (stage) stage.style.setProperty('--veil', String(lerp(0.42, 0.66, p)));
 
-    /* Three narrative stages on one scroll track:
-         0–30%   brand + message
-         30–65%  the corridor caption
-         65–100% three operational figures                                */
+    /* Stages on one scroll track.
+         desktop  0–30% brand · 30–65% caption · 65–100% figures
+         phone    0–34% brand · 34–100% caption
+       The phone hides the figures, so its caption has no upper bound:
+       the last two thirds of the track keep something on screen. */
     if (copy) {
       copy.style.setProperty('--copy-o', String(U.clamp(1 - (p - 0.16) / 0.16, 0, 1)));
       copy.style.setProperty('--copy-y', String(Math.round(p * 90)));
     }
     if (hero) {
-      hero.classList.toggle('is-stage-2', p > 0.3 && p < 0.64);
-      var third = p >= 0.66;
-      if (third && !countedFigures) {
-        countedFigures = true;
-        if (JOL.motion) JOL.motion.count(U.$('heroFigures'));
+      if (narrow()) {
+        hero.classList.toggle('is-stage-2', p > 0.34);
+        hero.classList.remove('is-stage-3');
+      } else {
+        hero.classList.toggle('is-stage-2', p > 0.3 && p < 0.64);
+        var third = p >= 0.66;
+        if (third && !countedFigures) {
+          countedFigures = true;
+          if (JOL.motion) JOL.motion.count(U.$('heroFigures'));
+        }
+        hero.classList.toggle('is-stage-3', third);
       }
-      hero.classList.toggle('is-stage-3', third);
     }
     if (meter) meter.style.width = (U.clamp(p, 0, 1) * 100).toFixed(1) + '%';
 
@@ -4075,31 +4223,73 @@ input[type="range"]:active::-webkit-slider-thumb { transform: scale(1.15); }
      this section can never disagree with the corridor list above it. */
   var LANE = { from: 'yiwu', fc: 'CN', to: 'bishkek', tc: 'KG' };
 
-  /* `at` is where the node sits on the line; `act` is the scroll point at
-     which that stage becomes the current one. Keeping them apart lets the
-     marker travel smoothly while the labels still read 0-25-50-75. */
+  /* `at` is where the node sits on the line, `act` is where its stage
+     becomes current. They used to run on different schedules (0-25-50-75),
+     which lit "Граница" while the truck was still two nodes short of it.
+     Now a stage turns on when the vehicle reaches its node — the last
+     one a little early, so arrival gets its own moment on the track. */
   var STAGES = [
     { at: 0.00, act: 0.00, key: 'rtStage1', placeKey: 'rtPlace1' },
-    { at: 0.34, act: 0.25, key: 'rtStage2', placeKey: 'rtPlace2' },
-    { at: 0.67, act: 0.50, key: 'rtStage3', placeKey: 'rtPlace3' },
-    { at: 1.00, act: 0.75, key: 'rtStage4', placeKey: 'rtPlace4' }
+    { at: 0.34, act: 0.32, key: 'rtStage2', placeKey: 'rtPlace2' },
+    { at: 0.67, act: 0.65, key: 'rtStage3', placeKey: 'rtPlace3' },
+    { at: 1.00, act: 0.93, key: 'rtStage4', placeKey: 'rtPlace4' }
   ];
 
-  /* Two geometries, not one geometry squeezed. The phone gets a vertical
-     climb; the desktop gets a long horizontal traverse. */
-  var GEO = {
+  /* Two shapes, both written in normalised 0..1 coordinates and laid into
+     whatever box the scene actually gets. A fixed viewBox was the reason
+     the diagram floated in an empty field: a 4:1 drawing in a 2.4:1 box
+     used 60% of it on a laptop and 25% on a portrait tablet. The viewBox
+     is now the scene's own pixel box, so the drawing always fills it —
+     and, because one SVG unit is one CSS pixel at every breakpoint, the
+     line weight, the node size and the place labels stay the size they
+     were designed at instead of scaling with the container.
+
+     `pad` keeps the line clear of its own furniture: labels sit 20px
+     above a node, the vehicle stands 17px above the road. */
+  var SHAPE = {
+    /* the traverse — a road that climbs from the plain to the pass */
     wide: {
-      viewBox: '0 0 1000 250',
-      d: 'M56 196 C 210 196, 268 120, 400 106 S 620 150, 726 78 S 892 34, 944 44'
+      pad: { left: 42, right: 46, top: 36, bottom: 28 },
+      pts: [
+        ['M', 0, 1],
+        ['C', 0.18, 1, 0.25, 0.66, 0.42, 0.56],
+        ['S', 0.63, 0.46, 0.75, 0.27],
+        ['S', 0.93, 0.04, 1, 0.03]
+      ]
     },
+    /* the climb — the same journey read top to bottom on a phone */
     tall: {
-      viewBox: '0 0 300 600',
-      d: 'M74 44 C 74 150, 214 176, 214 268 S 74 350, 74 452 S 150 552, 196 566'
+      pad: { left: 28, right: 98, top: 34, bottom: 34 },
+      pts: [
+        ['M', 0, 0],
+        ['C', 0, 0.203, 1, 0.253, 1, 0.429],
+        ['S', 0, 0.586, 0, 0.782],
+        ['S', 0.6, 0.973, 0.87, 1]
+      ]
     }
   };
 
+  function buildPath(shape, w, h) {
+    var p = shape.pad;
+    /* A very short stage (a small phone, or a phone held sideways) would
+       otherwise be all padding and no road. The top keeps enough for a
+       place label to sit above its node; the rest gives way. */
+    var squeeze = Math.min(1, Math.max(0.35, (h - p.top) / 220));
+    var top = Math.min(p.top, Math.max(26, h * 0.22));
+    var bottom = p.bottom * squeeze;
+    var spanX = Math.max(40, w - p.left - p.right);
+    var spanY = Math.max(30, h - top - bottom);
+    var x = function (n) { return (p.left + n * spanX).toFixed(1); };
+    var y = function (n) { return (top + n * spanY).toFixed(1); };
+    return shape.pts.map(function (seg) {
+      var out = seg[0];
+      for (var i = 1; i < seg.length; i += 2) out += ' ' + x(seg[i]) + ' ' + y(seg[i + 1]);
+      return out;
+    }).join(' ');
+  }
+
   var block, stageEl, svg, ghost, line, marker, nodesHost, stagesHost, kmEl, daysEl, laneEl;
-  var pathLength = 0, mode = 'wide';
+  var pathLength = 0, mode = 'wide', boxW = 0, boxH = 0;
   var target = 0, current = 0, raf = null, visible = true, lastFrame = 0, lastIndex = -1;
   var totalKm = 0, totalDays = 0;
 
@@ -4167,19 +4357,38 @@ input[type="range"]:active::-webkit-slider-thumb { transform: scale(1.15); }
     var point, ahead;
     try {
       point = line.getPointAtLength(pathLength * current);
-      ahead = line.getPointAtLength(Math.min(pathLength, pathLength * current + 5));
+      ahead = line.getPointAtLength(Math.min(pathLength, pathLength * current + 14));
     } catch (e) { return; }
-    /* Rotation follows the tangent, so the vehicle leans into the route. */
-    var angle = Math.atan2(ahead.y - point.y, ahead.x - point.x) * 180 / Math.PI;
+    /* Direction first, tilt second. On the phone the road switchbacks, so
+       the tangent regularly points leftward; clamping that raw angle left
+       the truck driving backwards up its own line. The body mirrors for
+       the leftward legs, and only the pitch is damped — a literal tangent
+       tips it past 30° in the taller box and reads as a stunt. */
+    var raw = Math.atan2(ahead.y - point.y, ahead.x - point.x) * 180 / Math.PI;
+    var flip = raw > 90 || raw < -90;
+    var pitch = flip ? (raw > 0 ? raw - 180 : raw + 180) : raw;
+    /* The traverse is a road seen side-on, so it stays nearly level. The
+       phone's climb is genuinely steep and a heavily damped truck would
+       float off its own line, so it keeps most of the tangent. */
+    var limit = mode === 'tall' ? 42 : 17;
+    pitch = Math.max(-limit, Math.min(limit, pitch * (mode === 'tall' ? 0.85 : 0.6)));
     marker.setAttribute('transform',
-      'translate(' + point.x.toFixed(1) + ' ' + point.y.toFixed(1) + ') rotate(' + angle.toFixed(1) + ')');
+      'translate(' + point.x.toFixed(1) + ' ' + point.y.toFixed(1) + ') ' +
+      'rotate(' + pitch.toFixed(1) + ')' + (flip ? ' scale(-1 1)' : ''));
   }
 
   function renderReadout() {
     if (kmEl) kmEl.textContent = U.number(Math.round(totalKm * current));
     if (daysEl) {
+      /* The figure is the number; the word is a unit, not a headline.
+         Set as one display block it read larger than the distance it
+         sits next to and became the loudest thing in the section. */
       var left = Math.max(0, Math.round(totalDays * (1 - current)));
-      daysEl.textContent = left + ' ' + C.engine.days(left);
+      daysEl.textContent = String(left);
+      var unit = document.createElement('i');
+      unit.className = 'rt-unit';
+      unit.textContent = C.engine.days(left);
+      daysEl.appendChild(unit);
     }
     var index = activeIndex();
     if (nodesHost) {
@@ -4208,15 +4417,27 @@ input[type="range"]:active::-webkit-slider-thumb { transform: scale(1.15); }
   }
 
   function applyGeometry() {
-    var next = pickMode();
-    var geo = GEO[next];
     if (!svg || !line || !ghost) return;
-    if (next !== mode || !pathLength) {
-      mode = next;
-      svg.setAttribute('viewBox', geo.viewBox);
-      line.setAttribute('d', geo.d);
-      ghost.setAttribute('d', geo.d);
+    var host = svg.parentNode;
+    var rect = host ? host.getBoundingClientRect() : null;
+    var w = Math.round(rect ? rect.width : 0);
+    var h = Math.round(rect ? rect.height : 0);
+    if (w < 40 || h < 40) return;             /* not laid out yet */
+
+    var next = pickMode();
+    /* Rewrite only when something actually moved: a rounding wobble
+       during a scroll must not cost a path rebuild. */
+    if (next === mode && Math.abs(w - boxW) < 2 && Math.abs(h - boxH) < 2 && pathLength) {
+      paint();
+      return;
     }
+    mode = next; boxW = w; boxH = h;
+
+    var d = buildPath(SHAPE[mode], w, h);
+    svg.setAttribute('viewBox', '0 0 ' + w + ' ' + h);
+    line.setAttribute('d', d);
+    ghost.setAttribute('d', d);
+
     try { pathLength = line.getTotalLength(); } catch (e) { pathLength = 0; }
     renderNodes();
     paint();
@@ -4432,7 +4653,15 @@ input[type="range"]:active::-webkit-slider-thumb { transform: scale(1.15); }
     var hero = U.$('hero');
     if (!bar) return;
 
-    function set(paper) { bar.classList.toggle('is-paper', paper); }
+    /* The browser's own chrome should belong to the page: over the hero
+       the top of the screen is the dark stage, everywhere else it is
+       paper. One state, one meta tag — no second state machine. */
+    var meta = document.querySelector('meta[name="theme-color"]');
+    function set(paper) {
+      bar.classList.toggle('is-paper', paper);
+      if (meta) meta.setAttribute('content', paper ? '#f3f4f0' : '#0e1518');
+    }
+    set(false);
 
     if (hero && 'IntersectionObserver' in window) {
       try {
@@ -4492,11 +4721,18 @@ input[type="range"]:active::-webkit-slider-thumb { transform: scale(1.15); }
     var close = U.$('menuClose');
     if (!burger || !menu) return;
 
+    var wasOpen = false;
+
     function set(open) {
       document.body.classList.toggle('menu-open', open);
       menu.setAttribute('aria-hidden', open ? 'false' : 'true');
       burger.setAttribute('aria-expanded', open ? 'true' : 'false');
       burger.setAttribute('aria-label', t(open ? 'menuClose' : 'menuOpen'));
+      /* The sheet covers the page, so focus belongs inside it while it is
+         up and back on the control that opened it once it is down. */
+      if (open) { try { close.focus({ preventScroll: true }); } catch (e) { /* ignore */ } }
+      else if (wasOpen) { try { burger.focus({ preventScroll: true }); } catch (e) { /* ignore */ } }
+      wasOpen = open;
     }
     ui.setMenu = set;
 
@@ -4504,7 +4740,15 @@ input[type="range"]:active::-webkit-slider-thumb { transform: scale(1.15); }
     U.on(close, 'click', function () { set(false); });
     U.each(menu.querySelectorAll('a'), function (a) { U.on(a, 'click', function () { set(false); }); });
     U.on(document, 'keydown', function (e) {
-      if (e.key === 'Escape' && document.body.classList.contains('menu-open')) set(false);
+      if (!document.body.classList.contains('menu-open')) return;
+      if (e.key === 'Escape') { set(false); return; }
+      if (e.key !== 'Tab') return;
+      /* Tab cycles the sheet instead of walking the page underneath it */
+      var list = menu.querySelectorAll('a[href], button:not([disabled])');
+      if (!list.length) return;
+      var first = list[0], last = list[list.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
     });
     set(false);
   }
@@ -4936,7 +5180,7 @@ input[type="range"]:active::-webkit-slider-thumb { transform: scale(1.15); }
   };
 
   var TRACKING = {
-    'CX-10482': {
+    'JOL-10482': {
       from: 'yiwu', to: 'bishkek', statusKey: 'trkTransit', eta: '14.09', progress: 0.68,
       steps: [
         { k: 'trkEv1', place: 'Иу', when: '02.09 · 09:15', state: 'done' },
@@ -4946,7 +5190,7 @@ input[type="range"]:active::-webkit-slider-thumb { transform: scale(1.15); }
         { k: 'trkEv5', place: 'Бишкек', when: '14.09', state: '' }
       ]
     },
-    'CX-10483': {
+    'JOL-10483': {
       from: 'guangzhou', to: 'osh', statusKey: 'trkDocs', eta: '18.09', progress: 0.24,
       steps: [
         { k: 'trkEv0', place: 'Гуанчжоу', when: '05.09 · 15:30', state: 'done' },
@@ -4956,7 +5200,7 @@ input[type="range"]:active::-webkit-slider-thumb { transform: scale(1.15); }
         { k: 'trkEv5', place: 'Ош', when: '18.09', state: '' }
       ]
     },
-    'CX-10484': {
+    'JOL-10484': {
       from: 'dubai', to: 'bishkek', statusKey: 'trkDone', eta: '05.09', progress: 1,
       steps: [
         { k: 'trkEv0', place: 'Дубай', when: '28.08 · 12:00', state: 'done' },
@@ -4967,7 +5211,7 @@ input[type="range"]:active::-webkit-slider-thumb { transform: scale(1.15); }
     }
   };
 
-  var TRACK_RE = /\b(CX[\s-]?\d{4,6})\b/i;
+  var TRACK_RE = /\b(JOL[\s-]?\d{4,6})\b/i;
 
   /* ======================================================= STATE == */
   var S = {
@@ -5035,7 +5279,7 @@ input[type="range"]:active::-webkit-slider-thumb { transform: scale(1.15); }
   }
   function detectTracking(text) {
     var m = String(text || '').match(TRACK_RE);
-    return m ? m[1].toUpperCase().replace(/\s/g, '-').replace(/^CX(?!-)/, 'CX-') : null;
+    return m ? m[1].toUpperCase().replace(/\s/g, '-').replace(/^JOL(?!-)/, 'JOL-') : null;
   }
   function detectRoute(patch) { return { originId: patch.originId || null, destinationId: patch.destinationId || null }; }
   function detectWeight(patch) { return patch.weightKg || null; }
@@ -5395,19 +5639,37 @@ input[type="range"]:active::-webkit-slider-thumb { transform: scale(1.15); }
      Position lives in one place (orbX / orbY) and is applied as a
      transform, so dragging never touches layout.
      ============================================================ */
-  var POS_KEY = 'jol-orb-pos-v1';
+  var POS_KEY = 'jol-orb-pos-v2';
 
+  /* Where the visitor parked the orb is a preference, not session state,
+     so it survives the visit. The stored value is always re-clamped to
+     the current viewport by placeOrb(), so a position saved on a large
+     phone can never strand the orb off a small one. */
   function savePos() {
-    try { sessionStorage.setItem(POS_KEY, ORB.x + ',' + ORB.y); } catch (e) { /* private mode */ }
+    try { localStorage.setItem(POS_KEY, ORB.x + ',' + ORB.y); } catch (e) { /* private mode */ }
   }
   function loadPos() {
     try {
-      var raw = sessionStorage.getItem(POS_KEY);
+      var raw = localStorage.getItem(POS_KEY);
       if (!raw) return false;
       var p = raw.split(',');
       ORB.x = parseFloat(p[0]); ORB.y = parseFloat(p[1]);
       return isFinite(ORB.x) && isFinite(ORB.y);
     } catch (e) { return false; }
+  }
+
+  /* One measured number for every bottom clearance on the page: body
+     padding, the assistant window, the hero meter and the orb bounds all
+     read it, so the bar's real height can never disagree with a
+     hard-coded copy of it. */
+  function syncBarHeight() {
+    var bar = U.qs('.actbar');
+    /* the bar is position:fixed, so offsetParent is null even when it is
+       on screen — display is the honest test */
+    var shown = bar && window.getComputedStyle(bar).display !== 'none';
+    var h = shown ? (bar.offsetHeight || 0) : 0;
+    document.documentElement.style.setProperty('--bar-h', h + 'px');
+    return h;
   }
 
   var ORB = {
@@ -5427,8 +5689,7 @@ input[type="range"]:active::-webkit-slider-thumb { transform: scale(1.15); }
     var vh = window.innerHeight || 640;
     var el = orbEl();
     var size = el ? (el.offsetWidth || ORB.size) : ORB.size;
-    var bar = U.qs('.actbar');
-    var barH = (bar && bar.offsetHeight) ? bar.offsetHeight : 0;
+    var barH = syncBarHeight();
     var top = U.qs('.topbar');
     var topH = (top && top.offsetHeight) ? top.offsetHeight : 64;
     return {
@@ -5522,10 +5783,11 @@ input[type="range"]:active::-webkit-slider-thumb { transform: scale(1.15); }
       if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setOpen(true, true); }
     });
 
-    var reflow = U.debounce(function () { if (isPhone()) placeOrb(true); }, 150);
+    var reflow = U.debounce(function () { syncBarHeight(); if (isPhone()) placeOrb(true); }, 150);
     U.on(window, 'resize', reflow, { passive: true });
     U.on(window, 'orientationchange', function () { window.setTimeout(reflow, 250); });
 
+    syncBarHeight();
     loadPos();
     placeOrb(false);
 
@@ -5558,6 +5820,44 @@ input[type="range"]:active::-webkit-slider-thumb { transform: scale(1.15); }
   }
 
   /* ======================================= HERO PANEL: OPEN/SHUT == */
+  /* iOS ignores `overflow: hidden` on the body, so the page is pinned
+     with its own scroll offset and put back exactly where it was. The
+     smooth-scroll preference is suspended for the restore, otherwise the
+     page animates back and reads as a jump. */
+  var lockedY = 0;
+  function lockPage(on) {
+    var b = document.body;
+    if (on) {
+      if (b.classList.contains('ai-lock')) return;
+      lockedY = window.pageYOffset || document.documentElement.scrollTop || 0;
+      b.style.top = (-lockedY) + 'px';
+      b.classList.add('ai-lock');
+    } else {
+      if (!b.classList.contains('ai-lock')) return;
+      b.classList.remove('ai-lock');
+      b.style.top = '';
+      var root = document.documentElement;
+      var prev = root.style.scrollBehavior;
+      root.style.scrollBehavior = 'auto';
+      window.scrollTo(0, lockedY);
+      root.style.scrollBehavior = prev;
+    }
+  }
+
+  /* Tab must not walk out from under the dialog. */
+  function trapFocus(e, root) {
+    if (e.key !== 'Tab' || !root) return;
+    var items = root.querySelectorAll('a[href], button:not([disabled]), input, select, textarea, [tabindex]:not([tabindex="-1"])');
+    var list = [];
+    U.each(items, function (el) {
+      if (el.offsetParent !== null || el === document.activeElement) list.push(el);
+    });
+    if (!list.length) return;
+    var first = list[0], last = list[list.length - 1];
+    if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+  }
+
   function setOpen(open, focus) {
     S.open = !!open;
     var host = U.$('heroAI');
@@ -5572,6 +5872,9 @@ input[type="range"]:active::-webkit-slider-thumb { transform: scale(1.15); }
     /* A page-level flag, so nothing else has to guess the panel's state.
        Nothing here changes layout, so the page cannot jump. */
     document.body.classList.toggle('ai-open', S.open);
+    /* Only the phone dialog is modal — the desktop panel is part of the
+       composition and the page keeps scrolling behind it. */
+    lockPage(S.open && isPhone());
     /* the launcher's own state depends on whether the window is open,
        so repaint it here as well as on every render */
     paintOrbState();
@@ -5687,6 +5990,7 @@ input[type="range"]:active::-webkit-slider-thumb { transform: scale(1.15); }
     });
     U.on(document, 'keydown', function (e) {
       if (e.key === 'Escape' && S.open && isPhone()) setOpen(false, true);
+      if (S.open && isPhone()) trapFocus(e, U.$('haiBody'));
     });
 
     U.on(U.$('haiToggle'), 'click', function () { setOpen(true, true); });
@@ -5770,8 +6074,8 @@ input[type="range"]:active::-webkit-slider-thumb { transform: scale(1.15); }
       if (e.key === 'Enter') { e.preventDefault(); renderTracking(e.target.value); }
     });
     var first = U.$('trkInput');
-    if (first) first.value = 'CX-10482';
-    renderTracking('CX-10482');
+    if (first) first.value = 'JOL-10482';
+    renderTracking('JOL-10482');
   }
 
   function init() {
